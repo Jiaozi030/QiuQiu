@@ -9480,9 +9480,9 @@ internalMixin(Vue);
 
 /***/ }),
 /* 26 */
-/*!******************************************************!*\
-  !*** /Users/jiaozi030/Desktop/app/QiuQiu/pages.json ***!
-  \******************************************************/
+/*!*************************************!*\
+  !*** D:/projects/QiuQiu/pages.json ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9626,9 +9626,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 33 */
-/*!********************************************************************!*\
-  !*** /Users/jiaozi030/Desktop/app/QiuQiu/uni.promisify.adaptor.js ***!
-  \********************************************************************/
+/*!***************************************************!*\
+  !*** D:/projects/QiuQiu/uni.promisify.adaptor.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

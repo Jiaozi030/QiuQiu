@@ -1,12 +1,21 @@
 <template>
 	<view class="container">
 		<!-- 顶部导航栏 -->
-		<uni-segmented-control
-			:current="current"
-			:values="tabs"
-			@clickItem="onClickItem"
-			style-type="text"
-		></uni-segmented-control>
+		<view class="top-bar">
+			<!-- 分段器 -->
+			<view class="segmented-control-container">
+				<uni-segmented-control
+					:current="current"
+					:values="tabs"
+					@clickItem="onClickItem"
+					style-type="text"
+				></uni-segmented-control>
+			</view>
+			<!-- 筛选按钮 -->
+			<view class="filter-button" @click="onFilterClick">
+				<text>筛选</text>
+			</view>
+		</view>
 
 		<!-- 内容区域 -->
 		<swiper
@@ -57,6 +66,13 @@ export default {
 		// 滑动 swiper 时触发
 		onSwiperChange(e) {
 			this.current = e.detail.current;
+		},
+		// 点击筛选按钮时触发
+		onFilterClick() {
+			uni.showToast({
+				title: '筛选功能待实现',
+				icon: 'none'
+			});
 		}
 	}
 }
@@ -72,26 +88,33 @@ export default {
 		width: 100%; /* 确保父容器宽度占满 */
 	}
 
-	/* 调整 uni-segmented-control 的样式 */
-	.uni-segmented-control {
-		display: flex !important;
-		justify-content: center !important;
-		padding: 20rpx 0; /* 增加 padding */
-		background-color: #f8f8f8; /* 修改 background-color */
-		box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1); /* 增加 box-shadow */
-		max-width: 100%; /* 增加 max-width */
-		margin: 0 20rpx !important; /* 增加 margin */
-		font-size: 36rpx !important;
-		border-radius: 20rpx !important;
-		border: 1rpx solid #eee !important;
-		height: 100rpx !important;
-		line-height: 100rpx !important;
-		text-align: center !important;
-		white-space: nowrap !important;
+	/* 顶部导航栏布局 */
+	.top-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between; /* 使分段器和筛选按钮均匀分布 */
+		width: 100%;
+		padding: 20rpx;
+		box-sizing: border-box;
 	}
 
-	.uni-segmented-control-item {
-		margin: 0 30rpx !important; /* 确保间距生效 */
+	/* 分段器容器样式 */
+	.segmented-control-container {
+		flex: 1;  /*占据剩余空间 */
+		/* display: flex; */
+		/*justify-content: center;  使分段器居中 */
+        /*text-align: center;  使内容居中 */
+	}
+
+
+	/* 筛选按钮样式 */
+	.filter-button {
+		padding: 10rpx 20rpx;
+		background-color: #f8f8f8;
+		border-radius: 20rpx;
+		border: 1rpx solid #eee;
+		font-size: 28rpx;
+		color: #333;
 	}
 
 	/* 调整 swiper 的样式 */
@@ -121,14 +144,5 @@ export default {
 	.title {
 		font-size: 36rpx;
 		color: #8f8f94;
-	}
-
-	.uni-segmented-control {
-		border-radius: 20rpx; /* 增加 border-radius */
-		border: 1rpx solid #eee; /* 增加 border */
-		height: 100rpx; /* 增加 height */
-		line-height: 100rpx; /* 增加 line-height */
-		text-align: center; /* 确保 text-align 为 center */
-		white-space: nowrap; /* 确保 white-space 为 nowrap */
 	}
 </style>
