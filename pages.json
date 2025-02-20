@@ -1,0 +1,79 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "逑逑"
+			}
+		},
+		{
+			"path": "pages/discover/discover",
+			"style": {
+				"navigationBarTitleText": "发现"
+			}
+		},
+		{
+			"path": "pages/metaverse/metaverse",
+			"style": {
+				"navigationBarTitleText": "元宇宙"
+			}
+		},
+		{
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": "消息"
+			}
+		},
+		{
+			"path": "pages/profile/profile",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#999",
+		"selectedColor": "#ff6b81",
+		"backgroundColor": "#fff",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "/static/tab-home.png",
+				"selectedIconPath": "/static/tab-home-active.png"
+			},
+			{
+				"pagePath": "pages/discover/discover",
+				"text": "发现",
+				"iconPath": "/static/tab-discover.png",
+				"selectedIconPath": "/static/tab-discover-active.png"
+			},
+			{
+				"pagePath": "pages/metaverse/metaverse",
+				"text": "元宇宙",
+				"iconPath": "/static/tab-metaverse.png",
+				"selectedIconPath": "/static/tab-metaverse-active.png"
+			},
+			{
+				"pagePath": "pages/message/message",
+				"text": "消息",
+				"iconPath": "/static/tab-message.png",
+				"selectedIconPath": "/static/tab-message-active.png"
+			},
+			{
+				"pagePath": "pages/profile/profile",
+				"text": "我的",
+				"iconPath": "/static/tab-profile.png",
+				"selectedIconPath": "/static/tab-profile-active.png"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
