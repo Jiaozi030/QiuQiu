@@ -35,6 +35,12 @@
 			"style": {
 				"navigationBarTitleText": "筛选"
 			}
+		},
+		{
+			"path": "pages/index/recommendation",
+			"style": {
+				"navigationBarTitleText": "推荐用户"
+			}
 		}
 	],
 	"globalStyle": {

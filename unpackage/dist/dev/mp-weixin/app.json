@@ -5,7 +5,8 @@
     "pages/metaverse/metaverse",
     "pages/message/message",
     "pages/profile/profile",
-    "pages/index/filter"
+    "pages/index/filter",
+    "pages/index/recommendation"
   ],
   "subPackages": [],
   "window": {

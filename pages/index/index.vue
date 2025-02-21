@@ -32,12 +32,16 @@
 			</swiper-item>
 			<swiper-item>
 				<view class="content">
-					<text class="title">附近内容</text>
+					<navigator url="/pages/index/nearby" open-type="navigate">
+						<text class="title">查看附近用户</text>
+					</navigator>
 				</view>
 			</swiper-item>
 			<swiper-item>
 				<view class="content">
-					<text class="title">关注内容</text>
+					<navigator url="/pages/index/recommendation" open-type="navigate">
+						<text class="title">查看推荐用户</text>
+					</navigator>
 				</view>
 			</swiper-item>
 		</swiper>

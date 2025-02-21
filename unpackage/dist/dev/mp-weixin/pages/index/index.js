@@ -148,7 +148,7 @@ var uniSegmentedControl = function uniSegmentedControl() {
 };
 var UserCard = function UserCard() {
   __webpack_require__.e(/*! require.ensure | components/UserCard */ "components/UserCard").then((function () {
-    return resolve(__webpack_require__(/*! @/components/UserCard.vue */ 30));
+    return resolve(__webpack_require__(/*! @/components/UserCard.vue */ 101));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
