@@ -1,6 +1,7 @@
 {
-  "navigationBarTitleText": "逑逑",
+  "navigationBarTitleText": "首页",
   "usingComponents": {
-    "uni-segmented-control": "/node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control"
+    "uni-segmented-control": "/node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control",
+    "user-card": "/components/UserCard"
   }
 }

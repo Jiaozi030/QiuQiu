@@ -1,63 +1,47 @@
 
 .container {
-		display: flex;
-		flex-direction: column;
-		height: 100vh;
-		justify-content: flex-start; /* 确保顶部对齐 */
-		align-items: center; /* 确保水平居中 */
-		width: 100%; /* 确保父容器宽度占满 */
+	display: flex;
+	flex-direction: column;
+	height: 100vh; /* 确保容器高度占满整个视口 */
 }
 
-	/* 顶部导航栏布局 */
-.top-bar {
-		display: flex;
-		align-items: center;
-		justify-content: space-between; /* 使分段器和筛选按钮均匀分布 */
-		width: 100%;
-		padding: 20rpx;
-		box-sizing: border-box;
+/* 调整 uni-segmented-control 的样式 */
+.uni-segmented-control {
+	display: flex;
+	justify-content: center;
+	padding: 10rpx 0;
+	background-color: #fff;
+	box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+	max-width: 80%;
+	margin: 0 auto;
+	font-size: 28rpx;
+}
+.uni-segmented-control-item {
+	margin: 0 10rpx; /* 调整分页标签之间的间距 */
 }
 
-	/* 分段器容器样式 */
-.segmented-control-container {
-		flex: 1;  /*占据剩余空间 */
-		/* display: flex; */
-		/*justify-content: center;  使分段器居中 */
-        /*text-align: center;  使内容居中 */
-}
-
-	/* 筛选按钮样式 */
-.filter-button {
-		padding: 10rpx 20rpx;
-		background-color: #f8f8f8;
-		border-radius: 20rpx;
-		border: 1rpx solid #eee;
-		font-size: 28rpx;
-		color: #333;
-}
-
-	/* 调整 swiper 的样式 */
+/* 调整 swiper 的样式 */
 .swiper {
-		flex: 1; /* 确保 swiper 占满剩余空间 */
+	flex: 1; /* 确保 swiper 占满剩余空间 */
 }
 .content {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100%; /* 确保内容区域占满 swiper-item */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%; /* 确保内容区域占满 swiper-item */
 }
 .logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-bottom: 50rpx;
+	height: 200rpx;
+	width: 200rpx;
+	margin-top: 200rpx;
+	margin-bottom: 50rpx;
 }
 .text-area {
-		display: flex;
-		justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .title {
-		font-size: 36rpx;
-		color: #8f8f94;
+	font-size: 36rpx;
+	color: #8f8f94;
 }
 

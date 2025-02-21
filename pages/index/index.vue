@@ -1,21 +1,13 @@
 <template>
 	<view class="container">
 		<!-- 顶部导航栏 -->
-		<view class="top-bar">
-			<!-- 分段器 -->
-			<view class="segmented-control-container">
-				<uni-segmented-control
-					:current="current"
-					:values="tabs"
-					@clickItem="onClickItem"
-					style-type="text"
-				></uni-segmented-control>
-			</view>
-			<!-- 筛选按钮 -->
-			<view class="filter-button" @click="onFilterClick">
-				<text>筛选</text>
-			</view>
-		</view>
+		<uni-segmented-control
+			:current="current"
+			:values="tabs"
+			@clickItem="onClickItem"
+			style-type="text"
+			active-color="#ff6b81"
+		></uni-segmented-control>
 
 		<!-- 内容区域 -->
 		<swiper
@@ -27,7 +19,7 @@
 		>
 			<swiper-item>
 				<view class="content">
-					<text class="title">推荐内容</text>
+					<UserCard :user="currentUser" />
 				</view>
 			</swiper-item>
 			<swiper-item>
@@ -46,13 +38,24 @@
 
 <script>
 import uniSegmentedControl from '@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue';
+import UserCard from '@/components/UserCard.vue';
 
 export default {
-	components: { uniSegmentedControl },
+	components: { uniSegmentedControl, UserCard },
 	data() {
 		return {
 			current: 0, // 当前选中的分页索引
-			tabs: ['推荐', '附近', '关注'] // 分页标签
+			tabs: ['推荐', '附近', '关注'], // 分页标签
+			currentUser: {
+				photo: '/static/logo.png',
+				name: '张三',
+				age: 28,
+				location: '北京',
+				height: 178,
+				weight: 70,
+				education: '本科',
+				industry: '互联网'
+			}
 		}
 	},
 	onLoad() {
@@ -66,13 +69,6 @@ export default {
 		// 滑动 swiper 时触发
 		onSwiperChange(e) {
 			this.current = e.detail.current;
-		},
-		// 点击筛选按钮时触发
-		onFilterClick() {
-			uni.showToast({
-				title: '筛选功能待实现',
-				icon: 'none'
-			});
 		}
 	}
 }
@@ -82,39 +78,23 @@ export default {
 	.container {
 		display: flex;
 		flex-direction: column;
-		height: 100vh;
-		justify-content: flex-start; /* 确保顶部对齐 */
-		align-items: center; /* 确保水平居中 */
-		width: 100%; /* 确保父容器宽度占满 */
+		height: 100vh; /* 确保容器高度占满整个视口 */
 	}
 
-	/* 顶部导航栏布局 */
-	.top-bar {
+	/* 调整 uni-segmented-control 的样式 */
+	.uni-segmented-control {
 		display: flex;
-		align-items: center;
-		justify-content: space-between; /* 使分段器和筛选按钮均匀分布 */
-		width: 100%;
-		padding: 20rpx;
-		box-sizing: border-box;
-	}
-
-	/* 分段器容器样式 */
-	.segmented-control-container {
-		flex: 1;  /*占据剩余空间 */
-		/* display: flex; */
-		/*justify-content: center;  使分段器居中 */
-        /*text-align: center;  使内容居中 */
-	}
-
-
-	/* 筛选按钮样式 */
-	.filter-button {
-		padding: 10rpx 20rpx;
-		background-color: #f8f8f8;
-		border-radius: 20rpx;
-		border: 1rpx solid #eee;
+		justify-content: center;
+		padding: 10rpx 0;
+		background-color: #fff;
+		box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+		max-width: 80%;
+		margin: 0 auto;
 		font-size: 28rpx;
-		color: #333;
+	}
+
+	.uni-segmented-control-item {
+		margin: 0 10rpx; /* 调整分页标签之间的间距 */
 	}
 
 	/* 调整 swiper 的样式 */
