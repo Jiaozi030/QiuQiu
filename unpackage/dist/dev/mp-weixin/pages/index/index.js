@@ -176,13 +176,14 @@ var _default = {
   },
   onLoad: function onLoad() {},
   methods: {
-    // 点击分页标签时触发
     onClickItem: function onClickItem(e) {
       this.current = e.currentIndex;
     },
-    // 滑动 swiper 时触发
     onSwiperChange: function onSwiperChange(e) {
       this.current = e.detail.current;
+    },
+    onFilterClick: function onFilterClick() {
+      this.current = 3; // 直接跳转到筛选页面
     }
   }
 };

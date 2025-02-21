@@ -1,8 +1,24 @@
 
 .container {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	height: 100vh; /* 确保容器高度占满整个视口 */
+}
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 15px;
+}
+.nav-control {
+	flex: 1;
+	margin-right: 15px; /* 为筛选按钮留出空间 */
+}
+.filter-btn {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
 }
 
 /* 调整 uni-segmented-control 的样式 */

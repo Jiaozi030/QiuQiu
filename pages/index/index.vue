@@ -1,13 +1,21 @@
 <template>
 	<view class="container">
 		<!-- 顶部导航栏 -->
-		<uni-segmented-control
-			:current="current"
-			:values="tabs"
-			@clickItem="onClickItem"
-			style-type="text"
-			active-color="#ff6b81"
-		></uni-segmented-control>
+		<view class="header">
+			<uni-segmented-control
+				:current="current"
+				:values="tabs"
+				@clickItem="onClickItem"
+				style-type="text"
+				active-color="#ff6b81"
+				class="nav-control"
+			></uni-segmented-control>
+			<image 
+				class="filter-btn" 
+				src="/static/filter-btn.jpg" 
+				@click="onFilterClick"
+			/>
+		</view>
 
 		<!-- 内容区域 -->
 		<swiper
@@ -62,13 +70,14 @@ export default {
 
 	},
 	methods: {
-		// 点击分页标签时触发
 		onClickItem(e) {
 			this.current = e.currentIndex;
 		},
-		// 滑动 swiper 时触发
 		onSwiperChange(e) {
 			this.current = e.detail.current;
+		},
+		onFilterClick() {
+			this.current = 3; // 直接跳转到筛选页面
 		}
 	}
 }
@@ -76,9 +85,28 @@ export default {
 
 <style>
 	.container {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		height: 100vh; /* 确保容器高度占满整个视口 */
+	}
+
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 15px;
+	}
+
+	.nav-control {
+		flex: 1;
+		margin-right: 15px; /* 为筛选按钮留出空间 */
+	}
+
+	.filter-btn {
+		width: 24px;
+		height: 24px;
+		cursor: pointer;
 	}
 
 	/* 调整 uni-segmented-control 的样式 */
