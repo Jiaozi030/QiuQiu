@@ -141,6 +141,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _sampleUsers = __webpack_require__(/*! @/data/sampleUsers.js */ 128);
 var uniSegmentedControl = function uniSegmentedControl() {
   __webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control */ "node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control").then((function () {
     return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue */ 74));
@@ -162,19 +163,12 @@ var _default = {
       // 当前选中的分页索引
       tabs: ['推荐', '附近', '关注'],
       // 分页标签
-      currentUser: {
-        photo: '/static/logo.png',
-        name: '张三',
-        age: 28,
-        location: '北京',
-        height: 178,
-        weight: 70,
-        education: '本科',
-        industry: '互联网'
-      }
+      currentUser: _sampleUsers.sampleUser
     };
   },
-  onLoad: function onLoad() {},
+  onLoad: function onLoad() {
+    // this.fetchUserData(); // 后期启用
+  },
   methods: {
     onClickItem: function onClickItem(e) {
       this.current = e.currentIndex;

@@ -39,9 +39,7 @@
 			</swiper-item>
 			<swiper-item>
 				<view class="content">
-					<navigator url="/pages/index/recommendation" open-type="navigate">
-						<text class="title">查看推荐用户</text>
-					</navigator>
+					<text class="title">关注内容</text>
 				</view>
 			</swiper-item>
 		</swiper>
@@ -51,6 +49,7 @@
 <script>
 import uniSegmentedControl from '@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue';
 import UserCard from '@/components/UserCard.vue';
+import { sampleUser } from '@/data/sampleUsers.js';
 
 export default {
 	components: { uniSegmentedControl, UserCard },
@@ -58,20 +57,11 @@ export default {
 		return {
 			current: 0, // 当前选中的分页索引
 			tabs: ['推荐', '附近', '关注'], // 分页标签
-			currentUser: {
-				photo: '/static/logo.png',
-				name: '张三',
-				age: 28,
-				location: '北京',
-				height: 178,
-				weight: 70,
-				education: '本科',
-				industry: '互联网'
-			}
+			currentUser: sampleUser
 		}
 	},
 	onLoad() {
-
+		// this.fetchUserData(); // 后期启用
 	},
 	methods: {
 		onClickItem(e) {

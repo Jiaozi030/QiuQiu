@@ -41,6 +41,12 @@
 			"style": {
 				"navigationBarTitleText": "推荐用户"
 			}
+		},
+		{
+			"path": "pages/index/nearby",
+			"style": {
+				"navigationBarTitleText": "附近用户"
+			}
 		}
 	],
 	"globalStyle": {

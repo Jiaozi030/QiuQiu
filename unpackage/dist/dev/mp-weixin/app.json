@@ -6,7 +6,8 @@
     "pages/message/message",
     "pages/profile/profile",
     "pages/index/filter",
-    "pages/index/recommendation"
+    "pages/index/recommendation",
+    "pages/index/nearby"
   ],
   "subPackages": [],
   "window": {
