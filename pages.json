@@ -29,6 +29,12 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
+		},
+		{
+			"path": "pages/index/filter",
+			"style": {
+				"navigationBarTitleText": "筛选"
+			}
 		}
 	],
 	"globalStyle": {

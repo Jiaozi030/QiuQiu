@@ -77,7 +77,9 @@ export default {
 			this.current = e.detail.current;
 		},
 		onFilterClick() {
-			this.current = 3; // 直接跳转到筛选页面
+			uni.navigateTo({
+				url: '/pages/index/filter'
+			});
 		}
 	}
 }

@@ -4,7 +4,8 @@
     "pages/discover/discover",
     "pages/metaverse/metaverse",
     "pages/message/message",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/index/filter"
   ],
   "subPackages": [],
   "window": {
