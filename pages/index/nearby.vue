@@ -1,6 +1,9 @@
 <template>
 	<view class="nearby-page">
-		<view class="user-grid">
+		<view v-if="nearbyUsers.length === 0" class="loading">
+			<text>加载中...</text>
+		</view>
+		<view v-else class="user-grid">
 			<UserCardNearby 
 				v-for="(user, index) in nearbyUsers" 
 				:key="index" 
@@ -12,42 +15,55 @@
 
 <script>
 import UserCardNearby from '@/components/UserCardNearby.vue';
+import { sampleUsersNearby } from '@/data/sampleUsersNearby.js';
 
 export default {
 	components: { UserCardNearby },
 	data() {
 		return {
-			nearbyUsers: [
-				{
-					photo: '/static/user1.jpg',
-					name: '李四',
-					age: 25,
-					gender: 'female',
-					distance: 1.5,
-					location: '北京'
-				},
-				{
-					photo: '/static/user2.jpg',
-					name: '王五',
-					age: 30,
-					gender: 'male',
-					distance: 2.3,
-					location: '北京'
-				},
-				// 添加更多用户数据
-			]
+			nearbyUsers: sampleUsersNearby
 		}
+	},
+	methods: {
+		fetchUserData() {
+			// 预留后端接口调用
+			// uni.request({
+			//   url: '/api/recommendation',
+			//   success: (res) => {
+			//     this.currentUser = res.data;
+			//   }
+			// });
+		}
+	},
+	mounted() {
+		console.log('Nearby Users:', this.nearbyUsers);
 	}
 }
 </script>
 
 <style>
 .nearby-page {
-	padding: 10px;
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+	/* display: flex; */ /* 临时移除 */
+	/* flex-direction: column; */ /* 临时移除 */
+	border: 1px solid red; /* 调试用 */
+	background-color: #f0f0f0; /* 调试用 */
 }
+
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
 .user-grid {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	gap: 10px;
+	border: 1px solid blue; /* 调试用 */
 }
 </style> 

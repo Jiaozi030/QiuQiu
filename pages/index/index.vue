@@ -32,9 +32,7 @@
 			</swiper-item>
 			<swiper-item>
 				<view class="content">
-					<navigator url="/pages/index/nearby" open-type="navigate">
-						<text class="title">查看附近用户</text>
-					</navigator>
+					<nearby></nearby>
 				</view>
 			</swiper-item>
 			<swiper-item>
@@ -48,17 +46,14 @@
 
 <script>
 import uniSegmentedControl from '@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue';
-// import UserCard from '@/components/UserCard.vue';
-// import { sampleUsers } from '@/data/sampleUsers.js';
 import recommendation from '@/pages/index/recommendation.vue';
-
+import nearby from '@/pages/index/nearby.vue';
 export default {
-	components: { uniSegmentedControl, recommendation },
+	components: { uniSegmentedControl, recommendation, nearby },
 	data() {
 		return {
 			current: 0, // 当前选中的分页索引
 			tabs: ['推荐', '附近', '关注'], // 分页标签
-			// Users: sampleUsers
 		}
 	},
 	onLoad() {
@@ -127,10 +122,12 @@ export default {
 		flex: 1; /* 确保 swiper 占满剩余空间 */
 	}
 
+	.swiper-item {
+		width: 100%;
+		height: 100%;
+	}
+
 	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
 		width: 100%;
 		height: 100%;
 		overflow-y: auto;

@@ -2,6 +2,7 @@
   "navigationBarTitleText": "首页",
   "usingComponents": {
     "uni-segmented-control": "/node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control",
-    "recommendation": "/pages/index/recommendation"
+    "recommendation": "/pages/index/recommendation",
+    "nearby": "/pages/index/nearby"
   }
 }

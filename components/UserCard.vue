@@ -2,7 +2,10 @@
 	<view class="user-card">
 		<image class="user-photo" :src="user.photo" />
 		<view class="user-info">
-			<view class="user-name">{{ user.name }}</view>
+			<view class="name-gender">
+				<text class="name">{{ user.name }}</text>
+				<text class="gender" :class="user.gender">{{ user.gender === 'male' ? '♂' : '♀' }}</text>
+			</view>
 			<view class="tags-row">
 				<view class="tag dark">{{ user.age }}岁</view>
 				<view class="tag dark">{{ user.location }}</view>
