@@ -79,6 +79,7 @@ export default {
 	},
 	methods: {
 		onAgeChange(e) {
+			console.log('age changed:', e.detail.value);
 			this.age = e.detail.value;
 		},
 		onHeightChange(e) {

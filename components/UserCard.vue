@@ -1,20 +1,20 @@
 <template>
-	<div class="user-card">
-		<img class="user-photo" :src="user.photo" alt="用户照片">
-		<div class="user-info">
-			<div class="user-name">{{ user.name }}</div>
-			<div class="tags-row">
-				<div class="tag dark">{{ user.age }}岁</div>
-				<div class="tag dark">{{ user.location }}</div>
-				<div class="tag dark">{{ user.height }}cm</div>
-				<div class="tag dark">{{ user.weight }}kg</div>
-			</div>
-			<div class="tags-row">
-				<div class="tag">{{ user.education }}</div>
-				<div class="tag">{{ user.industry }}</div>
-			</div>
-		</div>
-	</div>
+	<view class="user-card">
+		<image class="user-photo" :src="user.photo" />
+		<view class="user-info">
+			<view class="user-name">{{ user.name }}</view>
+			<view class="tags-row">
+				<view class="tag dark">{{ user.age }}岁</view>
+				<view class="tag dark">{{ user.location }}</view>
+				<view class="tag dark">{{ user.height }}cm</view>
+				<view class="tag dark">{{ user.weight }}kg</view>
+			</view>
+			<view class="tags-row">
+				<view class="tag">{{ user.education }}</view>
+				<view class="tag">{{ user.industry }}</view>
+			</view>
+		</view>
+	</view>
 </template>
 
 <script>
@@ -65,4 +65,23 @@ export default {
 	background-color: #333;
 	color: #fff;
 }
-</style> 
+</style>
+
+<script>
+export default {
+	props: {
+		user: {
+			type: Object,
+			required: true
+		}
+	}
+}
+</script>
+
+<script>
+export default {
+	mounted() {
+		console.log('User Card Data:', this.user);
+	}
+}
+</script> 

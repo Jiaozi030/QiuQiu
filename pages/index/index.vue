@@ -27,7 +27,7 @@
 		>
 			<swiper-item>
 				<view class="content">
-					<UserCard :user="currentUser" />
+					<recommendation />
 				</view>
 			</swiper-item>
 			<swiper-item>
@@ -49,15 +49,16 @@
 <script>
 import uniSegmentedControl from '@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue';
 import UserCard from '@/components/UserCard.vue';
-import { sampleUser } from '@/data/sampleUsers.js';
+import { sampleUsers } from '@/data/sampleUsers.js';
+import recommendation from '@/pages/index/recommendation.vue';
 
 export default {
-	components: { uniSegmentedControl, UserCard },
+	components: { uniSegmentedControl, UserCard, recommendation },
 	data() {
 		return {
 			current: 0, // 当前选中的分页索引
 			tabs: ['推荐', '附近', '关注'], // 分页标签
-			currentUser: sampleUser
+			Users: sampleUsers
 		}
 	},
 	onLoad() {
@@ -128,9 +129,11 @@ export default {
 
 	.content {
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
 		align-items: center;
-		height: 100%; /* 确保内容区域占满 swiper-item */
+		width: 100%;
+		height: 100%;
+		overflow-y: auto;
 	}
 
 	.logo {
