@@ -46,8 +46,8 @@ export default {
 	padding: 20px;
 	width: 100%;
 	height: 100%;
-	/* display: flex; */ /* 临时移除 */
-	/* flex-direction: column; */ /* 临时移除 */
+	display: flex;
+	flex-direction: column;
 	border: 1px solid red; /* 调试用 */
 	background-color: #f0f0f0; /* 调试用 */
 }
@@ -57,13 +57,5 @@ export default {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-}
-
-.user-grid {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	gap: 10px;
-	border: 1px solid blue; /* 调试用 */
 }
 </style> 

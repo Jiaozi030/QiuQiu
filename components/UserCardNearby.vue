@@ -33,8 +33,9 @@ export default {
 	margin-bottom: 10px;
 	position: relative;
 	border-radius: 8px;
-	background-color: rgba(255, 0, 0, 0.1); /* 调试用 */
-	/* overflow: hidden; */
+	overflow: hidden;
+	border: 1px solid red; /* 调试用 */
+	background-color: #f0f0f0; /* 调试用 */
 }
 .user-photo {
 	width: 100%;
@@ -47,8 +48,6 @@ export default {
 	bottom: 10px;
 	color: #fff;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-	z-index: 1;
-	background-color: rgba(0, 0, 255, 0.1); /* 调试用 */
 }
 .name-gender {
 	display: flex;
