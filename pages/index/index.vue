@@ -48,17 +48,17 @@
 
 <script>
 import uniSegmentedControl from '@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue';
-import UserCard from '@/components/UserCard.vue';
-import { sampleUsers } from '@/data/sampleUsers.js';
+// import UserCard from '@/components/UserCard.vue';
+// import { sampleUsers } from '@/data/sampleUsers.js';
 import recommendation from '@/pages/index/recommendation.vue';
 
 export default {
-	components: { uniSegmentedControl, UserCard, recommendation },
+	components: { uniSegmentedControl, recommendation },
 	data() {
 		return {
 			current: 0, // 当前选中的分页索引
 			tabs: ['推荐', '附近', '关注'], // 分页标签
-			Users: sampleUsers
+			// Users: sampleUsers
 		}
 	},
 	onLoad() {

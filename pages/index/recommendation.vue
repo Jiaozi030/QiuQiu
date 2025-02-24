@@ -5,9 +5,9 @@
 		</view>
 		<view v-else>
 			<UserCard 
-				v-for="(user, index) in userList" 
+			v-for="(user, index) in userList" 
 				:key="index" 
-				:user="user" 
+				:user="user"
 			/>
 		</view>
 	</view>
@@ -34,13 +34,6 @@ export default {
 			//   }
 			// });
 		}
-	},
-	// mounted() {
-	// 	console.log('Sample Users:', sampleUsers);
-	// 	console.log('User List:', this.userList);
-	// }
-	onLoad() {
-		console.log('User List:', this.userList);
 	}
 }
 </script>

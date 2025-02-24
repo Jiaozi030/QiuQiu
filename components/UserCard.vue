@@ -66,22 +66,3 @@ export default {
 	color: #fff;
 }
 </style>
-
-<script>
-export default {
-	props: {
-		user: {
-			type: Object,
-			required: true
-		}
-	}
-}
-</script>
-
-<script>
-export default {
-	mounted() {
-		console.log('User Card Data:', this.user);
-	}
-}
-</script> 
