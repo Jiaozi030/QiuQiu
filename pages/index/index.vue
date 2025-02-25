@@ -37,7 +37,7 @@
 			</swiper-item>
 			<swiper-item>
 				<view class="content">
-					<text class="title">关注内容</text>
+					<recommendation />
 				</view>
 			</swiper-item>
 		</swiper>

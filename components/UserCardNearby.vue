@@ -34,8 +34,6 @@ export default {
 	position: relative;
 	border-radius: 8px;
 	overflow: hidden;
-	border: 1px solid red; /* 调试用 */
-	background-color: #f0f0f0; /* 调试用 */
 }
 .user-photo {
 	width: 100%;

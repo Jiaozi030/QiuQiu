@@ -5,7 +5,7 @@
 		</view>
 		<view v-else class="user-grid">
 			<UserCardNearby 
-				v-for="(user, index) in nearbyUsers" 
+			v-for="(user, index) in nearbyUsers" 
 				:key="index" 
 				:user="user" 
 			/>
@@ -44,12 +44,10 @@ export default {
 <style>
 .nearby-page {
 	padding: 20px;
-	width: 100%;
+	/* width: 100%;
 	height: 100%;
 	display: flex;
-	flex-direction: column;
-	border: 1px solid red; /* 调试用 */
-	background-color: #f0f0f0; /* 调试用 */
+	flex-direction: column; */
 }
 
 .loading {

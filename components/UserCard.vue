@@ -45,11 +45,27 @@ export default {
 }
 .user-info {
 	margin-top: 15px;
+	color: #333;
 }
-.user-name {
+.name-gender {
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+.name {
 	font-size: 20px;
 	font-weight: bold;
-	margin-bottom: 12px;
+}
+.gender {
+	margin-left: 5px;
+	font-size: 18px;
+}
+.gender.male {
+	color: #87CEEB;
+}
+.gender.female {
+	color: #FFB6C1;
 }
 .tags-row {
 	display: flex;
