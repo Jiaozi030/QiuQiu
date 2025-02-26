@@ -35,7 +35,7 @@ export default {
 .user-card {
 	width: 100%;
 	margin: 0;
-	padding: 20px;
+	/* padding: 20px; */
 	background: #fff;
 }
 .user-photo {
@@ -50,7 +50,7 @@ export default {
 .name-gender {
 	display: flex;
 	align-items: center;
-	margin-left: 20px;
+	margin-left: 30px;
 	margin-bottom: 10px;
 }
 .name {
@@ -70,6 +70,7 @@ export default {
 .tags-row {
 	display: flex;
 	flex-wrap: wrap;
+	padding-left: 20px;
 	gap: 8px;
 	margin-bottom: 12px;
 }
