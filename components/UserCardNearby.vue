@@ -21,7 +21,7 @@ export default {
 		}
 	},
 	mounted() {
-		console.log('User Card Nearby Data:', this.user);
+		// console.log('User Card Nearby Data:', this.user);
 	}
 }
 </script>

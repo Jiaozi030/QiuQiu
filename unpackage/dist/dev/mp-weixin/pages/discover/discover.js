@@ -135,26 +135,55 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _samplePosts = __webpack_require__(/*! @/data/samplePosts.js */ 130);
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// 引入模拟帖子数据
 var _default = {
   data: function data() {
     return {
-      title: '发现'
+      title: '发现',
+      posts: _samplePosts.samplePosts // 使用模拟帖子数据
     };
+  },
+
+  methods: {
+    // 跳转到发布帖子页面
+    navigateToPost: function navigateToPost() {
+      uni.navigateTo({
+        url: '/pages/discover/post' // 发布帖子页面的路径
+      });
+    }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 
