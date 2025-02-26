@@ -47,6 +47,12 @@
 			"style": {
 				"navigationBarTitleText": "附近用户"
 			}
+		},
+		{
+			"path": "pages/discover/post",
+			"style": {
+				"navigationBarTitleText": "发布帖子"
+			}
 		}
 	],
 	"globalStyle": {

@@ -7,7 +7,8 @@
     "pages/profile/profile",
     "pages/index/filter",
     "pages/index/recommendation",
-    "pages/index/nearby"
+    "pages/index/nearby",
+    "pages/discover/post"
   ],
   "subPackages": [],
   "window": {
