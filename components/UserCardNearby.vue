@@ -28,12 +28,13 @@ export default {
 
 <style>
 .user-card-nearby {
-	width: calc(50% - 5px);
-	aspect-ratio: 4/3;
+	width: 100%;
+	aspect-ratio: 3/4;
 	margin-bottom: 10px;
 	position: relative;
 	border-radius: 8px;
 	overflow: hidden;
+	background-color: rgba(255, 0, 0, 0.1); /* 调试用 */
 }
 .user-photo {
 	width: 100%;

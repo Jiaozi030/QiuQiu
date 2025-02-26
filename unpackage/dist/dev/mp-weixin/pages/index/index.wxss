@@ -11,17 +11,23 @@
 
 
 .nearby-page {
-	padding: 20px;
-	/* width: 100%;
+	width: 100%;
 	height: 100%;
 	display: flex;
-	flex-direction: column; */
+	flex-direction: column;
 }
 .loading {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+}
+.user-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); /* 每行显示两个卡片 */
+	gap: 2px; /* 调整卡片之间的间距 */
+	padding: 0; /* 移除内边距 */
+	margin: 0; /* 移除外边距 */
 }
 
 

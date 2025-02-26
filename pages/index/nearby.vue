@@ -5,7 +5,7 @@
 		</view>
 		<view v-else class="user-grid">
 			<UserCardNearby 
-			v-for="(user, index) in nearbyUsers" 
+				v-for="(user, index) in nearbyUsers" 
 				:key="index" 
 				:user="user" 
 			/>
@@ -36,18 +36,18 @@ export default {
 		}
 	},
 	mounted() {
-		console.log('Nearby Users:', this.nearbyUsers);
+		// console.log('Nearby Users:', this.nearbyUsers);
+		// this.fetchUserData();
 	}
 }
 </script>
 
 <style>
 .nearby-page {
-	padding: 20px;
-	/* width: 100%;
+	width: 100%;
 	height: 100%;
 	display: flex;
-	flex-direction: column; */
+	flex-direction: column;
 }
 
 .loading {
@@ -55,5 +55,13 @@ export default {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+}
+
+.user-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); /* 每行显示两个卡片 */
+	gap: 2px; /* 调整卡片之间的间距 */
+	padding: 0; /* 移除内边距 */
+	margin: 0; /* 移除外边距 */
 }
 </style> 

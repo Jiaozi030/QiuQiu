@@ -512,7 +512,8 @@ var _default = {
     }
   },
   mounted: function mounted() {
-    console.log('Nearby Users:', this.nearbyUsers);
+    // console.log('Nearby Users:', this.nearbyUsers);
+    // this.fetchUserData();
   }
 };
 exports.default = _default;
