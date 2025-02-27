@@ -1,12 +1,79 @@
 
-.content {
+.profile-page {
+  padding: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  flex-direction: column;
+  gap: 20px;
 }
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.photo-album {
+  display: flex;
+  gap: 10px;
+}
+.album-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.info-item {
+  display: flex;
+  gap: 10px;
+}
+.info-label {
+  font-size: 14px;
+  color: #666;
+}
+.info-value {
+  font-size: 14px;
+  color: #333;
+}
+.self-intro {
+  font-size: 14px;
+  color: #333;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tag {
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+}
+.hobbies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.hobby {
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+}
+.expectation {
+  font-size: 14px;
+  color: #333;
 }
 

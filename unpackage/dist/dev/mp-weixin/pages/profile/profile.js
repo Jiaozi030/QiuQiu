@@ -141,6 +141,103 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _sampleProfile = __webpack_require__(/*! @/data/sampleProfile.js */ 158);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -150,9 +247,23 @@ exports.default = void 0;
 var _default = {
   data: function data() {
     return {
-      title: '我的'
+      user: _sampleProfile.sampleProfile
     };
-  }
+  } // methods: {
+  //   async fetchSampleTags() {
+  //     const res = await uni.request({
+  //       url: '/api/sampleTags', // 替换为实际接口
+  //       method: 'GET',
+  //     });
+  //     this.user.tags = res.data.tags.slice(0, 10);
+  //     this.user.hobbies = res.data.hobbies.slice(0, 10);
+  //     this.user.expectation = res.data.expectations.slice(0, 10).join('、');
+  //   },
+  // },
+  // mounted() {
+  //   this.fetchUserProfile();
+  //   this.fetchSampleTags();
+  // },
 };
 exports.default = _default;
 
