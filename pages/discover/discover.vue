@@ -5,7 +5,10 @@
       <view v-for="(post, index) in posts" :key="index" class="post-item">
         <view class="post-header">
           <image :src="post.avatar" class="avatar" />
-          <text class="username">{{ post.username }}</text>
+          <view class="user-info">
+            <text class="username">{{ post.username }}</text>
+            <text class="user-details">{{ post.gender }}｜{{ post.age }}岁｜{{ post.city }}</text>
+          </view>
         </view>
         <text class="post-content">{{ post.content }}</text>
         <image v-if="post.image" :src="post.image" class="post-image" />
@@ -63,7 +66,7 @@ export default {
 
 .post-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* 头像和用户信息顶部对齐 */
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -74,9 +77,20 @@ export default {
   border-radius: 50%;
 }
 
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .username {
   font-size: 16px;
   font-weight: bold;
+}
+
+.user-details {
+  font-size: 12px;
+  color: #999; /* 灰色字体 */
+  margin-top: 2px; /* 与用户名保持一定间距 */
 }
 
 .post-content {

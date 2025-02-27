@@ -83,7 +83,7 @@ export default {
 
 .post-input {
     width: 100%;
-    height: 100px;
+    height: 200px;
     padding: 3px;
     border: 3px solid #ccc;
     border-radius: 8px;
@@ -111,7 +111,7 @@ export default {
     height: 40px;
     background-color: #fff3cd; /* 淡黄色背景 */
     color: #856404; /* 深黄色文字，与背景形成对比 */
-    border-radius: 8px;
+    /* border-radius: 8px; */
     font-size: 14px;
     border: 1px solid #ffeeba; /* 浅黄色边框 */
     transition: background-color 0.3s ease; /* 添加过渡效果 */

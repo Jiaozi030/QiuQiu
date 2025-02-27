@@ -138,18 +138,27 @@ exports.samplePosts = void 0;
 var samplePosts = [{
   avatar: '/static/logo.png',
   username: 'jiaozi1',
+  gender: '女',
+  age: 22,
+  city: '杭州',
   content: '今天天气真好！',
   image: '/static/logo.png',
   time: '2024-10-01 10:00'
 }, {
   avatar: '/static/logo.png',
   username: 'jiaozi2',
+  gender: '男',
+  age: 25,
+  city: '上海',
   content: '分享一张美食照片～',
   image: '/static/logo.png',
   time: '2024-11-01 12:00'
 }, {
   avatar: '/static/logo.png',
   username: 'jiaozi3',
+  gender: '女',
+  age: 28,
+  city: '北京',
   content: '周末去爬山了，风景超美！',
   image: '/static/logo.png',
   time: '2025-02-02 15:00'
