@@ -43,11 +43,11 @@ export default {
       });
     },
     // 跳转到"谁看过我"页面
-  //   navigateToViewers() {
-  //     uni.navigateTo({
-  //       url: '/pages/message/viewers', // 跳转路径
-  //     });
-  //   },
+    navigateToViewers() {
+      uni.navigateTo({
+        url: '/pages/message/viewers', // 跳转路径
+      });
+    },
   //   async fetchMessages() {
   //     const res = await uni.request({
   //       url: '/api/messages', // 替换为实际接口

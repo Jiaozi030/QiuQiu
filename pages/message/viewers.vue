@@ -19,6 +19,18 @@ export default {
             viewers: sampleUsers, // 使用模拟数据
         };
     },
+    // methods: {
+    //     async fetchFollowers() {
+    //         const res = await uni.request({
+    //             url: '/api/followers', // 替换为实际接口
+    //             method: 'GET',
+    //         });
+    //         this.followers = res.data;
+    //     },
+    // },
+    // mounted() {
+    //     this.fetchFollowers();
+    // },
 };
 </script>
 
