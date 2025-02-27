@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -147,14 +147,44 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
       title: '消息'
     };
+  },
+  methods: {
+    // 跳转到"谁关注我"页面
+    navigateToFollowers: function navigateToFollowers() {
+      uni.navigateTo({
+        url: '/pages/message/followers' // 跳转路径
+      });
+    },
+    // 跳转到"谁看过我"页面
+    navigateToViewers: function navigateToViewers() {
+      uni.navigateTo({
+        url: '/pages/message/viewers' // 跳转路径
+      });
+    }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

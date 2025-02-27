@@ -8,7 +8,9 @@
     "pages/index/filter",
     "pages/index/recommendation",
     "pages/index/nearby",
-    "pages/discover/post"
+    "pages/discover/post",
+    "pages/message/followers",
+    "pages/message/viewers"
   ],
   "subPackages": [],
   "window": {

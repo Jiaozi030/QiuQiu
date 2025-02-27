@@ -53,6 +53,18 @@
 			"style": {
 				"navigationBarTitleText": "发布帖子"
 			}
+		},
+		{
+			"path": "pages/message/followers",
+			"style": {
+				"navigationBarTitleText": "谁关注我"
+			}
+		},
+		{
+			"path": "pages/message/viewers",
+			"style": {
+				"navigationBarTitleText": "谁看过我"
+			}
 		}
 	],
 	"globalStyle": {
