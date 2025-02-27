@@ -227,6 +227,145 @@ module.exports = _setPrototypeOf, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
+/***/ 161:
+/*!******************************************************************!*\
+  !*** /Users/jiaozi030/Desktop/app/QiuQiu/data/sampleMessages.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sampleMessages = void 0;
+var sampleMessages = [{
+  avatar: '/static/logo.png',
+  username: '用户1',
+  latestMessage: '你好，最近怎么样？',
+  time: '10:00'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户2',
+  latestMessage: '周末一起去爬山吗？',
+  time: '昨天'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户3',
+  latestMessage: '我刚刚发布了新帖子，来看看吧！',
+  time: '2024-10-01'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户1',
+  latestMessage: '你好，最近怎么样？',
+  time: '10:00'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户2',
+  latestMessage: '周末一起去爬山吗？',
+  time: '昨天'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户3',
+  latestMessage: '我刚刚发布了新帖子，来看看吧！',
+  time: '2024-10-01'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户1',
+  latestMessage: '你好，最近怎么样？',
+  time: '10:00'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户2',
+  latestMessage: '周末一起去爬山吗？',
+  time: '昨天'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户3',
+  latestMessage: '我刚刚发布了新帖子，来看看吧！',
+  time: '2024-10-01'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户1',
+  latestMessage: '你好，最近怎么样？',
+  time: '10:00'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户2',
+  latestMessage: '周末一起去爬山吗？',
+  time: '昨天'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户3',
+  latestMessage: '我刚刚发布了新帖子，来看看吧！',
+  time: '2024-10-01'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户1',
+  latestMessage: '你好，最近怎么样？',
+  time: '10:00'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户2',
+  latestMessage: '周末一起去爬山吗？',
+  time: '昨天'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户3',
+  latestMessage: '我刚刚发布了新帖子，来看看吧！',
+  time: '2024-10-01'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户1',
+  latestMessage: '你好，最近怎么样？',
+  time: '10:00'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户2',
+  latestMessage: '周末一起去爬山吗？',
+  time: '昨天'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户3',
+  latestMessage: '我刚刚发布了新帖子，来看看吧！',
+  time: '2024-10-01'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户1',
+  latestMessage: '你好，最近怎么样？',
+  time: '10:00'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户2',
+  latestMessage: '周末一起去爬山吗？',
+  time: '昨天'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户3',
+  latestMessage: '我刚刚发布了新帖子，来看看吧！',
+  time: '2024-10-01'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户1',
+  latestMessage: '你好，最近怎么样？',
+  time: '10:00'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户2',
+  latestMessage: '周末一起去爬山吗？',
+  time: '昨天'
+}, {
+  avatar: '/static/logo.png',
+  username: '用户3',
+  latestMessage: '我刚刚发布了新帖子，来看看吧！',
+  time: '2024-10-01'
+}];
+exports.sampleMessages = sampleMessages;
+
+/***/ }),
+
 /***/ 17:
 /*!*************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!

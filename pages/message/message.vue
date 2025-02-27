@@ -12,20 +12,29 @@
       </view>
     </view>
 
-    <!-- 消息内容 -->
-    <view class="content">
-      <text class="title">消息</text>
+    <!-- 消息列表 -->
+    <view class="message-list">
+      <view v-for="(message, index) in messages" :key="index" class="message-item">
+        <image :src="message.avatar" class="avatar" />
+        <view class="message-content">
+          <text class="username">{{ message.username }}</text>
+          <text class="latest-message">{{ message.latestMessage }}</text>
+        </view>
+        <text class="message-time">{{ message.time }}</text>
+      </view>
     </view>
   </view>
 </template>
 
 <script>
+import { sampleMessages } from '@/data/sampleMessages.js';
+
 export default {
   data() {
-    return {
-      title: '消息'
-    }
-  },
+		return {
+			messages: sampleMessages
+		}
+	},
   methods: {
     // 跳转到"谁关注我"页面
     navigateToFollowers() {
@@ -34,16 +43,32 @@ export default {
       });
     },
     // 跳转到"谁看过我"页面
-    navigateToViewers() {
-      uni.navigateTo({
-        url: '/pages/message/viewers', // 跳转路径
-      });
-    },
-  }
-}
+  //   navigateToViewers() {
+  //     uni.navigateTo({
+  //       url: '/pages/message/viewers', // 跳转路径
+  //     });
+  //   },
+  //   async fetchMessages() {
+  //     const res = await uni.request({
+  //       url: '/api/messages', // 替换为实际接口
+  //       method: 'GET',
+  //     });
+  //     this.messages = res.data;
+  //   },
+  },
+  // mounted() {
+  //   this.fetchMessages();
+  // }
+};
 </script>
 
 <style>
+.message-page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 .content {
   display: flex;
   justify-content: center;
@@ -58,7 +83,7 @@ export default {
 
 .button-group {
   display: flex;
-  justify-content: space-around; /* 按钮均匀分布 */
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 
@@ -83,5 +108,48 @@ export default {
 .button-text {
   font-size: 14px;
   color: #333;
+}
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.message-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.message-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.username {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.latest-message {
+  font-size: 14px;
+  color: #666;
+}
+
+.message-time {
+  font-size: 12px;
+  color: #999;
 }
 </style> 
