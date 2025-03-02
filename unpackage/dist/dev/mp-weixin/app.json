@@ -10,7 +10,8 @@
     "pages/index/nearby",
     "pages/discover/post",
     "pages/message/followers",
-    "pages/message/viewers"
+    "pages/message/viewers",
+    "pages/message/chat"
   ],
   "subPackages": [],
   "window": {

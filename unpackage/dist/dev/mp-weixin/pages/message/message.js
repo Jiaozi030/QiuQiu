@@ -170,6 +170,11 @@ var _sampleMessages = __webpack_require__(/*! @/data/sampleMessages.js */ 161);
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -187,6 +192,12 @@ var _default = {
     navigateToViewers: function navigateToViewers() {
       uni.navigateTo({
         url: '/pages/message/viewers' // 跳转路径
+      });
+    },
+    // 跳转到聊天界面
+    navigateToChat: function navigateToChat(message) {
+      uni.navigateTo({
+        url: "/pages/message/chat?userId=".concat(message.userId, "&username=").concat(encodeURIComponent(message.username), "&avatar=").concat(encodeURIComponent(message.avatar))
       });
     } //   async fetchMessages() {
     //     const res = await uni.request({

@@ -306,127 +306,41 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.sampleMessages = void 0;
-var sampleMessages = [{
-  avatar: '/static/logo.png',
-  username: '用户1',
-  latestMessage: '你好，最近怎么样？',
-  time: '10:00'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户2',
-  latestMessage: '周末一起去爬山吗？',
-  time: '昨天'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户3',
-  latestMessage: '我刚刚发布了新帖子，来看看吧！',
-  time: '2024-10-01'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户1',
-  latestMessage: '你好，最近怎么样？',
-  time: '10:00'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户2',
-  latestMessage: '周末一起去爬山吗？',
-  time: '昨天'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户3',
-  latestMessage: '我刚刚发布了新帖子，来看看吧！',
-  time: '2024-10-01'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户1',
-  latestMessage: '你好，最近怎么样？',
-  time: '10:00'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户2',
-  latestMessage: '周末一起去爬山吗？',
-  time: '昨天'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户3',
-  latestMessage: '我刚刚发布了新帖子，来看看吧！',
-  time: '2024-10-01'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户1',
-  latestMessage: '你好，最近怎么样？',
-  time: '10:00'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户2',
-  latestMessage: '周末一起去爬山吗？',
-  time: '昨天'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户3',
-  latestMessage: '我刚刚发布了新帖子，来看看吧！',
-  time: '2024-10-01'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户1',
-  latestMessage: '你好，最近怎么样？',
-  time: '10:00'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户2',
-  latestMessage: '周末一起去爬山吗？',
-  time: '昨天'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户3',
-  latestMessage: '我刚刚发布了新帖子，来看看吧！',
-  time: '2024-10-01'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户1',
-  latestMessage: '你好，最近怎么样？',
-  time: '10:00'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户2',
-  latestMessage: '周末一起去爬山吗？',
-  time: '昨天'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户3',
-  latestMessage: '我刚刚发布了新帖子，来看看吧！',
-  time: '2024-10-01'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户1',
-  latestMessage: '你好，最近怎么样？',
-  time: '10:00'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户2',
-  latestMessage: '周末一起去爬山吗？',
-  time: '昨天'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户3',
-  latestMessage: '我刚刚发布了新帖子，来看看吧！',
-  time: '2024-10-01'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户1',
-  latestMessage: '你好，最近怎么样？',
-  time: '10:00'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户2',
-  latestMessage: '周末一起去爬山吗？',
-  time: '昨天'
-}, {
-  avatar: '/static/logo.png',
-  username: '用户3',
-  latestMessage: '我刚刚发布了新帖子，来看看吧！',
-  time: '2024-10-01'
-}];
+// 生成递增的 id 和用户名，以及不同的消息内容
+var sampleMessages = Array.from({
+  length: 10
+}, function (_, index) {
+  var id = index + 1; // id 从 1 开始递增
+  var username = "\u7528\u6237".concat(id); // 用户名从 "用户1" 开始递增
+  var messages = [{
+    text: '你好！',
+    time: '10:00',
+    isMe: false
+  }, {
+    text: '最近怎么样？',
+    time: '10:01',
+    isMe: true
+  }, {
+    text: '还不错，你呢？',
+    time: '10:02',
+    isMe: false
+  }, {
+    text: '我也很好，谢谢！',
+    time: '10:03',
+    isMe: true
+  }];
+  var latestMessage = messages[messages.length - 1].text; // 最新一条消息
+  var time = messages[messages.length - 1].time; // 最新消息时间
+
+  return {
+    userId: id.toString(),
+    username: username,
+    avatar: '/static/logo.png',
+    latestMessage: latestMessage,
+    time: time,
+    messages: messages // 完整的聊天记录
+  };
+});
 exports.sampleMessages = sampleMessages;
 
 /***/ }),

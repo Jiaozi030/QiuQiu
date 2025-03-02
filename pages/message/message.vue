@@ -14,7 +14,12 @@
 
     <!-- 消息列表 -->
     <view class="message-list">
-      <view v-for="(message, index) in messages" :key="index" class="message-item">
+      <view
+        v-for="(message, index) in messages"
+        :key="index"
+        class="message-item"
+        @click="navigateToChat(message)"
+      >
         <image :src="message.avatar" class="avatar" />
         <view class="message-content">
           <text class="username">{{ message.username }}</text>
@@ -46,6 +51,12 @@ export default {
     navigateToViewers() {
       uni.navigateTo({
         url: '/pages/message/viewers', // 跳转路径
+      });
+    },
+    // 跳转到聊天界面
+    navigateToChat(message) {
+      uni.navigateTo({
+        url: `/pages/message/chat?userId=${message.userId}&username=${encodeURIComponent(message.username)}&avatar=${encodeURIComponent(message.avatar)}`,
       });
     },
   //   async fetchMessages() {

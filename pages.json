@@ -65,6 +65,12 @@
 			"style": {
 				"navigationBarTitleText": "谁看过我"
 			}
+		},
+		{
+			"path": "pages/message/chat",
+			"style": {
+				"navigationBarTitleText": "聊天"
+			}
 		}
 	],
 	"globalStyle": {
