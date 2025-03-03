@@ -7,20 +7,13 @@
 
     <!-- 头像和基本信息 -->
     <view class="profile-header">
-      <image :src="profile.avatar" class="avatar" />
+      <view class="avatar-container">
+        <image :src="profile.avatar" class="avatar" />
+      </view>
       <view class="basic-info">
         <text class="nickname">{{ profile.nickname }}</text>
         <text class="gender">{{ profile.gender }} | {{ profile.age }}岁</text>
         <text class="location">{{ profile.currentCity }}</text>
-      </view>
-    </view>
-
-    <!-- 我的关注 -->
-    <view class="section">
-      <view class="follow-item" @click="navigateToFollowing">
-        <text class="follow-label">我的关注</text>
-        <text class="follow-count">{{ followingCount }} 人</text>
-        <text class="follow-arrow">></text>
       </view>
     </view>
 
@@ -114,7 +107,6 @@ export default {
         occupation: '程序员',
         selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。',
       },
-      followingCount: 10, // 假设关注了 10 人
     };
   },
   methods: {
@@ -122,12 +114,6 @@ export default {
     navigateToEdit() {
       uni.navigateTo({
         url: '/pages/profile/edit',
-      });
-    },
-    // 跳转到我的关注页面
-    navigateToFollowing() {
-      uni.navigateTo({
-        url: '/pages/profile/following',
       });
     },
   },
@@ -166,11 +152,14 @@ export default {
   margin-bottom: 20px;
 }
 
+.avatar-container {
+  margin-left: 17px; /* 为头像左边添加 10px 的留白 */
+}
+
 .avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  margin-right: 16px;
 }
 
 .basic-info {
@@ -259,36 +248,5 @@ export default {
 .self-introduction p {
   text-indent: 2em; /* 首行缩进 2 个字符宽度 */
   margin: 0; /* 去除默认的段落间距 */
-}
-
-.follow-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* padding: 2px 0, 5px; */
-  padding: 1px 60px 8px 50px;
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer;
-}
-
-.follow-item:last-child {
-  border-bottom: none;
-}
-
-.follow-label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
-
-.follow-count {
-  font-size: 17px;
-  font-weight: bold;
-  color: #666;
-}
-
-.follow-arrow {
-  font-size: 14px;
-  color: #999;
 }
 </style> 

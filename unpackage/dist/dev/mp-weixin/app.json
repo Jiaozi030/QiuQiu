@@ -12,8 +12,7 @@
     "pages/message/followers",
     "pages/message/viewers",
     "pages/message/chat",
-    "pages/profile/edit",
-    "pages/profile/following"
+    "pages/profile/edit"
   ],
   "subPackages": [],
   "window": {

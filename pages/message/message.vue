@@ -105,7 +105,7 @@ export default {
   cursor: pointer;
   width: 80%; /* 设置按钮宽度 */
   padding: 1px;
-  border: 3px solid rgb(233, 231, 169); /* 可选：添加边框 */
+  border: 1px solid rgb(233, 231, 169); /* 可选：添加边框 */
   border-radius: 8px; /* 可选：圆角 */
   background-color: 0; /* 可选：背景色 */
 }
@@ -113,7 +113,7 @@ export default {
 .button-icon {
   width: 50px; /* 图标大小 */
   height: 50px;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 .button-text {

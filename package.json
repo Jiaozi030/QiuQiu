@@ -1,5 +1,14 @@
 {
+  "type": "module",
   "dependencies": {
     "@dcloudio/uni-ui": "^1.5.7"
+  },
+  "devDependencies": {
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "eslint": "^9.21.0",
+    "eslint-plugin-vue": "^9.32.0"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js,.vue ."
   }
 }

@@ -26,11 +26,13 @@
   align-items: center;
   margin-bottom: 20px;
 }
+.avatar-container {
+  margin-left: 17px; /* 为头像左边添加 10px 的留白 */
+}
 .avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  margin-right: 16px;
 }
 .basic-info {
   display: flex;
@@ -105,31 +107,5 @@
 .self-introduction ._p {
   text-indent: 2em; /* 首行缩进 2 个字符宽度 */
   margin: 0; /* 去除默认的段落间距 */
-}
-.follow-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* padding: 2px 0, 5px; */
-  padding: 1px 60px 8px 50px;
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer;
-}
-.follow-item:last-child {
-  border-bottom: none;
-}
-.follow-label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
-.follow-count {
-  font-size: 17px;
-  font-weight: bold;
-  color: #666;
-}
-.follow-arrow {
-  font-size: 14px;
-  color: #999;
 }
 
