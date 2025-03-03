@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/UserCard":1,"components/UserCardNearby":1,"node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control":1};
+/******/ 		var cssChunks = {"components/UserCard":1,"components/UserCardNearby":1,"node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control":1,"components/MultiSelectTags":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/UserCard":"components/UserCard","components/UserCardNearby":"components/UserCardNearby","node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control":"node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/UserCard":"components/UserCard","components/UserCardNearby":"components/UserCardNearby","node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control":"node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control","components/MultiSelectTags":"components/MultiSelectTags"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

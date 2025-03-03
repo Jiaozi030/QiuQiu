@@ -84,8 +84,8 @@
         <!-- 学历 -->
         <view class="edit-item">
             <text class="label">学历</text>
-            <picker :range="educations" @change="onEducationChange">
-                <view class="picker">{{ profile.education }}</view>
+            <picker :range="educationOptions" @change="onEducationChange">
+                <view class="picker">{{ profile.education || '请选择学历' }}</view>
             </picker>
         </view>
 
@@ -101,11 +101,11 @@
             <input v-model="profile.occupation" class="input" />
         </view>
 
-        <!-- 住房情况 -->
+        <!-- 住房状况 -->
         <view class="edit-item">
-            <text class="label">住房情况</text>
-            <picker :range="housings" @change="onHousingChange">
-                <view class="picker">{{ profile.housing }}</view>
+            <text class="label">住房状况</text>
+            <picker :range="housingOptions" @change="onHousingChange">
+                <view class="picker">{{ profile.housing || '请选择住房状况' }}</view>
             </picker>
         </view>
 
@@ -121,25 +121,31 @@
         <!-- 标签 -->
         <view class="edit-item">
             <text class="label">标签</text>
-            <picker mode="multiSelector" :range="tags" @change="onTagsChange">
-                <view class="picker">{{ profile.tags ? profile.tags.join('、') : '请选择标签' }}</view>
-            </picker>
+            <MultiSelectTags
+                :tags="tags"
+                :selectedTags="profile.tags"
+                @update:selectedTags="toggleTag"
+            />
         </view>
 
         <!-- 兴趣爱好 -->
         <view class="edit-item">
             <text class="label">兴趣爱好</text>
-            <picker mode="multiSelector" :range="hobbies" @change="onHobbiesChange">
-                <view class="picker">{{ profile.hobbies ? profile.hobbies.join('、') : '请选择兴趣爱好' }}</view>
-            </picker>
+            <MultiSelectTags
+                :tags="hobbies"
+                :selectedTags="profile.hobbies"
+                @update:selectedTags="toggleHobby"
+            />
         </view>
 
         <!-- 期望对象 -->
         <view class="edit-item">
             <text class="label">期望对象</text>
-            <picker mode="multiSelector" :range="expectations" @change="onExpectationChange">
-                <view class="picker">{{ profile.expectation || '请选择期望对象' }}</view>
-            </picker>
+            <MultiSelectTags
+                :tags="expectations"
+                :selectedTags="profile.expectation"
+                @update:selectedTags="toggleExpectation"
+            />
         </view>
 
         <!-- 保存按钮 -->
@@ -148,9 +154,15 @@
 </template>
 
 <script>
-import { sampleTags } from '@/data/sampleTags.js'; // 引入 sampleTags 数据
+import { sampleTags } from '@/data/sampleTags';
+import MultiSelectTags from '@/components/MultiSelectTags.vue';
+
+const { tags, hobbies, expectations } = sampleTags;
 
 export default {
+    components: {
+        MultiSelectTags,
+    },
     data() {
         return {
             profile: {
@@ -171,15 +183,15 @@ export default {
                 hasCar: false,
                 tags: [],
                 hobbies: [],
-                expectation: '',
+                expectation: [],
             },
             genders: ['男', '女', '保密'],
             maritalStatusOptions: ['未婚', '已婚', '离异', '丧偶'],
-            educations: ['高中', '大专', '本科', '硕士', '博士'],
-            housings: ['自有住房', '租房', '无房'],
-            tags: sampleTags.tags, // 标签数据
-            hobbies: sampleTags.hobbies, // 兴趣爱好数据
-            expectations: sampleTags.expectations, // 期望对象数据
+            educationOptions: ['高中', '大专', '本科', '硕士', '博士'],
+            housingOptions: ['自有住房', '租房', '无房'],
+            tags, // 使用解构的 tags
+            hobbies, // 使用解构的 hobbies
+            expectations, // 使用解构的 expectations
         };
     },
     onLoad(options) {
@@ -189,17 +201,29 @@ export default {
         });
     },
     methods: {
-        // 选择标签
-        onTagsChange(e) {
-            this.profile.tags = e.detail.value;
+        // 切换标签
+        toggleTag(tag) {
+            if (this.profile.tags.includes(tag)) {
+                this.profile.tags = this.profile.tags.filter(t => t !== tag);
+            } else {
+                this.profile.tags.push(tag);
+            }
         },
-        // 选择兴趣爱好
-        onHobbiesChange(e) {
-            this.profile.hobbies = e.detail.value;
+        // 切换兴趣爱好
+        toggleHobby(hobby) {
+            if (this.profile.hobbies.includes(hobby)) {
+                this.profile.hobbies = this.profile.hobbies.filter(h => h !== hobby);
+            } else {
+                this.profile.hobbies.push(hobby);
+            }
         },
-        // 选择期望对象
-        onExpectationChange(e) {
-            this.profile.expectation = e.detail.value.join('、');
+        // 切换期望对象
+        toggleExpectation(expectation) {
+            if (this.profile.expectation.includes(expectation)) {
+                this.profile.expectation = this.profile.expectation.filter(e => e !== expectation);
+            } else {
+                this.profile.expectation.push(expectation);
+            }
         },
         // 上传头像
         uploadAvatar() {
@@ -231,10 +255,10 @@ export default {
             this.profile.maritalStatus = this.maritalStatusOptions[e.detail.value];
         },
         onEducationChange(e) {
-            this.profile.education = e.detail.value;
+            this.profile.education = this.educationOptions[e.detail.value];
         },
         onHousingChange(e) {
-            this.profile.housing = e.detail.value;
+            this.profile.housing = this.housingOptions[e.detail.value];
         },
         onHasCarChange(e) {
             this.profile.hasCar = e.detail.value;
