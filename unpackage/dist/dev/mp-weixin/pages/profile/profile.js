@@ -225,6 +225,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -232,7 +234,7 @@ var _default = {
         avatar: '/static/logo.png',
         nickname: '饺子',
         gender: '女',
-        age: 20,
+        age: 21,
         currentCity: '杭州',
         tags: ['无法描述的好姑娘', '肤白貌美', '古灵精怪'],
         hobbies: ['旅行', '王者', '美食达人'],

@@ -6,8 +6,8 @@
 }
 .edit-button {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 40px;
+  right: 50px;
   padding: 8px 16px;
   border: 1px solid #6096b7;
   border-radius: 16px;
@@ -79,9 +79,9 @@
 }
 .info-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  justify-content: space-between;
+  padding: 8px 60px 8px 50px;
   border-bottom: 1px solid #f0f0f0;
 }
 .info-item:last-child {
@@ -90,14 +90,20 @@
 .info-label {
   font-size: 14px;
   color: #666;
+  flex-shrink: 0;
 }
 .info-value {
   font-size: 14px;
   color: #333;
+  text-align: right;
 }
 .self-introduction {
   font-size: 14px;
   color: #333;
   line-height: 1.6;
+}
+.self-introduction ._p {
+  text-indent: 2em; /* 首行缩进 2 个字符宽度 */
+  margin: 0; /* 去除默认的段落间距 */
 }
 

@@ -127,6 +127,15 @@ export default {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.post-button .icon {
+  font-size: 24px; 
+  color: #fff; 
+  line-height: 1; /* 确保图标垂直居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .plus-icon {
   font-size: 24px;
   color: #fff;

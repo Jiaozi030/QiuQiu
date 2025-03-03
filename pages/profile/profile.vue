@@ -77,7 +77,9 @@
     <!-- 自我介绍 -->
     <view class="section">
       <text class="section-title">自我介绍</text>
-      <text class="self-introduction">{{ profile.selfIntroduction }}</text>
+      <view class="self-introduction">
+        <p>{{ profile.selfIntroduction }}</p>
+      </view>
     </view>
   </view>
 </template>
@@ -90,7 +92,7 @@ export default {
         avatar: '/static/logo.png',
         nickname: '饺子',
         gender: '女',
-        age: 20,
+        age: 21,
         currentCity: '杭州',
         tags: ['无法描述的好姑娘', '肤白貌美', '古灵精怪'],
         hobbies: ['旅行', '王者', '美食达人'],
@@ -125,8 +127,8 @@ export default {
 
 .edit-button {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 40px;
+  right: 50px;
   padding: 8px 16px;
   border: 1px solid #6096b7;
   border-radius: 16px;
@@ -210,9 +212,9 @@ export default {
 
 .info-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  justify-content: space-between;
+  padding: 8px 60px 8px 50px;
   border-bottom: 1px solid #f0f0f0;
 }
 
@@ -223,16 +225,23 @@ export default {
 .info-label {
   font-size: 14px;
   color: #666;
+  flex-shrink: 0;
 }
 
 .info-value {
   font-size: 14px;
   color: #333;
+  text-align: right;
 }
 
 .self-introduction {
   font-size: 14px;
   color: #333;
   line-height: 1.6;
+}
+
+.self-introduction p {
+  text-indent: 2em; /* 首行缩进 2 个字符宽度 */
+  margin: 0; /* 去除默认的段落间距 */
 }
 </style> 
