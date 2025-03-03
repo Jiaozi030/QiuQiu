@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -244,28 +244,44 @@ var _sampleProfile = __webpack_require__(/*! @/data/sampleProfile.js */ 158);
 //
 //
 //
+//
+//
+//
 var _default = {
   data: function data() {
     return {
       user: _sampleProfile.sampleProfile
     };
-  } // methods: {
-  //   async fetchSampleTags() {
-  //     const res = await uni.request({
-  //       url: '/api/sampleTags', // 替换为实际接口
-  //       method: 'GET',
-  //     });
-  //     this.user.tags = res.data.tags.slice(0, 10);
-  //     this.user.hobbies = res.data.hobbies.slice(0, 10);
-  //     this.user.expectation = res.data.expectations.slice(0, 10).join('、');
-  //   },
-  // },
-  // mounted() {
-  //   this.fetchUserProfile();
-  //   this.fetchSampleTags();
-  // },
+  },
+  methods: {
+    //   async fetchSampleTags() {
+    //     const res = await uni.request({
+    //       url: '/api/sampleTags', // 替换为实际接口
+    //       method: 'GET',
+    //     });
+    //     this.user.tags = res.data.tags.slice(0, 10);
+    //     this.user.hobbies = res.data.hobbies.slice(0, 10);
+    //     this.user.expectation = res.data.expectations.slice(0, 10).join('、');
+    //   },
+    // 跳转到编辑页面
+    navigateToEdit: function navigateToEdit() {
+      console.log('传递的个人资料:', this.user); // 调试日志
+      uni.navigateTo({
+        url: "/pages/profile/edit?profile=".concat(encodeURIComponent(JSON.stringify(this.user)))
+      });
+    }
+  },
+  onShow: function onShow() {
+    var eventChannel = this.getOpenerEventChannel();
+    if (eventChannel && eventChannel.on) {
+      eventChannel.on('someEvent', function (data) {
+        console.log('Received data:', data);
+      });
+    }
+  }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

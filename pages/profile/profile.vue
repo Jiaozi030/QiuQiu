@@ -97,6 +97,9 @@
       <text class="section-title">期望对象</text>
       <text class="expectation">{{ user.expectation }}</text>
     </view>
+
+    <!-- 编辑按钮 -->
+    <button class="edit-button" @click="navigateToEdit">编辑</button>
   </view>
 </template>
 
@@ -109,7 +112,7 @@ export default {
       user: sampleProfile
     };
   },
-  // methods: {
+  methods: {
   //   async fetchSampleTags() {
   //     const res = await uni.request({
   //       url: '/api/sampleTags', // 替换为实际接口
@@ -119,11 +122,22 @@ export default {
   //     this.user.hobbies = res.data.hobbies.slice(0, 10);
   //     this.user.expectation = res.data.expectations.slice(0, 10).join('、');
   //   },
-  // },
-  // mounted() {
-  //   this.fetchUserProfile();
-  //   this.fetchSampleTags();
-  // },
+  // 跳转到编辑页面
+    navigateToEdit() {
+      console.log('传递的个人资料:', this.user); // 调试日志
+      uni.navigateTo({
+        url: `/pages/profile/edit?profile=${encodeURIComponent(JSON.stringify(this.user))}`,
+      });
+    },
+  },
+  onShow() {
+    const eventChannel = this.getOpenerEventChannel();
+    if (eventChannel && eventChannel.on) {
+      eventChannel.on('someEvent', (data) => {
+        console.log('Received data:', data);
+      });
+    }
+  },
 }
 </script>
 
@@ -219,5 +233,22 @@ export default {
 .expectation {
   font-size: 14px;
   color: #333;
+}
+
+.edit-button {
+  height: 40px; 
+  width: 80px;
+  padding: 0;
+  background-color: #479fc1; 
+  color: #fff;
+  border-radius: 6px; /* 圆角 */
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 平滑过渡 */
+  line-height: 40px; /* 与高度一致，确保文字垂直居中 */
+  text-align: center; /* 文字水平居中 */
+  display: block; /* 确保居中生效 */
+  margin: 0 auto;
 }
 </style> 

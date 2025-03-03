@@ -11,7 +11,8 @@
     "pages/discover/post",
     "pages/message/followers",
     "pages/message/viewers",
-    "pages/message/chat"
+    "pages/message/chat",
+    "pages/profile/edit"
   ],
   "subPackages": [],
   "window": {

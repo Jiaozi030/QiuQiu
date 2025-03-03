@@ -231,7 +231,7 @@ var sampleProfile = {
   gender: '女',
   birthDate: '2003-01-01',
   height: 172,
-  weight: 66,
+  weight: 63,
   currentCity: '杭州',
   hometown: '武汉',
   maritalStatus: '未婚',

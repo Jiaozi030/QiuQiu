@@ -76,4 +76,20 @@
   font-size: 14px;
   color: #333;
 }
+.edit-button {
+  height: 40px; 
+  width: 80px;
+  padding: 0;
+  background-color: #479fc1; 
+  color: #fff;
+  border-radius: 6px; /* 圆角 */
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 平滑过渡 */
+  line-height: 40px; /* 与高度一致，确保文字垂直居中 */
+  text-align: center; /* 文字水平居中 */
+  display: block; /* 确保居中生效 */
+  margin: 0 auto;
+}
 
