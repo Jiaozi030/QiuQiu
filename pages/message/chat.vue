@@ -117,7 +117,7 @@ export default {
 }
 
 .chat-message.me {
-    background-color: #007aff;
+    background-color: #2c73be;
     color: #fff;
     align-self: flex-end;
 }
@@ -165,12 +165,15 @@ export default {
 
 .send-button {
     padding: 6px 12px;
-    background-color: #007aff;
+    background-color: #1973d3;
     color: #fff;
     border-radius: 4px;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 28px;
     height: 40px;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>

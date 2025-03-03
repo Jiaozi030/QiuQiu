@@ -1,42 +1,91 @@
 
 .profile-page {
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  background-color: #f8f8f8;
+  position: relative;
 }
-.avatar-section {
+.edit-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  border: 1px solid #6096b7;
+  border-radius: 16px;
+  font-size: 14px;
+  color: #6096b7;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.edit-button:hover {
+  background-color: #6096b7;
+  color: #fff;
+}
+.profile-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  margin-bottom: 20px;
 }
 .avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  margin-right: 16px;
 }
-.photo-album {
-  display: flex;
-  gap: 10px;
-}
-.album-photo {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-}
-.section {
+.basic-info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
-.section-title {
+.nickname {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: #333;
+}
+.gender {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+.location {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+.section {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+  display: block;
+}
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag {
+  padding: 6px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  font-size: 12px;
+  color: #666;
+  background-color: #fff;
 }
 .info-item {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.info-item:last-child {
+  border-bottom: none;
 }
 .info-label {
   font-size: 14px;
@@ -46,50 +95,9 @@
   font-size: 14px;
   color: #333;
 }
-.self-intro {
+.self-introduction {
   font-size: 14px;
   color: #333;
-}
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.tag {
-  font-size: 12px;
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border-radius: 20px;
-}
-.hobbies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.hobby {
-  font-size: 12px;
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border-radius: 20px;
-}
-.expectation {
-  font-size: 14px;
-  color: #333;
-}
-.edit-button {
-  height: 40px; 
-  width: 80px;
-  padding: 0;
-  background-color: #479fc1; 
-  color: #fff;
-  border-radius: 6px; /* 圆角 */
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* 平滑过渡 */
-  line-height: 40px; /* 与高度一致，确保文字垂直居中 */
-  text-align: center; /* 文字水平居中 */
-  display: block; /* 确保居中生效 */
-  margin: 0 auto;
+  line-height: 1.6;
 }
 

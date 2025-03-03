@@ -1,192 +1,223 @@
 <template>
   <view class="profile-page">
-    <!-- 头像和相册 -->
-    <view class="avatar-section">
-      <image :src="user.avatar" class="avatar" />
-      <view class="photo-album">
-        <image v-for="(photo, index) in user.photoAlbum" :key="index" :src="photo" class="album-photo" />
+    <!-- 编辑按钮 -->
+    <view class="edit-button" @click="navigateToEdit">
+      <text>编辑</text>
+    </view>
+
+    <!-- 头像和基本信息 -->
+    <view class="profile-header">
+      <image :src="profile.avatar" class="avatar" />
+      <view class="basic-info">
+        <text class="nickname">{{ profile.nickname }}</text>
+        <text class="gender">{{ profile.gender }} | {{ profile.age }}岁</text>
+        <text class="location">{{ profile.currentCity }}</text>
       </view>
     </view>
 
-    <!-- 基本资料 -->
+    <!-- 标签 -->
     <view class="section">
-      <text class="section-title">基本资料</text>
-      <view class="info-item">
-        <text class="info-label">昵称：</text>
-        <text class="info-value">{{ user.nickname }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">性别：</text>
-        <text class="info-value">{{ user.gender }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">出生日期：</text>
-        <text class="info-value">{{ user.birthDate }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">身高：</text>
-        <text class="info-value">{{ user.height }} cm</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">体重：</text>
-        <text class="info-value">{{ user.weight }} kg</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">现居地：</text>
-        <text class="info-value">{{ user.currentCity }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">家乡：</text>
-        <text class="info-value">{{ user.hometown }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">婚姻状况：</text>
-        <text class="info-value">{{ user.maritalStatus }}</text>
-      </view>
-    </view>
-
-    <!-- 自我介绍 -->
-    <view class="section">
-      <text class="section-title">自我介绍</text>
-      <text class="self-intro">{{ user.selfIntroduction }}</text>
-    </view>
-
-    <!-- 详细资料 -->
-    <view class="section">
-      <text class="section-title">详细资料</text>
-      <view class="info-item">
-        <text class="info-label">学历：</text>
-        <text class="info-value">{{ user.education }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">年收入：</text>
-        <text class="info-value">{{ user.annualIncome }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">职业：</text>
-        <text class="info-value">{{ user.occupation }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">住房情况：</text>
-        <text class="info-value">{{ user.housing }}</text>
-      </view>
-      <view class="info-item">
-        <text class="info-label">是否有车：</text>
-        <text class="info-value">{{ user.hasCar ? '有' : '无' }}</text>
-      </view>
-    </view>
-
-    <!-- 我的标签 -->
-    <view class="section">
-      <text class="section-title">我的标签</text>
-      <view class="tags">
-        <text v-for="(tag, index) in user.tags" :key="index" class="tag">{{ tag }}</text>
+      <text class="section-title">标签</text>
+      <view class="tag-container">
+        <view v-for="(tag, index) in profile.tags" :key="index" class="tag">
+          {{ tag }}
+        </view>
       </view>
     </view>
 
     <!-- 兴趣爱好 -->
     <view class="section">
       <text class="section-title">兴趣爱好</text>
-      <view class="hobbies">
-        <text v-for="(hobby, index) in user.hobbies" :key="index" class="hobby">{{ hobby }}</text>
+      <view class="tag-container">
+        <view v-for="(hobby, index) in profile.hobbies" :key="index" class="tag">
+          {{ hobby }}
+        </view>
       </view>
     </view>
 
     <!-- 期望对象 -->
     <view class="section">
       <text class="section-title">期望对象</text>
-      <text class="expectation">{{ user.expectation }}</text>
+      <view class="tag-container">
+        <view v-for="(expectation, index) in profile.expectation" :key="index" class="tag">
+          {{ expectation }}
+        </view>
+      </view>
     </view>
 
-    <!-- 编辑按钮 -->
-    <button class="edit-button" @click="navigateToEdit">编辑</button>
+    <!-- 其他信息 -->
+    <view class="section">
+      <text class="section-title">关于我</text>
+      <view class="info-item">
+        <text class="info-label">身高</text>
+        <text class="info-value">{{ profile.height }} cm</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">体重</text>
+        <text class="info-value">{{ profile.weight }} kg</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">学历</text>
+        <text class="info-value">{{ profile.education }}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">住房</text>
+        <text class="info-value">{{ profile.housing }}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">年收入</text>
+        <text class="info-value">{{ profile.annualIncome }}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">职业</text>
+        <text class="info-value">{{ profile.occupation }}</text>
+      </view>
+    </view>
+
+    <!-- 自我介绍 -->
+    <view class="section">
+      <text class="section-title">自我介绍</text>
+      <text class="self-introduction">{{ profile.selfIntroduction }}</text>
+    </view>
   </view>
 </template>
 
 <script>
-import { sampleProfile } from '@/data/sampleProfile.js';
-
 export default {
   data() {
     return {
-      user: sampleProfile
+      profile: {
+        avatar: '/static/logo.png',
+        nickname: '饺子',
+        gender: '女',
+        age: 20,
+        currentCity: '杭州',
+        tags: ['无法描述的好姑娘', '肤白貌美', '古灵精怪'],
+        hobbies: ['旅行', '王者', '美食达人'],
+        expectation: ['三观一致', '有趣', '有钱', '帅必须帅'],
+        height: 172,
+        weight: 63,
+        education: '本科',
+        housing: '自住有房',
+        annualIncome: '20万',
+        occupation: '程序员',
+        selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。',
+      },
     };
   },
   methods: {
-  //   async fetchSampleTags() {
-  //     const res = await uni.request({
-  //       url: '/api/sampleTags', // 替换为实际接口
-  //       method: 'GET',
-  //     });
-  //     this.user.tags = res.data.tags.slice(0, 10);
-  //     this.user.hobbies = res.data.hobbies.slice(0, 10);
-  //     this.user.expectation = res.data.expectations.slice(0, 10).join('、');
-  //   },
-  // 跳转到编辑页面
+    // 跳转到编辑页面
     navigateToEdit() {
-      console.log('传递的个人资料:', this.user); // 调试日志
       uni.navigateTo({
-        url: `/pages/profile/edit?profile=${encodeURIComponent(JSON.stringify(this.user))}`,
+        url: '/pages/profile/edit',
       });
     },
   },
-  onShow() {
-    const eventChannel = this.getOpenerEventChannel();
-    if (eventChannel && eventChannel.on) {
-      eventChannel.on('someEvent', (data) => {
-        console.log('Received data:', data);
-      });
-    }
-  },
-}
+};
 </script>
 
 <style>
 .profile-page {
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  background-color: #f8f8f8;
+  position: relative;
 }
 
-.avatar-section {
+.edit-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  border: 1px solid #6096b7;
+  border-radius: 16px;
+  font-size: 14px;
+  color: #6096b7;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #6096b7;
+  color: #fff;
+}
+
+.profile-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  margin-right: 16px;
 }
 
-.photo-album {
+.basic-info {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
 }
 
-.album-photo {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
+.nickname {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.gender {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.location {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
 }
 
 .section {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
 }
 
 .section-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: #333;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  padding: 6px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  font-size: 12px;
+  color: #666;
+  background-color: #fff;
 }
 
 .info-item {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-item:last-child {
+  border-bottom: none;
 }
 
 .info-label {
@@ -199,56 +230,9 @@ export default {
   color: #333;
 }
 
-.self-intro {
+.self-introduction {
   font-size: 14px;
   color: #333;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.tag {
-  font-size: 12px;
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border-radius: 20px;
-}
-
-.hobbies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.hobby {
-  font-size: 12px;
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border-radius: 20px;
-}
-
-.expectation {
-  font-size: 14px;
-  color: #333;
-}
-
-.edit-button {
-  height: 40px; 
-  width: 80px;
-  padding: 0;
-  background-color: #479fc1; 
-  color: #fff;
-  border-radius: 6px; /* 圆角 */
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* 平滑过渡 */
-  line-height: 40px; /* 与高度一致，确保文字垂直居中 */
-  text-align: center; /* 文字水平居中 */
-  display: block; /* 确保居中生效 */
-  margin: 0 auto;
+  line-height: 1.6;
 }
 </style> 

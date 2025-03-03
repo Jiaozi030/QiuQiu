@@ -141,28 +141,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _sampleProfile = __webpack_require__(/*! @/data/sampleProfile.js */ 158);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -250,32 +228,30 @@ var _sampleProfile = __webpack_require__(/*! @/data/sampleProfile.js */ 158);
 var _default = {
   data: function data() {
     return {
-      user: _sampleProfile.sampleProfile
+      profile: {
+        avatar: '/static/logo.png',
+        nickname: '饺子',
+        gender: '女',
+        age: 20,
+        currentCity: '杭州',
+        tags: ['无法描述的好姑娘', '肤白貌美', '古灵精怪'],
+        hobbies: ['旅行', '王者', '美食达人'],
+        expectation: ['三观一致', '有趣', '有钱', '帅必须帅'],
+        height: 172,
+        weight: 63,
+        education: '本科',
+        housing: '自住有房',
+        annualIncome: '20万',
+        occupation: '程序员',
+        selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。'
+      }
     };
   },
   methods: {
-    //   async fetchSampleTags() {
-    //     const res = await uni.request({
-    //       url: '/api/sampleTags', // 替换为实际接口
-    //       method: 'GET',
-    //     });
-    //     this.user.tags = res.data.tags.slice(0, 10);
-    //     this.user.hobbies = res.data.hobbies.slice(0, 10);
-    //     this.user.expectation = res.data.expectations.slice(0, 10).join('、');
-    //   },
     // 跳转到编辑页面
     navigateToEdit: function navigateToEdit() {
-      console.log('传递的个人资料:', this.user); // 调试日志
       uni.navigateTo({
-        url: "/pages/profile/edit?profile=".concat(encodeURIComponent(JSON.stringify(this.user)))
-      });
-    }
-  },
-  onShow: function onShow() {
-    var eventChannel = this.getOpenerEventChannel();
-    if (eventChannel && eventChannel.on) {
-      eventChannel.on('someEvent', function (data) {
-        console.log('Received data:', data);
+        url: '/pages/profile/edit'
       });
     }
   }
