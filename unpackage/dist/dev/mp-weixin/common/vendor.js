@@ -355,6 +355,75 @@ module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.ex
 
 /***/ }),
 
+/***/ 192:
+/*!********************************************************************!*\
+  !*** /Users/jiaozi030/Desktop/app/QiuQiu/data/sampleFollowings.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sampleFollowings = void 0;
+var sampleFollowings = [{
+  avatar: '/static/logo.png',
+  nickname: '用户1',
+  gender: '男',
+  age: 27
+}, {
+  avatar: '/static/logo.png',
+  nickname: '用户2',
+  gender: '男',
+  age: 26
+}, {
+  avatar: '/static/logo.png',
+  nickname: '用户3',
+  gender: '男',
+  age: 27
+}, {
+  avatar: '/static/logo.png',
+  nickname: '用户4',
+  gender: '男',
+  age: 26
+}, {
+  avatar: '/static/logo.png',
+  nickname: '用户5',
+  gender: '男',
+  age: 27
+}, {
+  avatar: '/static/logo.png',
+  nickname: '用户6',
+  gender: '男',
+  age: 26
+}, {
+  avatar: '/static/logo.png',
+  nickname: '用户7',
+  gender: '男',
+  age: 27
+}, {
+  avatar: '/static/logo.png',
+  nickname: '用户8',
+  gender: '男',
+  age: 26
+}, {
+  avatar: '/static/logo.png',
+  nickname: '用户9',
+  gender: '男',
+  age: 27
+}, {
+  avatar: '/static/logo.png',
+  nickname: '用户10',
+  gender: '男',
+  age: 26
+}];
+exports.sampleFollowings = sampleFollowings;
+
+/***/ }),
+
 /***/ 2:
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!

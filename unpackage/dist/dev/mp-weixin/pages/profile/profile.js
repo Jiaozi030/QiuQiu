@@ -227,6 +227,15 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -246,14 +255,22 @@ var _default = {
         annualIncome: '20万',
         occupation: '程序员',
         selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。'
-      }
+      },
+      followingCount: 10 // 假设关注了 10 人
     };
   },
+
   methods: {
     // 跳转到编辑页面
     navigateToEdit: function navigateToEdit() {
       uni.navigateTo({
         url: '/pages/profile/edit'
+      });
+    },
+    // 跳转到我的关注页面
+    navigateToFollowing: function navigateToFollowing() {
+      uni.navigateTo({
+        url: '/pages/profile/following'
       });
     }
   }

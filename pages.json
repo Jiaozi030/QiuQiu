@@ -77,6 +77,12 @@
 			"style": {
 				"navigationBarTitleText": "编辑资料"
 			}
+		},
+		{
+			"path": "pages/profile/following",
+			"style": {
+				"navigationBarTitleText": "我的关注"
+			}
 		}
 	],
 	"globalStyle": {
