@@ -54,7 +54,7 @@ export default {
 		return {
 			current: 0, // 当前选中的分页索引
 			tabs: ['推荐', '附近', '关注'], // 分页标签
-		}
+		};
 	},
 	onLoad() {
 		// this.fetchUserData(); // 后期启用

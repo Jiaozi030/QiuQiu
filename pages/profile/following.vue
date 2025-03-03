@@ -13,7 +13,7 @@
                         <text class="gender" :class="user.gender === '男' ? 'male' : 'female">
                             {{ user.gender === '男' ? '♂' : '♀' }}
                         </text>
-                        <text class="age">{{ user.age }}岁</text>
+                        <text class="age">{{ user.age || 'unknown' }}岁</text>
                     </view>
                 </view>
             </view>
@@ -23,6 +23,7 @@
 
 <script>
 import { sampleFollowings } from '@/data/sampleFollowings.js';
+
 export default {
     data() {
         return {
@@ -31,7 +32,7 @@ export default {
     },
     mounted() {
         console.log('关注列表数据：', this.followingList);
-    }
+    },
     // methods: {
     //     // 跳转到用户详情页面
     //     navigateToUserDetail(user) {

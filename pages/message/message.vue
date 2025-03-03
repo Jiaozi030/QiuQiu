@@ -38,7 +38,7 @@ export default {
   data() {
 		return {
 			messages: sampleMessages
-		}
+		};
 	},
   methods: {
     // 跳转到"谁关注我"页面

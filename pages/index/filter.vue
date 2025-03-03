@@ -75,7 +75,7 @@ export default {
 			occupation: '',
 			incomes: ['10万以下', '10-20万', '20-50万', '50万以上'],
 			incomeIndex: 0
-		}
+		};
 	},
 	methods: {
 		onAgeChange(e) {
