@@ -77,6 +77,12 @@
 			"style": {
 				"navigationBarTitleText": "编辑资料"
 			}
+		},
+		{
+			"path": "pages/profile/se_profile",
+			"style": {
+				"navigationBarTitleText": "用户主页"
+			}
 		}
 	],
 	"globalStyle": {

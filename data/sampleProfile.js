@@ -5,7 +5,7 @@ export const sampleProfile = {
     photoAlbum: ['/static/logo.png', '/static/logo.png', '/static/logo.png'],
     nickname: '饺子',
     gender: '女',
-    birthDate: '2003-01-01',
+    birthDate: '2004-01-01',
     height: 172,
     weight: 63,
     currentCity: '杭州',

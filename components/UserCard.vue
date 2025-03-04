@@ -1,5 +1,5 @@
 <template>
-	<view class="user-card">
+	<view class="user-card" @click="navigateToProfile">
 		<image class="user-photo" :src="user.photo" />
 		<view class="user-info">
 			<view class="name-gender">
@@ -26,6 +26,13 @@ export default {
 		user: {
 			type: Object,
 			required: true
+		}
+	},
+	methods: {
+		navigateToProfile() {
+			uni.navigateTo({
+				url: '/pages/profile/se_profile',
+			});
 		}
 	}
 }

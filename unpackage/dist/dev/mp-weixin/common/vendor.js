@@ -10023,7 +10023,7 @@ var b = "development" === "development",
   k = "true" === undefined || !0 === undefined,
   P = T([]),
   C = "h5" === E ? "web" : "app-plus" === E || "app-harmony" === E ? "app" : E,
-  A = T({"address":["127.0.0.1","10.65.112.30"],"servePort":7001,"debugPort":9000,"initialLaunchType":"local","skipFiles":["<node_internals>/**","/Applications/HBuilderX.app/Contents/HBuilderX/plugins/unicloud/**/*.js"]}),
+  A = T({"address":["127.0.0.1","10.66.113.113"],"servePort":7001,"debugPort":9000,"initialLaunchType":"local","skipFiles":["<node_internals>/**","/Applications/HBuilderX.app/Contents/HBuilderX/plugins/unicloud/**/*.js"]}),
   O = T([{"provider":"aliyun","spaceName":"qiuqiu","spaceId":"mp-3d3c8ac7-84bc-4303-8bdf-b8afeb84cdc5","clientSecret":"sAaW0QVi9EXJEuJ3Qjh+yA==","endpoint":"https://api.next.bspapp.com"}]) || [],
   x = true;
 var N = "";
@@ -18478,6 +18478,11 @@ var _default = {
     "path": "pages/profile/edit",
     "style": {
       "navigationBarTitleText": "编辑资料"
+    }
+  }, {
+    "path": "pages/profile/se_profile",
+    "style": {
+      "navigationBarTitleText": "用户主页"
     }
   }],
   "globalStyle": {
