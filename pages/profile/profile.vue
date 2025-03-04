@@ -63,8 +63,16 @@
         <text class="info-value">{{ profile.education }}</text>
       </view>
       <view class="info-item">
-        <text class="info-label">住房</text>
+        <view class="info-label">
+          <image src="/static/house.jpg" class="icon" />
+        </view>
         <text class="info-value">{{ profile.housing }}</text>
+      </view>
+      <view class="info-item">
+        <view class="info-label">
+          <image src="/static/car.jpg" class="icon" />
+        </view>
+        <text class="info-value">{{ profile.hasCar ? '有车' : '无车' }}</text>
       </view>
       <view class="info-item">
         <text class="info-label">年收入</text>
@@ -248,5 +256,11 @@ export default {
 .self-introduction p {
   text-indent: 2em; /* 首行缩进 2 个字符宽度 */
   margin: 0; /* 去除默认的段落间距 */
+}
+
+.icon {
+    width: 25px;
+    height: 20px;
+    margin-right: 8px;
 }
 </style> 
