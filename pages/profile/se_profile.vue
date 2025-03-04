@@ -82,7 +82,7 @@
                     <view class="label">
                         <image src="/static/car.jpg" class="icon" />
                     </view>
-                    <text class="value">{{ profile.hasCar ? '有车' : '无车' }}</text>
+                    <text class="value">{{ profile.hasCar }}</text>
                 </view>
                 <view class="detail-item">
                     <text class="label">年收入</text>

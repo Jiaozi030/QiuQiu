@@ -72,7 +72,7 @@
         <view class="info-label">
           <image src="/static/car.jpg" class="icon" />
         </view>
-        <text class="info-value">{{ profile.hasCar ? '有车' : '无车' }}</text>
+        <text class="info-value">{{ profile.hasCar }}</text>
       </view>
       <view class="info-item">
         <text class="info-label">年收入</text>
@@ -111,6 +111,7 @@ export default {
         weight: 63,
         education: '本科',
         housing: '自住有房',
+        hasCar: '无车', 
         annualIncome: '20万',
         occupation: '程序员',
         selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。',
