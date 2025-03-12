@@ -1,23 +1,74 @@
-import { sampleTags } from './sampleTags.js';
-
-export const sampleProfile = {
-    avatar: '/static/default/logo.png',
-    photoAlbum: ['/static/default/logo.png', '/static/default/logo.png', '/static/default/logo.png'],
-    nickname: '饺子',
-    gender: '女',
-    birthDate: '2004-01-01',
-    height: 172,
-    weight: 63,
-    currentCity: '杭州',
-    hometown: '武汉',
-    maritalStatus: '未婚',
-    selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。',
-    education: '本科',
-    annualIncome: '20万',
-    occupation: '程序员',
-    housing: '自有住房',
-    hasCar: true,
-    tags: sampleTags.tags.slice(0, 10), // 取前 10 个标签
-    hobbies: sampleTags.hobbies.slice(0, 10), // 取前 10 个兴趣
-    expectation: sampleTags.expectations.slice(0, 10).join('、'), // 取前 10 个期望对象
-}
+export const sampleProfiles = [
+    {
+        "avatar": "/static/avatar/n1.JPG",
+        "nickname": "饺子",
+        "gender": "女",
+        "age": 21,
+        "currentCity": "杭州",
+        "tags": ["无法描述的好姑娘", "肤白貌美", "古灵精怪"],
+        "hobbies": ["旅行", "王者", "美食达人"],
+        "expectation": ["三观一致", "有趣", "有钱", "帅必须帅"],
+        "height": 172,
+        "weight": 63,
+        "education": "本科",
+        "housing": "自住有房",
+        "hasCar": "有车",
+        "annualIncome": "20万",
+        "occupation": "程序员",
+        "selfIntroduction": "我是一个热爱生活、积极向上的人，喜欢旅行和摄影。"
+    },
+    {
+        "avatar": "/static/avatar/n2.jpg",
+        "nickname": "贝贝",
+        "gender": "女",
+        "age": 25,
+        "currentCity": "上海",
+        "tags": ["温柔体贴", "爱笑", "热爱生活"],
+        "hobbies": ["阅读", "瑜伽", "烘焙"],
+        "expectation": ["成熟稳重", "有责任心", "幽默"],
+        "height": 165,
+        "weight": 55,
+        "education": "硕士",
+        "housing": "租房",
+        "hasCar": "无车",
+        "annualIncome": "15万",
+        "occupation": "设计师",
+        "selfIntroduction": "喜欢安静的生活，追求内心的平和与满足。"
+    },
+    {
+        "avatar": "/static/avatar/z1.JPG",
+        "nickname": "小熊",
+        "gender": "男",
+        "age": 26,
+        "currentCity": "北京",
+        "tags2": ["阳光暖男", "有趣的灵魂", "文艺青年"],
+        "hobbies2": ["篮球", "健身", "旅行"],
+        "expectation2": ["颜值高", "温柔体贴", "三观一致"],
+        "height": 180,
+        "weight": 75,
+        "education": "本科",
+        "housing": "自住有房",
+        "hasCar": "有车",
+        "annualIncome": "25万",
+        "occupation": "产品经理",
+        "selfIntroduction": "热爱运动和生活，希望能找到一个志同道合的伴侣。"
+    },
+    {
+        "avatar": "/static/avatar/z2.JPG",
+        "nickname": "小虎",
+        "gender": "男",
+        "age": 27,
+        "currentCity": "深圳",
+        "tags2": ["靠谱", "自律", "大叔"],
+        "hobbies2": ["摄影", "吉他", "游戏"],
+        "expectation2": ["独立", "顾家", "喜欢小孩"],
+        "height": 178,
+        "weight": 70,
+        "education": "硕士",
+        "housing": "自有住房",
+        "hasCar": "有车",
+        "annualIncome": "30万",
+        "occupation": "工程师",
+        "selfIntroduction": "喜欢探索新事物，追求生活的平衡与和谐。"
+    }
+]

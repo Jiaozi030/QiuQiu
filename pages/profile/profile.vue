@@ -98,31 +98,33 @@
 export default {
   data() {
     return {
-      profile: {
-        avatar: '/static/default/logo.png',
-        nickname: '饺子',
-        gender: '女',
-        age: 21,
-        currentCity: '杭州',
-        tags: ['无法描述的好姑娘', '肤白貌美', '古灵精怪'],
-        hobbies: ['旅行', '王者', '美食达人'],
-        expectation: ['三观一致', '有趣', '有钱', '帅必须帅'],
-        height: 172,
-        weight: 63,
-        education: '本科',
-        housing: '自住有房',
-        hasCar: '有车', 
-        annualIncome: '20万',
-        occupation: '程序员',
-        selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。',
-      },
+      profile: {} // 初始化用户资料
     };
+  },
+  async onLoad() {
+    // 调用云函数获取指定 _id 的用户数据
+    const res = await uniCloud.callFunction({
+      name: 'profile',
+      data: {
+        action: 'getProfileById',
+        id: '67d16f8ae0ec19c842704b02' // 指定 _id
+      }
+    });
+
+    if (res.result.code === 200) {
+      this.profile = res.result.data; // 更新用户资料
+    } else {
+      uni.showToast({
+        title: '获取数据失败',
+        icon: 'none'
+      });
+    }
   },
   methods: {
     // 跳转到编辑页面
     navigateToEdit() {
       uni.navigateTo({
-        url: '/pages/profile/edit',
+        url: `/pages/profile/edit?id=${this.profile._id}`,
       });
     },
   },

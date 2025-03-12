@@ -161,7 +161,7 @@
         </view>
 
         <!-- 保存按钮 -->
-        <button class="save-button" @click="saveProfile">保存</button>
+        <button class="save-button" @click="handleComplete">保存</button>
     </view>
 </template>
 
@@ -177,26 +177,7 @@ export default {
     },
     data() {
         return {
-            profile: {
-                avatar: '/static/default/logo.png', // 默认头像
-                nickname: '',
-                gender: '',
-                birthDate: '',
-                height: 170, // 默认身高
-                weight: 60, // 默认体重
-                currentCity: [], // 当前城市 [省份, 城市, 地区]
-                homeTown: [], // 家乡 [省份, 城市, 地区]
-                maritalStatus: '',
-                selfIntroduction: '',
-                education: '',
-                annualIncome: '',
-                occupation: '',
-                housing: '',
-                hasCar: false,
-                tags: [],
-                hobbies: [],
-                expectation: [],
-            },
+            profile: {}, // 初始化用户资料
             genders: ['男', '女', '保密'],
             maritalStatusOptions: ['未婚', '已婚', '离异', '丧偶'],
             educationOptions: ['高中', '大专', '本科', '硕士', '博士'],
@@ -205,14 +186,31 @@ export default {
             hobbies, // 使用解构的 hobbies
             expectations, // 使用解构的 expectations
             incomeOptions: ['10万以下', '10-20万', '20-30万', '30-50万', '50万以上'], // 年收入选项
+            userId: ''
         };
     },
-    onLoad(options) {
-        if (options.profile) {
-            this.profile = JSON.parse(decodeURIComponent(options.profile));
-            // 确保 currentCity 和 homeTown 是数组
-            this.profile.currentCity = Array.isArray(this.profile.currentCity) ? this.profile.currentCity : [];
-            this.profile.homeTown = Array.isArray(this.profile.homeTown) ? this.profile.homeTown : [];
+    async onLoad(options) {
+        if (options.id) {
+            // 调用云函数获取用户数据
+            const res = await uniCloud.callFunction({
+                name: 'profile',
+                data: {
+                    action: 'getProfileById',
+                    id: options.id
+                }
+            });
+
+            if (res.result.code === 200) {
+                this.profile = res.result.data; // 更新用户资料
+            } else {
+                uni.showToast({
+                    title: '获取数据失败',
+                    icon: 'none'
+                });
+            }
+        }
+        if (options.userId) {
+            this.userId = options.userId;
         }
     },
     methods: {
@@ -293,8 +291,31 @@ export default {
         handleIncomeChange(e) {
             this.profile.annualIncome = this.incomeOptions[e.detail.value];
         },
-        saveProfile() {
-        // 实现保存用户信息的逻辑
+        handleComplete: async function() {
+            const userId = this.userId; // 当前用户的 ID
+            const profile = this.profile; // 编辑后的 profile 信息
+
+            // 调用云函数更新用户信息
+            const res = await uniCloud.callFunction({
+                name: 'update_profile',
+                data: {
+                    profile,
+                    userId
+                }
+            });
+
+            if (res.result.code === 200) {
+                uni.showToast({
+                    title: '保存成功',
+                    icon: 'success'
+                });
+                uni.navigateBack(); // 返回上一页
+            } else {
+                uni.showToast({
+                    title: '保存失败，请重试',
+                    icon: 'none'
+                });
+            }
         },
         // 处理当前城市选择
         handleCityChange(e) {

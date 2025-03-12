@@ -2,7 +2,26 @@
 const db = uniCloud.database();
 const collection = db.collection('profile');
 
-export default async function main(event, context) {
+exports.main = async (event, context) => {
+    const { action } = event;
+
+    if (action === 'getProfileById') {
+        try {
+            const res = await collection.doc(event.id).get();
+            return {
+                code: 200,
+                data: res.data[0]
+            };
+        } catch (err) {
+            return {
+                code: 500,
+                message: '获取数据失败',
+                error: err
+            };
+        }
+    }
+
+    // 其他操作保持不变...
     const { profile } = event;
     
     try {
@@ -33,4 +52,4 @@ export default async function main(event, context) {
             error: err
         };
     }
-} 
+}; 

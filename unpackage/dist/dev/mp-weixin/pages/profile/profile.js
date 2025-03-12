@@ -165,12 +165,15 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
+/* WEBPACK VAR INJECTION */(function(uniCloud, uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 28));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 31));
 //
 //
 //
@@ -270,37 +273,54 @@ exports.default = void 0;
 var _default = {
   data: function data() {
     return {
-      profile: {
-        avatar: '/static/default/logo.png',
-        nickname: '饺子',
-        gender: '女',
-        age: 21,
-        currentCity: '杭州',
-        tags: ['无法描述的好姑娘', '肤白貌美', '古灵精怪'],
-        hobbies: ['旅行', '王者', '美食达人'],
-        expectation: ['三观一致', '有趣', '有钱', '帅必须帅'],
-        height: 172,
-        weight: 63,
-        education: '本科',
-        housing: '自住有房',
-        hasCar: '有车',
-        annualIncome: '20万',
-        occupation: '程序员',
-        selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。'
-      }
+      profile: {} // 初始化用户资料
     };
+  },
+  onLoad: function onLoad() {
+    var _this = this;
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var res;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return uniCloud.callFunction({
+                name: 'profile',
+                data: {
+                  action: 'getProfileById',
+                  id: '67d16f8ae0ec19c842704b02' // 指定 _id
+                }
+              });
+            case 2:
+              res = _context.sent;
+              if (res.result.code === 200) {
+                _this.profile = res.result.data; // 更新用户资料
+              } else {
+                uni.showToast({
+                  title: '获取数据失败',
+                  icon: 'none'
+                });
+              }
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   methods: {
     // 跳转到编辑页面
     navigateToEdit: function navigateToEdit() {
       uni.navigateTo({
-        url: '/pages/profile/edit'
+        url: "/pages/profile/edit?id=".concat(this.profile._id)
       });
     }
   }
 };
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 27)["uniCloud"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ })
 
