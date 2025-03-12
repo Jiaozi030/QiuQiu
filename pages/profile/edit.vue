@@ -60,17 +60,7 @@
             <text class="label">当前城市</text>
             <picker mode="region" @change="handleCityChange">
                 <view class="picker">
-                    {{ profile.currentCity.join(' ') || '请选择当前城市' }}
-                </view>
-            </picker>
-        </view>
-
-        <!-- 家乡 -->
-        <view class="edit-item">
-            <text class="label">家乡</text>
-            <picker mode="region" @change="handleHomeTownChange">
-                <view class="picker">
-                    {{ profile.homeTown.join(' ') || '请选择家乡' }}
+                    {{ profile.currentCity || '请选择当前城市' }}
                 </view>
             </picker>
         </view>
@@ -177,15 +167,31 @@ export default {
     },
     data() {
         return {
-            profile: {}, // 初始化用户资料
+            profile: {
+                avatar: '/static/default/logo.png',
+                nickname: '',
+                gender: '',
+                age: 0, // 初始化年龄
+                birthDate: '', // 根据年龄计算的生日
+                height: 170,
+                weight: 60,
+                currentCity: '', // 只存储城市名称
+                maritalStatus: '',
+                selfIntroduction: '',
+                education: '',
+                annualIncome: '',
+                occupation: '',
+                housing: '',
+                hasCar: false,
+                tags: [],
+                hobbies: [],
+                expectation: [],
+            },
             genders: ['男', '女', '保密'],
             maritalStatusOptions: ['未婚', '已婚', '离异', '丧偶'],
-            educationOptions: ['高中', '大专', '本科', '硕士', '博士'],
-            housingOptions: ['自有住房', '租房', '无房'],
-            tags, // 使用解构的 tags
-            hobbies, // 使用解构的 hobbies
-            expectations, // 使用解构的 expectations
-            incomeOptions: ['10万以下', '10-20万', '20-30万', '30-50万', '50万以上'], // 年收入选项
+            educationOptions: ['初中', '高中', '本科', '硕士', '博士'],
+            incomeOptions: ['10万以下', '10-20万', '20-30万', '30-50万', '50万以上'],
+            housingOptions: ['租房', '自有住房', '与父母同住'],
             userId: ''
         };
     },
@@ -201,7 +207,14 @@ export default {
             });
 
             if (res.result.code === 200) {
-                this.profile = res.result.data; // 更新用户资料
+                const profileData = res.result.data;
+                // 根据年龄计算出生日
+                if (profileData.age) {
+                    const currentYear = new Date().getFullYear();
+                    const birthYear = currentYear - profileData.age;
+                    profileData.birthDate = `${birthYear}-01-01`; // 默认生日为 1 月 1 日
+                }
+                this.profile = profileData; // 更新用户资料
             } else {
                 uni.showToast({
                     title: '获取数据失败',
@@ -263,12 +276,13 @@ export default {
         },
         onBirthDateChange(e) {
             this.profile.birthDate = e.detail.value;
+            // 根据生日计算年龄
+            const birthYear = new Date(this.profile.birthDate).getFullYear();
+            const currentYear = new Date().getFullYear();
+            this.profile.age = currentYear - birthYear;
         },
         onCurrentCityChange(e) {
 			this.profile.currentCity = e.detail.value;
-		},
-        onHomeTownChange(e) {
-			this.profile.homeTown = e.detail.value;
 		},
         onMaritalStatusChange(e) {
             this.profile.maritalStatus = this.maritalStatusOptions[e.detail.value];
@@ -297,11 +311,15 @@ export default {
 
             // 调用云函数更新用户信息
             const res = await uniCloud.callFunction({
-                name: 'update_profile',
+                name: 'profile',
                 data: {
-                    profile,
-                    userId
-                }
+                    action: 'updateProfile',
+                    id: this.profile._id, // 当前用户的 _id
+                    profile: {
+                        ...this.profile,
+                        birthDate: undefined, // 不保存生日，只保存年龄
+                    },
+                },
             });
 
             if (res.result.code === 200) {
@@ -319,11 +337,8 @@ export default {
         },
         // 处理当前城市选择
         handleCityChange(e) {
-            this.profile.currentCity = e.detail.value;
-        },
-        // 处理家乡选择
-        handleHomeTownChange(e) {
-            this.profile.homeTown = e.detail.value;
+            const [province, city, district] = e.detail.value; // 解构省份、城市、区域
+            this.profile.currentCity = city; // 只存储城市名称
         },
     },
 };
@@ -363,11 +378,31 @@ export default {
 }
 
 .input {
-    height: 33px; /* 固定输入框高度 */
+    width: 100%;
+    height: 40px; /* 固定高度 */
+    padding: 10px; /* 内边距 */
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    box-sizing: border-box; /* 确保 padding 不影响宽度 */
+    line-height: 20px; /* 确保文本垂直居中 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
 }
 
 .textarea {
-    height: 50px; /* 固定文本域高度 */
+    width: 100%;
+    height: 100px; /* 固定高度 */
+    padding: 10px; /* 内边距 */
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    box-sizing: border-box; /* 确保 padding 不影响宽度 */
+    line-height: 1.5; /* 确保文本垂直居中 */
     resize: none; /* 禁止手动调整大小 */
 }
 

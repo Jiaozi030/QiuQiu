@@ -13,7 +13,7 @@
       <view class="basic-info">
         <text class="nickname">{{ profile.nickname }}</text>
         <text class="gender">{{ profile.gender }} | {{ profile.age }}岁</text>
-        <text class="location">{{ profile.currentCity }}</text>
+        <text class="location">{{ profile.currentCity || '未填写' }}</text>
       </view>
     </view>
 
@@ -66,7 +66,7 @@
         <view class="info-label">
           <image src="/static/default/house.jpg" class="icon" />
         </view>
-        <text class="info-value">{{ profile.housing }}</text>
+        <text class="info-value">{{ profile.housing || '未填写' }}</text>
       </view>
       <view class="info-item">
         <view class="info-label">
