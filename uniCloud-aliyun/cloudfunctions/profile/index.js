@@ -25,18 +25,40 @@ exports.main = async (event, context) => {
     if (action === 'updateProfile') {
         try {
             const { id, profile } = event;
-            // 只更新必要的字段，排除 birthDate
-            const updateData = { ...profile };
-            delete updateData.birthDate;
-            await collection.doc(id).update(updateData);
+            console.log('更新数据:', profile); // 打印更新数据
+            const updateData = {
+                ...profile,
+            };
+            const res = await collection.doc(id).update(updateData);
+            console.log('更新结果:', res); // 打印更新结果
             return {
                 code: 200,
                 message: '用户信息更新成功',
             };
         } catch (err) {
+            console.error('更新失败:', err); // 打印错误日志
             return {
                 code: 500,
                 message: '服务器错误',
+                error: err,
+            };
+        }
+    }
+
+    if (action === 'getProfilesByGender') {
+        try {
+            const { gender } = event;
+            const res = await collection.where({
+                gender: gender, // 根据性别筛选
+            }).get();
+            return {
+                code: 200,
+                data: res.data,
+            };
+        } catch (err) {
+            return {
+                code: 500,
+                message: '获取数据失败',
                 error: err,
             };
         }

@@ -1,6 +1,10 @@
 
 .recommendation-page {
 	padding: 20px;
+	background-color: #f8f9fa;
+}
+.user-card-container {
+	margin-bottom: 20px;
 }
 .loading {
 	display: flex;

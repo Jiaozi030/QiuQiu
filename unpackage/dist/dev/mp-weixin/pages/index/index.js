@@ -257,7 +257,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var g0 = _vm.userList.length
+  var g0 = _vm.users.length
   _vm.$mp.data = Object.assign(
     {},
     {
@@ -297,13 +297,15 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {
 
-
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _sampleUsers = __webpack_require__(/*! @/data/sampleUsers.js */ 55);
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 28));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 31));
 var UserCard = function UserCard() {
   __webpack_require__.e(/*! require.ensure | components/UserCard */ "components/UserCard").then((function () {
     return resolve(__webpack_require__(/*! @/components/UserCard.vue */ 168));
@@ -315,22 +317,147 @@ var _default = {
   },
   data: function data() {
     return {
-      userList: _sampleUsers.sampleUsers
+      users: [] // 存储异性用户数据
     };
   },
+  onLoad: function onLoad() {
+    var _this = this;
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var currentUserGender;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.getCurrentUserGender();
+            case 2:
+              currentUserGender = _context.sent;
+              if (currentUserGender) {
+                _context.next = 6;
+                break;
+              }
+              uni.showToast({
+                title: '获取用户性别失败',
+                icon: 'none'
+              });
+              return _context.abrupt("return");
+            case 6:
+              _context.next = 8;
+              return _this.loadOppositeGenderUsers(currentUserGender);
+            case 8:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
   methods: {
-    fetchUserData: function fetchUserData() {
-      // 预留后端接口调用
-      // uni.request({
-      //   url: '/api/recommendation',
-      //   success: (res) => {
-      //     this.currentUser = res.data;
-      //   }
-      // });
+    // 获取当前用户的性别
+    getCurrentUserGender: function getCurrentUserGender() {
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return uniCloud.callFunction({
+                  name: 'profile',
+                  data: {
+                    action: 'getProfileById',
+                    id: '67d16f8ae0ec19c842704b02' // 当前用户的 _id
+                  }
+                });
+              case 3:
+                res = _context2.sent;
+                if (!(res.result.code === 200)) {
+                  _context2.next = 8;
+                  break;
+                }
+                return _context2.abrupt("return", res.result.data.gender);
+              case 8:
+                return _context2.abrupt("return", null);
+              case 9:
+                _context2.next = 15;
+                break;
+              case 11:
+                _context2.prev = 11;
+                _context2.t0 = _context2["catch"](0);
+                console.error('获取用户性别失败:', _context2.t0);
+                return _context2.abrupt("return", null);
+              case 15:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 11]]);
+      }))();
+    },
+    // 获取异性用户数据
+    loadOppositeGenderUsers: function loadOppositeGenderUsers(currentUserGender) {
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+        var oppositeGender, res;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                oppositeGender = currentUserGender === '男' ? '女' : '男'; // 确定异性性别
+                _context3.next = 4;
+                return uniCloud.callFunction({
+                  name: 'profile',
+                  data: {
+                    action: 'getProfilesByGender',
+                    gender: oppositeGender // 传递异性性别
+                  }
+                });
+              case 4:
+                res = _context3.sent;
+                if (res.result.code === 200) {
+                  _this2.users = res.result.data.map(function (user) {
+                    return {
+                      photo: user.avatar,
+                      name: user.nickname,
+                      gender: user.gender,
+                      age: user.age,
+                      location: user.currentCity,
+                      height: user.height,
+                      weight: user.weight,
+                      education: user.education,
+                      industry: user.occupation
+                    };
+                  });
+                } else {
+                  uni.showToast({
+                    title: '获取用户数据失败',
+                    icon: 'none'
+                  });
+                }
+                _context3.next = 12;
+                break;
+              case 8:
+                _context3.prev = 8;
+                _context3.t0 = _context3["catch"](0);
+                console.error('获取用户数据失败:', _context3.t0);
+                uni.showToast({
+                  title: '获取用户数据失败',
+                  icon: 'none'
+                });
+              case 12:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 8]]);
+      }))();
     }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 27)["uniCloud"]))
 
 /***/ }),
 /* 55 */,
