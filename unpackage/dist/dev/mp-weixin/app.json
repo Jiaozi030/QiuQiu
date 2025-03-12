@@ -31,32 +31,32 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "/static/tab-home.png",
-        "selectedIconPath": "/static/tab-home-active.png"
+        "iconPath": "/static/default/tab-home.png",
+        "selectedIconPath": "/static/default/tab-home-active.png"
       },
       {
         "pagePath": "pages/discover/discover",
         "text": "发现",
-        "iconPath": "/static/tab-discover.png",
-        "selectedIconPath": "/static/tab-discover-active.png"
+        "iconPath": "/static/default/tab-discover.png",
+        "selectedIconPath": "/static/default/tab-discover-active.png"
       },
       {
         "pagePath": "pages/metaverse/metaverse",
         "text": "元宇宙",
-        "iconPath": "/static/tab-metaverse.png",
-        "selectedIconPath": "/static/tab-metaverse-active.png"
+        "iconPath": "/static/default/tab-metaverse.png",
+        "selectedIconPath": "/static/default/tab-metaverse-active.png"
       },
       {
         "pagePath": "pages/message/message",
         "text": "消息",
-        "iconPath": "/static/tab-message.png",
-        "selectedIconPath": "/static/tab-message-active.png"
+        "iconPath": "/static/default/tab-message.png",
+        "selectedIconPath": "/static/default/tab-message-active.png"
       },
       {
         "pagePath": "pages/profile/profile",
         "text": "我的",
-        "iconPath": "/static/tab-profile.png",
-        "selectedIconPath": "/static/tab-profile-active.png"
+        "iconPath": "/static/default/tab-profile.png",
+        "selectedIconPath": "/static/default/tab-profile-active.png"
       }
     ]
   },

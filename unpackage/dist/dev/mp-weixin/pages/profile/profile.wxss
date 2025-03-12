@@ -27,7 +27,8 @@
   margin-bottom: 20px;
 }
 .avatar-container {
-  margin-left: 17px; /* 为头像左边添加 10px 的留白 */
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .avatar {
   width: 80px;

@@ -64,15 +64,15 @@
       </view>
       <view class="info-item">
         <view class="info-label">
-          <image src="/static/house.jpg" class="icon" />
+          <image src="/static/default/house.jpg" class="icon" />
         </view>
         <text class="info-value">{{ profile.housing }}</text>
       </view>
       <view class="info-item">
         <view class="info-label">
-          <image src="/static/car.jpg" class="icon" />
+          <image src="/static/default/car.jpg" class="icon" />
         </view>
-        <text class="info-value">{{ profile.hasCar }}</text>
+        <text class="info-value">{{ profile.hasCar ? '有车' : '无车' }}</text>
       </view>
       <view class="info-item">
         <text class="info-label">年收入</text>
@@ -99,7 +99,7 @@ export default {
   data() {
     return {
       profile: {
-        avatar: '/static/logo.png',
+        avatar: '/static/default/logo.png',
         nickname: '饺子',
         gender: '女',
         age: 21,
@@ -111,7 +111,7 @@ export default {
         weight: 63,
         education: '本科',
         housing: '自住有房',
-        hasCar: '无车', 
+        hasCar: '有车', 
         annualIncome: '20万',
         occupation: '程序员',
         selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。',
@@ -162,7 +162,8 @@ export default {
 }
 
 .avatar-container {
-  margin-left: 17px; /* 为头像左边添加 10px 的留白 */
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .avatar {

@@ -12,7 +12,7 @@
 			></uni-segmented-control>
 			<image 
 				class="filter-btn" 
-				src="/static/filter-btn.jpg" 
+				src="/static/default/filter-btn.jpg" 
 				@click="onFilterClick"
 			/>
 		</view>

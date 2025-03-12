@@ -1,6 +1,6 @@
 export const sampleUsersNearby = [
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '李四',
         age: 25,
         gender: 'female',
@@ -8,7 +8,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '王五',
         age: 30,
         gender: 'male',
@@ -16,7 +16,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '李四',
         age: 25,
         gender: 'female',
@@ -24,7 +24,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '王五',
         age: 30,
         gender: 'male',
@@ -32,7 +32,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '李四',
         age: 25,
         gender: 'female',
@@ -40,7 +40,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '王五',
         age: 30,
         gender: 'male',
@@ -48,7 +48,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '李四',
         age: 25,
         gender: 'female',
@@ -56,7 +56,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '王五',
         age: 30,
         gender: 'male',
@@ -64,7 +64,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '李四',
         age: 25,
         gender: 'female',
@@ -72,7 +72,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '王五',
         age: 30,
         gender: 'male',
@@ -80,7 +80,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '李四',
         age: 25,
         gender: 'female',
@@ -88,7 +88,7 @@ export const sampleUsersNearby = [
         location: '北京'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '王五',
         age: 30,
         gender: 'male',

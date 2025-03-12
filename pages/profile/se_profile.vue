@@ -17,11 +17,11 @@
         <!-- 操作按钮 -->
         <view class="actions">
             <view class="action-item" @click="handleFollow">
-                <image :src="isFollowing ? '/static/followed.jpg' : '/static/follow.jpg'" class="action-icon" />
+                <image :src="isFollowing ? '/static/default/followed.jpg' : '/static/default/follow.jpg'" class="action-icon" />
                 <text class="action-text">{{ isFollowing ? '已关注' : '关注' }}</text>
             </view>
             <view class="action-item" @click="handleChat">
-                <image src="/static/chat.jpg" class="action-icon" />
+                <image src="/static/default/chat.jpg" class="action-icon" />
                 <text class="action-text">聊天</text>
             </view>
         </view>
@@ -74,13 +74,13 @@
                 </view>
                 <view class="detail-item">
                     <view class="label">
-                        <image src="/static/house.jpg" class="icon" />
+                        <image src="/static/default/house.jpg" class="icon" />
                     </view>
                     <text class="value">{{ profile.housing }}</text>
                 </view>
                 <view class="detail-item">
                     <view class="label">
-                        <image src="/static/car.jpg" class="icon" />
+                        <image src="/static/default/car.jpg" class="icon" />
                     </view>
                     <text class="value">{{ profile.hasCar }}</text>
                 </view>
@@ -102,14 +102,14 @@ export default {
     data() {
         return {
             profile: {
-                avatar: '/static/logo.png',
+                avatar: '/static/default/logo.png',
                 nickname: '三明治',
                 gender: '男',
                 age: 22,
                 currentCity: '杭州',
-                tags: ['无法描述的好姑娘', '肤白貌美', '古灵精怪'],
-                hobbies: ['旅行', '王者', '美食达人'],
-                expectation: ['三观一致', '有趣', '有钱', '帅必须帅'],
+                tags: ['有腹肌', '烟酒不沾', '厨艺好', '可奶可狗'],
+                hobbies: ['健身', '探店', '逛展'],
+                expectation: ['工作稳定', '真诚', '有酒窝', '黑长直'],
                 height: 178,
                 weight: 69,
                 education: '硕士',

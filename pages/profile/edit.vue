@@ -55,16 +55,24 @@
             <text class="slider-value">{{ profile.weight }} kg</text>
         </view>
 
-        <!-- 现居城市 -->
+        <!-- 当前城市 -->
         <view class="edit-item">
-            <text class="label">现居城市</text>
-            <input v-model="profile.currentCity" class="input" />
+            <text class="label">当前城市</text>
+            <picker mode="region" @change="handleCityChange">
+                <view class="picker">
+                    {{ profile.currentCity.join(' ') || '请选择当前城市' }}
+                </view>
+            </picker>
         </view>
 
         <!-- 家乡 -->
         <view class="edit-item">
             <text class="label">家乡</text>
-            <input v-model="profile.hometown" class="input" />
+            <picker mode="region" @change="handleHomeTownChange">
+                <view class="picker">
+                    {{ profile.homeTown.join(' ') || '请选择家乡' }}
+                </view>
+            </picker>
         </view>
 
         <!-- 婚姻状况 -->
@@ -92,7 +100,11 @@
         <!-- 年收入 -->
         <view class="edit-item">
             <text class="label">年收入</text>
-            <input v-model="profile.annualIncome" class="input" />
+            <picker :range="incomeOptions" @change="handleIncomeChange">
+                <view class="picker">
+                    {{ profile.annualIncome || '请选择年收入' }}
+                </view>
+            </picker>
         </view>
 
         <!-- 职业 -->
@@ -113,7 +125,7 @@
         <view class="edit-item">
             <view class="has-car-container">
                 <text class="label">是否有车</text>
-                <image src="/static/car.jpg" class="car-icon" />
+                <image src="/static/default/car.jpg" class="car-icon" />
                 <switch :checked="profile.hasCar" @change="onHasCarChange" />
             </view>
         </view>
@@ -166,14 +178,14 @@ export default {
     data() {
         return {
             profile: {
-                avatar: '/static/logo.png', // 默认头像
+                avatar: '/static/default/logo.png', // 默认头像
                 nickname: '',
                 gender: '',
                 birthDate: '',
                 height: 170, // 默认身高
                 weight: 60, // 默认体重
-                currentCity: '',
-                hometown: '',
+                currentCity: [], // 当前城市 [省份, 城市, 地区]
+                homeTown: [], // 家乡 [省份, 城市, 地区]
                 maritalStatus: '',
                 selfIntroduction: '',
                 education: '',
@@ -192,13 +204,16 @@ export default {
             tags, // 使用解构的 tags
             hobbies, // 使用解构的 hobbies
             expectations, // 使用解构的 expectations
+            incomeOptions: ['10万以下', '10-20万', '20-30万', '30-50万', '50万以上'], // 年收入选项
         };
     },
     onLoad(options) {
-        const eventChannel = this.getOpenerEventChannel();
-        eventChannel.on('sendProfile', (profile) => {
-            this.profile = profile; // 确保 profile 是对象
-        });
+        if (options.profile) {
+            this.profile = JSON.parse(decodeURIComponent(options.profile));
+            // 确保 currentCity 和 homeTown 是数组
+            this.profile.currentCity = Array.isArray(this.profile.currentCity) ? this.profile.currentCity : [];
+            this.profile.homeTown = Array.isArray(this.profile.homeTown) ? this.profile.homeTown : [];
+        }
     },
     methods: {
         // 切换标签
@@ -251,6 +266,12 @@ export default {
         onBirthDateChange(e) {
             this.profile.birthDate = e.detail.value;
         },
+        onCurrentCityChange(e) {
+			this.profile.currentCity = e.detail.value;
+		},
+        onHomeTownChange(e) {
+			this.profile.homeTown = e.detail.value;
+		},
         onMaritalStatusChange(e) {
             this.profile.maritalStatus = this.maritalStatusOptions[e.detail.value];
         },
@@ -269,8 +290,19 @@ export default {
         onWeightChange(e) {
             this.profile.weight = e.detail.value;
         },
+        handleIncomeChange(e) {
+            this.profile.annualIncome = this.incomeOptions[e.detail.value];
+        },
         saveProfile() {
         // 实现保存用户信息的逻辑
+        },
+        // 处理当前城市选择
+        handleCityChange(e) {
+            this.profile.currentCity = e.detail.value;
+        },
+        // 处理家乡选择
+        handleHomeTownChange(e) {
+            this.profile.homeTown = e.detail.value;
         },
     },
 };

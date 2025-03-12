@@ -3,11 +3,11 @@
     <!-- 按钮区域 -->
     <view class="button-group">
       <view class="button-item" @click="navigateToFollowers">
-        <image src="/static/red-heart.jpg" class="button-icon" />
+        <image src="/static/default/red-heart.jpg" class="button-icon" />
         <text class="button-text">谁关注我</text>
       </view>
       <view class="button-item" @click="navigateToViewers">
-        <image src="/static/white-heart.jpg" class="button-icon" />
+        <image src="/static/default/white-heart.jpg" class="button-icon" />
         <text class="button-text">谁看过我</text>
       </view>
     </view>

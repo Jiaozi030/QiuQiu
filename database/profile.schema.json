@@ -1,0 +1,98 @@
+{
+    "bsonType": "object",
+    "required": ["avatar", "nickname", "gender", "age", "currentCity"],
+    "properties": {
+        "avatar": {
+            "bsonType": "string",
+            "title": "头像",
+            "description": "用户头像URL"
+        },
+        "nickname": {
+            "bsonType": "string",
+            "title": "昵称",
+            "description": "用户昵称"
+        },
+        "gender": {
+            "bsonType": "string",
+            "title": "性别",
+            "description": "用户性别",
+            "enum": ["男", "女"]
+        },
+        "age": {
+            "bsonType": "int",
+            "title": "年龄",
+            "description": "用户年龄",
+            "minimum": 18,
+            "maximum": 100
+        },
+        "currentCity": {
+            "bsonType": "string",
+            "title": "当前城市",
+            "description": "用户所在城市"
+        },
+        "tags": {
+            "bsonType": "array",
+            "title": "标签",
+            "description": "用户标签",
+            "items": {
+                "bsonType": "string"
+            }
+        },
+        "hobbies": {
+            "bsonType": "array",
+            "title": "兴趣爱好",
+            "description": "用户兴趣爱好",
+            "items": {
+                "bsonType": "string"
+            }
+        },
+        "expectation": {
+            "bsonType": "array",
+            "title": "期望",
+            "description": "用户期望",
+            "items": {
+                "bsonType": "string"
+            }
+        },
+        "height": {
+            "bsonType": "int",
+            "title": "身高",
+            "description": "用户身高(cm)"
+        },
+        "weight": {
+            "bsonType": "int",
+            "title": "体重",
+            "description": "用户体重(kg)"
+        },
+        "education": {
+            "bsonType": "string",
+            "title": "学历",
+            "description": "用户学历"
+        },
+        "housing": {
+            "bsonType": "string",
+            "title": "住房情况",
+            "description": "用户住房情况"
+        },
+        "hasCar": {
+            "bsonType": "string",
+            "title": "是否有车",
+            "description": "用户是否有车"
+        },
+        "annualIncome": {
+            "bsonType": "string",
+            "title": "年收入",
+            "description": "用户年收入"
+        },
+        "occupation": {
+            "bsonType": "string",
+            "title": "职业",
+            "description": "用户职业"
+        },
+        "selfIntroduction": {
+            "bsonType": "string",
+            "title": "自我介绍",
+            "description": "用户自我介绍"
+        }
+    }
+} 

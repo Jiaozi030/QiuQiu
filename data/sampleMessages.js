@@ -14,7 +14,7 @@ export const sampleMessages = Array.from({ length: 10 }, (_, index) => {
     return {
         userId: id.toString(),
         username,
-        avatar: '/static/logo.png',
+        avatar: '/static/default/logo.png',
         latestMessage,
         time,
         messages, // 完整的聊天记录

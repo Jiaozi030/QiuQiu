@@ -10023,7 +10023,7 @@ var b = "development" === "development",
   k = "true" === undefined || !0 === undefined,
   P = T([]),
   C = "h5" === E ? "web" : "app-plus" === E || "app-harmony" === E ? "app" : E,
-  A = T({"address":["127.0.0.1","10.66.113.113"],"servePort":7001,"debugPort":9000,"initialLaunchType":"local","skipFiles":["<node_internals>/**","/Applications/HBuilderX.app/Contents/HBuilderX/plugins/unicloud/**/*.js"]}),
+  A = T({"address":["127.0.0.1","10.66.235.168"],"servePort":7001,"debugPort":9000,"initialLaunchType":"local","skipFiles":["<node_internals>/**","/Applications/HBuilderX.app/Contents/HBuilderX/plugins/unicloud/**/*.js"]}),
   O = T([{"provider":"aliyun","spaceName":"qiuqiu","spaceId":"mp-3d3c8ac7-84bc-4303-8bdf-b8afeb84cdc5","clientSecret":"sAaW0QVi9EXJEuJ3Qjh+yA==","endpoint":"https://api.next.bspapp.com"}]) || [],
   x = true;
 var N = "";
@@ -18499,28 +18499,28 @@ var _default = {
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",
-      "iconPath": "/static/tab-home.png",
-      "selectedIconPath": "/static/tab-home-active.png"
+      "iconPath": "/static/default/tab-home.png",
+      "selectedIconPath": "/static/default/tab-home-active.png"
     }, {
       "pagePath": "pages/discover/discover",
       "text": "发现",
-      "iconPath": "/static/tab-discover.png",
-      "selectedIconPath": "/static/tab-discover-active.png"
+      "iconPath": "/static/default/tab-discover.png",
+      "selectedIconPath": "/static/default/tab-discover-active.png"
     }, {
       "pagePath": "pages/metaverse/metaverse",
       "text": "元宇宙",
-      "iconPath": "/static/tab-metaverse.png",
-      "selectedIconPath": "/static/tab-metaverse-active.png"
+      "iconPath": "/static/default/tab-metaverse.png",
+      "selectedIconPath": "/static/default/tab-metaverse-active.png"
     }, {
       "pagePath": "pages/message/message",
       "text": "消息",
-      "iconPath": "/static/tab-message.png",
-      "selectedIconPath": "/static/tab-message-active.png"
+      "iconPath": "/static/default/tab-message.png",
+      "selectedIconPath": "/static/default/tab-message-active.png"
     }, {
       "pagePath": "pages/profile/profile",
       "text": "我的",
-      "iconPath": "/static/tab-profile.png",
-      "selectedIconPath": "/static/tab-profile-active.png"
+      "iconPath": "/static/default/tab-profile.png",
+      "selectedIconPath": "/static/default/tab-profile-active.png"
     }]
   },
   "uniIdRouter": {}
@@ -18732,7 +18732,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.sampleUsers = void 0;
 var sampleUsers = [{
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '张三',
   gender: 'male',
   age: 28,
@@ -18742,7 +18742,7 @@ var sampleUsers = [{
   education: '本科',
   industry: '互联网'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '李四',
   gender: 'male',
   age: 25,
@@ -18752,7 +18752,7 @@ var sampleUsers = [{
   education: '硕士',
   industry: '金融'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '王五',
   gender: 'male',
   age: 30,
@@ -18762,7 +18762,7 @@ var sampleUsers = [{
   education: '本科',
   industry: '教育'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '张三',
   gender: 'male',
   age: 28,
@@ -18772,7 +18772,7 @@ var sampleUsers = [{
   education: '本科',
   industry: '互联网'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '李四',
   gender: 'male',
   age: 25,
@@ -18782,7 +18782,7 @@ var sampleUsers = [{
   education: '硕士',
   industry: '金融'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '王五',
   gender: 'male',
   age: 30,
@@ -18817,84 +18817,84 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.sampleUsersNearby = void 0;
 var sampleUsersNearby = [{
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '李四',
   age: 25,
   gender: 'female',
   distance: 1.5,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '王五',
   age: 30,
   gender: 'male',
   distance: 2.3,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '李四',
   age: 25,
   gender: 'female',
   distance: 1.5,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '王五',
   age: 30,
   gender: 'male',
   distance: 2.3,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '李四',
   age: 25,
   gender: 'female',
   distance: 1.5,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '王五',
   age: 30,
   gender: 'male',
   distance: 2.3,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '李四',
   age: 25,
   gender: 'female',
   distance: 1.5,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '王五',
   age: 30,
   gender: 'male',
   distance: 2.3,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '李四',
   age: 25,
   gender: 'female',
   distance: 1.5,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '王五',
   age: 30,
   gender: 'male',
   distance: 2.3,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '李四',
   age: 25,
   gender: 'female',
   distance: 1.5,
   location: '北京'
 }, {
-  photo: '/static/logo.png',
+  photo: '/static/default/logo.png',
   name: '王五',
   age: 30,
   gender: 'male',
@@ -18931,31 +18931,31 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.samplePosts = void 0;
 var samplePosts = [{
-  avatar: '/static/logo.png',
+  avatar: '/static/default/logo.png',
   username: 'jiaozi1',
   gender: '女',
   age: 22,
   city: '杭州',
   content: '今天天气真好！',
-  image: '/static/logo.png',
+  image: '/static/default/logo.png',
   time: '2024-10-01 10:00'
 }, {
-  avatar: '/static/logo.png',
+  avatar: '/static/default/logo.png',
   username: 'jiaozi2',
   gender: '男',
   age: 25,
   city: '上海',
   content: '分享一张美食照片～',
-  image: '/static/logo.png',
+  image: '/static/default/logo.png',
   time: '2024-11-01 12:00'
 }, {
-  avatar: '/static/logo.png',
+  avatar: '/static/default/logo.png',
   username: 'jiaozi3',
   gender: '女',
   age: 28,
   city: '北京',
   content: '周末去爬山了，风景超美！',
-  image: '/static/logo.png',
+  image: '/static/default/logo.png',
   time: '2025-02-02 15:00'
 }];
 exports.samplePosts = samplePosts;
@@ -19020,7 +19020,7 @@ var sampleMessages = Array.from({
   return {
     userId: id.toString(),
     username: username,
-    avatar: '/static/logo.png',
+    avatar: '/static/default/logo.png',
     latestMessage: latestMessage,
     time: time,
     messages: messages // 完整的聊天记录

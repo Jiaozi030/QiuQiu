@@ -6,7 +6,7 @@
             class="post-input"
         />
         <view class="image-upload" @click="handleImageUpload">
-            <image src="/static/upload-picture.jpg" class="upload-icon" />
+            <image src="/static/default/upload-picture.jpg" class="upload-icon" />
         </view>
         <button @click="handlePost" class="post-button">发布</button>
     </view>

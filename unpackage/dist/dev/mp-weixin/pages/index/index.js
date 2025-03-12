@@ -141,7 +141,7 @@ var _recommendation = _interopRequireDefault(__webpack_require__(/*! @/pages/ind
 var _nearby = _interopRequireDefault(__webpack_require__(/*! @/pages/index/nearby.vue */ 58));
 var uniSegmentedControl = function uniSegmentedControl() {
   __webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control */ "node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control").then((function () {
-    return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue */ 153));
+    return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue */ 161));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -306,7 +306,7 @@ exports.default = void 0;
 var _sampleUsers = __webpack_require__(/*! @/data/sampleUsers.js */ 55);
 var UserCard = function UserCard() {
   __webpack_require__.e(/*! require.ensure | components/UserCard */ "components/UserCard").then((function () {
-    return resolve(__webpack_require__(/*! @/components/UserCard.vue */ 160));
+    return resolve(__webpack_require__(/*! @/components/UserCard.vue */ 168));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -489,7 +489,7 @@ exports.default = void 0;
 var _sampleUsersNearby = __webpack_require__(/*! @/data/sampleUsersNearby.js */ 63);
 var UserCardNearby = function UserCardNearby() {
   __webpack_require__.e(/*! require.ensure | components/UserCardNearby */ "components/UserCardNearby").then((function () {
-    return resolve(__webpack_require__(/*! @/components/UserCardNearby.vue */ 167));
+    return resolve(__webpack_require__(/*! @/components/UserCardNearby.vue */ 175));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {

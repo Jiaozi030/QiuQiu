@@ -1,8 +1,8 @@
 import { sampleTags } from './sampleTags.js';
 
 export const sampleProfile = {
-    avatar: '/static/logo.png',
-    photoAlbum: ['/static/logo.png', '/static/logo.png', '/static/logo.png'],
+    avatar: '/static/default/logo.png',
+    photoAlbum: ['/static/default/logo.png', '/static/default/logo.png', '/static/default/logo.png'],
     nickname: '饺子',
     gender: '女',
     birthDate: '2004-01-01',

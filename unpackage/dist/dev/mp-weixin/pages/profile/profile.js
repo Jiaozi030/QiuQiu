@@ -271,7 +271,7 @@ var _default = {
   data: function data() {
     return {
       profile: {
-        avatar: '/static/logo.png',
+        avatar: '/static/default/logo.png',
         nickname: '饺子',
         gender: '女',
         age: 21,
@@ -283,7 +283,7 @@ var _default = {
         weight: 63,
         education: '本科',
         housing: '自住有房',
-        hasCar: '无车',
+        hasCar: '有车',
         annualIncome: '20万',
         occupation: '程序员',
         selfIntroduction: '我是一个热爱生活、积极向上的人，喜欢旅行和摄影。'

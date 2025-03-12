@@ -1,6 +1,6 @@
 export const sampleUsers = [
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '张三',
         gender: 'male',
         age: 28,
@@ -11,7 +11,7 @@ export const sampleUsers = [
         industry: '互联网'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '李四',
         gender: 'male',
         age: 25,
@@ -22,7 +22,7 @@ export const sampleUsers = [
         industry: '金融'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '王五',
         gender: 'male',
         age: 30,
@@ -33,7 +33,7 @@ export const sampleUsers = [
         industry: '教育'
     }, 
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '张三',
         gender: 'male',
         age: 28,
@@ -44,7 +44,7 @@ export const sampleUsers = [
         industry: '互联网'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '李四',
         gender: 'male',
         age: 25,
@@ -55,7 +55,7 @@ export const sampleUsers = [
         industry: '金融'
     },
     {
-        photo: '/static/logo.png',
+        photo: '/static/default/logo.png',
         name: '王五',
         gender: 'male',
         age: 30,

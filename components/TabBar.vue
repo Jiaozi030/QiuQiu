@@ -9,23 +9,23 @@ export default {
       tabs: [{
         text: '首页',
         path: '/pages/index/index',
-        icon: '/static/tab-home.png'
+        icon: '/static/default/tab-home.png'
       }, {
         text: '发现',
         path: '/pages/discover/discover',
-        icon: '/static/tab-discover.png'
+        icon: '/static/default/tab-discover.png'
       }, {
         text: '元宇宙',
         path: '/pages/metaverse/metaverse',
-        icon: '/static/tab-metaverse.png'
+        icon: '/static/default/tab-metaverse.png'
       }, {
         text: '消息',
         path: '/pages/message/message',
-        icon: '/static/tab-message.png'
+        icon: '/static/default/tab-message.png'
       }, {
         text: '我的',
         path: '/pages/profile/profile',
-        icon: '/static/tab-profile.png'
+        icon: '/static/default/tab-profile.png'
       }]
     };
   },
