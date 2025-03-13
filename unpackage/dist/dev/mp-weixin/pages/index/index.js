@@ -374,28 +374,27 @@ var _default = {
                 });
               case 3:
                 res = _context2.sent;
-                console.log('当前用户数据:', res.result.data); // 打印当前用户数据
                 if (!(res.result.code === 200)) {
-                  _context2.next = 9;
+                  _context2.next = 8;
                   break;
                 }
                 return _context2.abrupt("return", res.result.data.gender);
-              case 9:
+              case 8:
                 return _context2.abrupt("return", null);
-              case 10:
-                _context2.next = 16;
+              case 9:
+                _context2.next = 15;
                 break;
-              case 12:
-                _context2.prev = 12;
+              case 11:
+                _context2.prev = 11;
                 _context2.t0 = _context2["catch"](0);
                 console.error('获取用户性别失败:', _context2.t0);
                 return _context2.abrupt("return", null);
-              case 16:
+              case 15:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 12]]);
+        }, _callee2, null, [[0, 11]]);
       }))();
     },
     // 获取异性用户数据
@@ -421,10 +420,12 @@ var _default = {
                 });
               case 4:
                 res = _context3.sent;
-                console.log('异性用户数据:', res.result.data); // 打印异性用户数据
+                // console.log('异性用户数据:', res.result.data); // 打印异性用户数据
                 if (res.result.code === 200) {
                   _this2.users = res.result.data.map(function (user) {
                     return {
+                      _id: user._id,
+                      // 确保包含 _id 字段
                       photo: user.avatar,
                       name: user.nickname,
                       gender: user.gender,
@@ -442,22 +443,22 @@ var _default = {
                     icon: 'none'
                   });
                 }
-                _context3.next = 13;
+                _context3.next = 12;
                 break;
-              case 9:
-                _context3.prev = 9;
+              case 8:
+                _context3.prev = 8;
                 _context3.t0 = _context3["catch"](0);
                 console.error('获取用户数据失败:', _context3.t0);
                 uni.showToast({
                   title: '获取用户数据失败',
                   icon: 'none'
                 });
-              case 13:
+              case 12:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 9]]);
+        }, _callee3, null, [[0, 8]]);
       }))();
     }
   }

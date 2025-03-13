@@ -48,7 +48,7 @@ export default {
 					},
 				});
 
-				console.log('当前用户数据:', res.result.data); // 打印当前用户数据
+				// console.log('当前用户数据:', res.result.data); // 打印当前用户数据
 				if (res.result.code === 200) {
 					return res.result.data.gender; // 返回当前用户的性别
 				} else {
@@ -72,9 +72,10 @@ export default {
 					timeout: 10000, // 设置超时时间
 				});
 
-				console.log('异性用户数据:', res.result.data); // 打印异性用户数据
+				// console.log('异性用户数据:', res.result.data); // 打印异性用户数据
 				if (res.result.code === 200) {
 					this.users = res.result.data.map(user => ({
+						_id: user._id, // 确保包含 _id 字段
 						photo: user.avatar,
 						name: user.nickname,
 						gender: user.gender,

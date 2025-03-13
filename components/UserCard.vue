@@ -1,5 +1,5 @@
 <template>
-	<view class="user-card">
+	<view class="user-card" @click="navigateToProfile">
 		<image :src="user.photo" class="avatar" />
 		<view class="info">
 			<text class="name">{{ user.name }}</text>
@@ -21,7 +21,7 @@ export default {
 	methods: {
 		navigateToProfile() {
 			uni.navigateTo({
-				url: '/pages/profile/se_profile',
+				url: `/pages/profile/se_profile?id=${this.user._id}`,
 			});
 		}
 	}
@@ -36,6 +36,7 @@ export default {
 	padding: 15px;
 	border-radius: 8px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	cursor: pointer;
 }
 
 .avatar {

@@ -8,7 +8,7 @@ exports.main = async (event, context) => {
     if (action === 'getProfileById') {
         try {
             const res = await collection.doc(event.id).get();
-            console.log('获取到的用户数据:', res.data[0]); // 打印数据，检查 birthDate
+            console.log('获取到的用户数据:', res.data[0]); // 打印用户数据
             return {
                 code: 200,
                 data: res.data[0]

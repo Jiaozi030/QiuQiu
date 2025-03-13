@@ -107,9 +107,9 @@ export default {
                 gender: '男',
                 age: 22,
                 currentCity: '杭州',
-                tags: ['有腹肌', '烟酒不沾', '厨艺好', '可奶可狗'],
-                hobbies: ['健身', '探店', '逛展'],
-                expectation: ['工作稳定', '真诚', '有酒窝', '黑长直'],
+                tags: [], // 确保 tags 字段存在
+                hobbies: [], // 确保 hobbies 字段存在
+                expectation: [], // 确保 expectation 字段存在
                 height: 178,
                 weight: 69,
                 education: '硕士',
@@ -122,7 +122,41 @@ export default {
             isFollowing: false, // 是否已关注
         };
     },
+    async onLoad(options) {
+        if (options.id) {
+            // 根据传递的 _id 获取用户数据
+            await this.loadProfileData(options.id);
+        }
+    },
     methods: {
+        // 根据 _id 获取用户数据
+        async loadProfileData(id) {
+            try {
+                const res = await uniCloud.callFunction({
+                    name: 'profile',
+                    data: {
+                        action: 'getProfileById',
+                        id: id, // 传递用户 _id
+                    },
+                });
+
+                console.log('获取到的用户数据:', res.result.data); // 打印用户数据
+                if (res.result.code === 200) {
+                    this.profile = res.result.data; // 更新用户数据
+                } else {
+                    uni.showToast({
+                        title: '获取用户数据失败',
+                        icon: 'none',
+                    });
+                }
+            } catch (err) {
+                console.error('获取用户数据失败:', err);
+                uni.showToast({
+                    title: '获取用户数据失败',
+                    icon: 'none',
+                });
+            }
+        },
         // 处理关注按钮点击
         handleFollow() {
             this.isFollowing = !this.isFollowing;
