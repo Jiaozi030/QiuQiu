@@ -21,7 +21,8 @@ export default {
 			users: [], // 存储异性用户数据
 		};
 	},
-	async onLoad() {
+	async mounted() {
+		console.log('mounted 执行'); // 打印日志，检查 mounted 是否执行
 		// 获取当前用户的性别
 		const currentUserGender = await this.getCurrentUserGender();
 		if (!currentUserGender) {
@@ -43,10 +44,11 @@ export default {
 					name: 'profile',
 					data: {
 						action: 'getProfileById',
-						id: '67d16f8ae0ec19c842704b02', // 当前用户的 _id
+						id: '67d16f8ae0ec19c842704b02', // 确保 _id 正确
 					},
 				});
 
+				console.log('当前用户数据:', res.result.data); // 打印当前用户数据
 				if (res.result.code === 200) {
 					return res.result.data.gender; // 返回当前用户的性别
 				} else {
@@ -67,8 +69,10 @@ export default {
 						action: 'getProfilesByGender',
 						gender: oppositeGender, // 传递异性性别
 					},
+					timeout: 10000, // 设置超时时间
 				});
 
+				console.log('异性用户数据:', res.result.data); // 打印异性用户数据
 				if (res.result.code === 200) {
 					this.users = res.result.data.map(user => ({
 						photo: user.avatar,
@@ -114,5 +118,7 @@ export default {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	font-size: 16px;
+	color: #666;
 }
 </style> 

@@ -320,7 +320,7 @@ var _default = {
       users: [] // 存储异性用户数据
     };
   },
-  onLoad: function onLoad() {
+  mounted: function mounted() {
     var _this = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
       var currentUserGender;
@@ -328,12 +328,14 @@ var _default = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              console.log('mounted 执行'); // 打印日志，检查 mounted 是否执行
+              // 获取当前用户的性别
+              _context.next = 3;
               return _this.getCurrentUserGender();
-            case 2:
+            case 3:
               currentUserGender = _context.sent;
               if (currentUserGender) {
-                _context.next = 6;
+                _context.next = 7;
                 break;
               }
               uni.showToast({
@@ -341,10 +343,10 @@ var _default = {
                 icon: 'none'
               });
               return _context.abrupt("return");
-            case 6:
-              _context.next = 8;
+            case 7:
+              _context.next = 9;
               return _this.loadOppositeGenderUsers(currentUserGender);
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -367,32 +369,33 @@ var _default = {
                   name: 'profile',
                   data: {
                     action: 'getProfileById',
-                    id: '67d16f8ae0ec19c842704b02' // 当前用户的 _id
+                    id: '67d16f8ae0ec19c842704b02' // 确保 _id 正确
                   }
                 });
               case 3:
                 res = _context2.sent;
+                console.log('当前用户数据:', res.result.data); // 打印当前用户数据
                 if (!(res.result.code === 200)) {
-                  _context2.next = 8;
+                  _context2.next = 9;
                   break;
                 }
                 return _context2.abrupt("return", res.result.data.gender);
-              case 8:
-                return _context2.abrupt("return", null);
               case 9:
-                _context2.next = 15;
+                return _context2.abrupt("return", null);
+              case 10:
+                _context2.next = 16;
                 break;
-              case 11:
-                _context2.prev = 11;
+              case 12:
+                _context2.prev = 12;
                 _context2.t0 = _context2["catch"](0);
                 console.error('获取用户性别失败:', _context2.t0);
                 return _context2.abrupt("return", null);
-              case 15:
+              case 16:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 11]]);
+        }, _callee2, null, [[0, 12]]);
       }))();
     },
     // 获取异性用户数据
@@ -412,10 +415,13 @@ var _default = {
                   data: {
                     action: 'getProfilesByGender',
                     gender: oppositeGender // 传递异性性别
-                  }
+                  },
+
+                  timeout: 10000 // 设置超时时间
                 });
               case 4:
                 res = _context3.sent;
+                console.log('异性用户数据:', res.result.data); // 打印异性用户数据
                 if (res.result.code === 200) {
                   _this2.users = res.result.data.map(function (user) {
                     return {
@@ -436,22 +442,22 @@ var _default = {
                     icon: 'none'
                   });
                 }
-                _context3.next = 12;
+                _context3.next = 13;
                 break;
-              case 8:
-                _context3.prev = 8;
+              case 9:
+                _context3.prev = 9;
                 _context3.t0 = _context3["catch"](0);
                 console.error('获取用户数据失败:', _context3.t0);
                 uni.showToast({
                   title: '获取用户数据失败',
                   icon: 'none'
                 });
-              case 12:
+              case 13:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 8]]);
+        }, _callee3, null, [[0, 9]]);
       }))();
     }
   }
