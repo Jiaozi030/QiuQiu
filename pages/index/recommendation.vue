@@ -76,15 +76,15 @@ export default {
 				if (res.result.code === 200) {
 					this.users = res.result.data.map(user => ({
 						_id: user._id, // 确保包含 _id 字段
-						photo: user.avatar,
-						name: user.nickname,
+						avatar: user.avatar,
+						nickname: user.nickname,
 						gender: user.gender,
 						age: user.age,
-						location: user.currentCity,
+						currentCity: user.currentCity,
 						height: user.height,
 						weight: user.weight,
 						education: user.education,
-						industry: user.occupation,
+						occupation: user.occupation,
 					}));
 				} else {
 					uni.showToast({

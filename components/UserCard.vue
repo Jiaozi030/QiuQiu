@@ -1,11 +1,10 @@
 <template>
 	<view class="user-card" @click="navigateToProfile">
-		<image :src="user.photo" class="avatar" />
+		<image :src="user.avatar || user.photo" class="avatar" />
 		<view class="info">
-			<text class="name">{{ user.name }}</text>
-			<text class="details">{{ user.gender }} | {{ user.age }}岁 | {{ user.location }}</text>
-			<text class="details">{{ user.height }}cm | {{ user.weight }}kg | {{ user.education }}</text>
-			<text class="details">职业: {{ user.industry }}</text>
+			<text class="name">{{ user.nickname || user.name }}</text>
+			<text class="details">{{ user.gender }} | {{ user.age }}岁 | {{ user.currentCity || user.location }}</text>
+			<text class="details">职业: {{ user.occupation || user.industry }}</text>
 		</view>
 	</view>
 </template>

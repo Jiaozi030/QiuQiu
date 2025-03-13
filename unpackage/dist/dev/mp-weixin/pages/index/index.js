@@ -144,11 +144,17 @@ var uniSegmentedControl = function uniSegmentedControl() {
     return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue */ 161));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
+var follow = function follow() {
+  __webpack_require__.e(/*! require.ensure | pages/index/follow */ "pages/index/follow").then((function () {
+    return resolve(__webpack_require__(/*! @/pages/index/follow.vue */ 207));
+  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+};
 var _default = {
   components: {
     uniSegmentedControl: uniSegmentedControl,
     recommendation: _recommendation.default,
-    nearby: _nearby.default
+    nearby: _nearby.default,
+    follow: follow
   },
   data: function data() {
     return {
@@ -426,15 +432,15 @@ var _default = {
                     return {
                       _id: user._id,
                       // 确保包含 _id 字段
-                      photo: user.avatar,
-                      name: user.nickname,
+                      avatar: user.avatar,
+                      nickname: user.nickname,
                       gender: user.gender,
                       age: user.age,
-                      location: user.currentCity,
+                      currentCity: user.currentCity,
                       height: user.height,
                       weight: user.weight,
                       education: user.education,
-                      industry: user.occupation
+                      occupation: user.occupation
                     };
                   });
                 } else {

@@ -3,6 +3,7 @@
   "usingComponents": {
     "uni-segmented-control": "/node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control",
     "recommendation": "/pages/index/recommendation",
-    "nearby": "/pages/index/nearby"
+    "nearby": "/pages/index/nearby",
+    "follow": "/pages/index/follow"
   }
 }

@@ -126,6 +126,8 @@ export default {
         if (options.id) {
             // 根据传递的 _id 获取用户数据
             await this.loadProfileData(options.id);
+            // 检查是否已关注
+            await this.checkFollowStatus();
         }
     },
     methods: {
@@ -157,13 +159,59 @@ export default {
                 });
             }
         },
+        // 检查是否已关注
+        async checkFollowStatus() {
+            try {
+                const res = await uniCloud.callFunction({
+                    name: 'follow',
+                    data: {
+                        action: 'checkFollow',
+                        userId: '67d16f8ae0ec19c842704b02', // 当前用户的 _id
+                        followedUserId: this.profile._id, // 被关注用户的 _id
+                    },
+                });
+
+                if (res.result.code === 200) {
+                    this.isFollowing = res.result.isFollowing;
+                }
+            } catch (err) {
+                console.error('检查关注状态失败:', err);
+            }
+        },
         // 处理关注按钮点击
-        handleFollow() {
-            this.isFollowing = !this.isFollowing;
-            uni.showToast({
-                title: this.isFollowing ? '关注成功' : '已取消关注',
-                icon: 'none',
-            });
+        async handleFollow() {
+            try {
+                const action = this.isFollowing ? 'unfollow' : 'follow';
+                const res = await uniCloud.callFunction({
+                    name: 'follow',
+                    data: {
+                        action: action,
+                        userId: '67d16f8ae0ec19c842704b02', // 当前用户的 _id
+                        followedUserId: this.profile._id, // 被关注用户的 _id
+                    },
+                });
+
+                if (res.result.code === 200) {
+                    this.isFollowing = !this.isFollowing;
+                    uni.showToast({
+                        title: this.isFollowing ? '关注成功' : '取消关注成功',
+                        icon: 'none',
+                    });
+                    // 更新关注页的数据
+                    uni.$emit('followUpdated');
+                } else {
+                    uni.showToast({
+                        title: res.result.message,
+                        icon: 'none',
+                    });
+                }
+            } catch (err) {
+                console.error('操作失败:', err);
+                uni.showToast({
+                    title: '操作失败',
+                    icon: 'none',
+                });
+            }
         },
         // 处理聊天按钮点击
         handleChat() {
@@ -283,13 +331,14 @@ export default {
 .details {
     display: flex;
     flex-direction: column;
+    gap: 8px;
 }
 
 .detail-item {
     display: flex;
     justify-content: space-between;
-    padding: 8px 60px 8px 50px;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
 }
 
 .detail-item:last-child {

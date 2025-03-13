@@ -48,11 +48,8 @@
         },
         "expectation": {
             "bsonType": "array",
-            "title": "期望",
-            "description": "用户期望",
-            "items": {
-                "bsonType": "string"
-            }
+            "title": "期望对象",
+            "description": "用户期望"
         },
         "height": {
             "bsonType": "int",

@@ -37,7 +37,7 @@
 			</swiper-item>
 			<swiper-item>
 				<view class="content">
-					<recommendation />
+					<follow />
 				</view>
 			</swiper-item>
 		</swiper>
@@ -48,8 +48,10 @@
 import uniSegmentedControl from '@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue';
 import recommendation from '@/pages/index/recommendation.vue';
 import nearby from '@/pages/index/nearby.vue';
+import follow from '@/pages/index/follow.vue';
+
 export default {
-	components: { uniSegmentedControl, recommendation, nearby },
+	components: { uniSegmentedControl, recommendation, nearby, follow },
 	data() {
 		return {
 			current: 0, // 当前选中的分页索引
@@ -70,7 +72,7 @@ export default {
 			uni.navigateTo({
 				url: '/pages/index/filter'
 			});
-		}
+		},
 	}
 }
 </script>

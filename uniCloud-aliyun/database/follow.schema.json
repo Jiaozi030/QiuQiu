@@ -1,0 +1,16 @@
+{
+    "bsonType": "object",
+    "required": ["userId", "followedUserId"],
+    "properties": {
+        "userId": {
+            "bsonType": "string",
+            "title": "用户ID",
+            "description": "关注者的用户ID"
+        },
+        "followedUserId": {
+            "bsonType": "string",
+            "title": "被关注用户ID",
+            "description": "被关注者的用户ID"
+        }
+    }
+} 
