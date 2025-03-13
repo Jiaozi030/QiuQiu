@@ -1,18 +1,24 @@
 <template>
   <view class="discover-page">
-    <!-- 动态帖子列表 -->
+    <!-- 帖子列表 -->
     <view class="post-list">
       <view v-for="(post, index) in posts" :key="index" class="post-item">
         <view class="post-header">
-          <image :src="post.avatar" class="avatar" />
+          <image :src="post.profile.avatar" class="avatar" />
           <view class="user-info">
-            <text class="username">{{ post.username }}</text>
-            <text class="user-details">{{ post.gender }}｜{{ post.age }}岁｜{{ post.city }}</text>
+            <text class="username">{{ post.profile.nickname }}</text>
+            <text class="user-details">{{ post.profile.gender }}｜{{ post.profile.age }}岁｜{{ post.profile.currentCity }}</text>
           </view>
         </view>
-        <text class="post-content">{{ post.content }}</text>
-        <image v-if="post.image" :src="post.image" class="post-image" />
-        <text class="post-time">{{ post.time }}</text>
+        <view class="post-content">
+          <text>{{ post.content }}</text>
+          <view v-if="(post.images || []).length > 0" class="post-images">
+            <image v-for="(image, i) in post.images" :key="i" :src="image" class="post-image" />
+          </view>
+        </view>
+        <view class="post-footer">
+          <text>{{ formatTime(post.createTime) }}</text>
+        </view>
       </view>
     </view>
 
@@ -24,21 +30,75 @@
 </template>
 
 <script>
-import { samplePosts } from '@/data/samplePosts.js'; // 引入模拟帖子数据
-
 export default {
   data() {
     return {
-      title: '发现',
-      posts: samplePosts, // 使用模拟帖子数据
+      posts: [], // 存储帖子数据
     };
   },
+  async onLoad() {
+    // 获取帖子列表
+    await this.loadPosts();
+  },
   methods: {
-    // 跳转到发布帖子页面
+    // 获取帖子列表
+    async loadPosts() {
+      try {
+        const res = await uniCloud.callFunction({
+          name: 'post',
+          data: {
+            action: 'getPosts',
+          },
+        });
+
+        if (res.result.code === 200) {
+          // 获取所有帖子的用户信息
+          const userIds = res.result.data.map(post => post.userId);
+          const profileRes = await uniCloud.callFunction({
+            name: 'profile',
+            data: {
+              action: 'getProfilesByIds',
+              userIds,
+            },
+          });
+
+          if (profileRes.result.code === 200) {
+            const profiles = profileRes.result.data;
+            this.posts = res.result.data.map(post => ({
+              ...post,
+              images: post.images || [], // 确保 images 是数组
+              profile: profiles.find(profile => profile._id === post.userId) || {}, // 关联用户信息
+            }));
+          } else {
+            uni.showToast({
+              title: '获取用户信息失败',
+              icon: 'none',
+            });
+          }
+        } else {
+          uni.showToast({
+            title: '获取帖子失败',
+            icon: 'none',
+          });
+        }
+      } catch (err) {
+        console.error('获取帖子失败:', err);
+        uni.showToast({
+          title: '获取帖子失败',
+          icon: 'none',
+        });
+      }
+    },
+    // 跳转到发帖页面
     navigateToPost() {
       uni.navigateTo({
-        url: '/pages/discover/post', // 发布帖子页面的路径
+        url: '/pages/discover/post', // 发帖页面的路径
       });
+    },
+    // 格式化时间
+    formatTime(timestamp) {
+      const date = new Date(timestamp);
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`;
     },
   },
 };
@@ -99,16 +159,22 @@ export default {
   margin-bottom: 10px;
 }
 
+.post-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
 .post-image {
   width: 100%;
   height: 300px;
   border-radius: 8px;
   object-fit: cover;
-  /* object-fit: contain;  */
   margin-bottom: 10px;
 }
 
-.post-time {
+.post-footer {
   font-size: 12px;
   color: #999;
 }

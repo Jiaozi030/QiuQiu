@@ -1,0 +1,29 @@
+{
+    "bsonType": "object",
+    "required": ["userId", "content", "createTime"],
+    "properties": {
+        "userId": {
+            "bsonType": "string",
+            "title": "用户ID",
+            "description": "发帖用户的ID"
+        },
+        "content": {
+            "bsonType": "string",
+            "title": "文案",
+            "description": "帖子的文案内容"
+        },
+        "images": {
+            "bsonType": "array",
+            "title": "配图",
+            "description": "帖子的配图URL列表",
+            "items": {
+                "bsonType": "string"
+            }
+        },
+        "createTime": {
+            "bsonType": "timestamp",
+            "title": "创建时间",
+            "description": "帖子的创建时间"
+        }
+    }
+} 

@@ -64,6 +64,26 @@ exports.main = async (event, context) => {
         }
     }
 
+    if (action === 'getProfilesByIds') {
+        try {
+            const { userIds } = event;
+            const res = await db.collection('profile').where({
+                _id: db.command.in(userIds),
+            }).get();
+
+            return {
+                code: 200,
+                data: res.data,
+            };
+        } catch (err) {
+            return {
+                code: 500,
+                message: '获取用户信息失败',
+                error: err,
+            };
+        }
+    }
+
     // 其他操作保持不变...
     const { profile } = event;
     
