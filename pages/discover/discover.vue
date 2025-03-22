@@ -18,6 +18,7 @@
         </view>
         <view class="post-footer">
           <text>{{ formatTime(post.createTime) }}</text>
+          <text>{{ post.createTime }}</text>
         </view>
       </view>
     </view>

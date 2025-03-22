@@ -15,7 +15,9 @@
 		{
 			"path": "pages/metaverse/metaverse",
 			"style": {
-				"navigationBarTitleText": "元宇宙"
+				"navigationBarTitleText": "元宇宙", 
+				"navigationStyle": "custom",
+        		"disableScroll": true
 			}
 		},
 		{

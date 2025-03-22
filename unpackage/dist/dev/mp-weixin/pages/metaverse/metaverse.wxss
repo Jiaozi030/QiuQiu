@@ -1,12 +1,9 @@
 
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.metaverse-page {
+  width: 100%;
   height: 100vh;
-}
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 

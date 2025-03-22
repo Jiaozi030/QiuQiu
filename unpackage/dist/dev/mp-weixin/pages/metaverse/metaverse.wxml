@@ -1,1 +1,1 @@
-<view class="content"><text class="title">元宇宙</text></view>
+<view class="metaverse-page"><web-view style="width:100vw;height:100vh;" src="{{webViewUrl}}" data-event-opts="{{[['message',[['handleMessage',['$event']]]]]}}" bindmessage="__e"></web-view></view>

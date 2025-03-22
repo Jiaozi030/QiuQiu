@@ -1,0 +1,10 @@
+{
+  "appid": "wx9719d76a3d4a084c",
+  "projectname": "QiuQiu",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  }
+} 

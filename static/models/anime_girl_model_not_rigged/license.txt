@@ -1,0 +1,11 @@
+Model Information:
+* title:	Anime girl model (not rigged)
+* source:	https://sketchfab.com/3d-models/anime-girl-model-not-rigged-52b9825c67ce449a86c7d232b81d6b21
+* author:	darknessvoid403 (https://sketchfab.com/darknessvoid403)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Anime girl model (not rigged)" (https://sketchfab.com/3d-models/anime-girl-model-not-rigged-52b9825c67ce449a86c7d232b81d6b21) by darknessvoid403 (https://sketchfab.com/darknessvoid403) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

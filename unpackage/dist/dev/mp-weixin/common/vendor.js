@@ -10023,7 +10023,7 @@ var b = "development" === "development",
   k = "true" === undefined || !0 === undefined,
   P = T([]),
   C = "h5" === E ? "web" : "app-plus" === E || "app-harmony" === E ? "app" : E,
-  A = T({"address":["127.0.0.1","10.66.235.168"],"servePort":7001,"debugPort":9000,"initialLaunchType":"local","skipFiles":["<node_internals>/**","/Applications/HBuilderX.app/Contents/HBuilderX/plugins/unicloud/**/*.js"]}),
+  A = T({"address":["127.0.0.1","10.65.214.36"],"servePort":7001,"debugPort":9000,"initialLaunchType":"local","skipFiles":["<node_internals>/**","/Applications/HBuilderX.app/Contents/HBuilderX/plugins/unicloud/**/*.js"]}),
   O = T([{"provider":"aliyun","spaceName":"qiuqiu","spaceId":"mp-3d3c8ac7-84bc-4303-8bdf-b8afeb84cdc5","clientSecret":"sAaW0QVi9EXJEuJ3Qjh+yA==","endpoint":"https://api.next.bspapp.com"}]) || [],
   x = true;
 var N = "";
@@ -18427,7 +18427,9 @@ var _default = {
   }, {
     "path": "pages/metaverse/metaverse",
     "style": {
-      "navigationBarTitleText": "元宇宙"
+      "navigationBarTitleText": "元宇宙",
+      "navigationStyle": "custom",
+      "disableScroll": true
     }
   }, {
     "path": "pages/message/message",
@@ -18717,92 +18719,14 @@ uni.addInterceptor({
 /* 52 */,
 /* 53 */,
 /* 54 */,
-/* 55 */
-/*!***************************************************************!*\
-  !*** /Users/jiaozi030/Desktop/app/QiuQiu/data/sampleUsers.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.sampleUsers = void 0;
-var sampleUsers = [{
-  photo: '/static/default/logo.png',
-  name: '张三',
-  gender: 'male',
-  age: 28,
-  location: '北京',
-  height: 178,
-  weight: 70,
-  education: '本科',
-  industry: '互联网'
-}, {
-  photo: '/static/default/logo.png',
-  name: '李四',
-  gender: 'male',
-  age: 25,
-  location: '上海',
-  height: 165,
-  weight: 50,
-  education: '硕士',
-  industry: '金融'
-}, {
-  photo: '/static/default/logo.png',
-  name: '王五',
-  gender: 'male',
-  age: 30,
-  location: '广州',
-  height: 180,
-  weight: 75,
-  education: '本科',
-  industry: '教育'
-}, {
-  photo: '/static/default/logo.png',
-  name: '张三',
-  gender: 'male',
-  age: 28,
-  location: '北京',
-  height: 178,
-  weight: 70,
-  education: '本科',
-  industry: '互联网'
-}, {
-  photo: '/static/default/logo.png',
-  name: '李四',
-  gender: 'male',
-  age: 25,
-  location: '上海',
-  height: 165,
-  weight: 50,
-  education: '硕士',
-  industry: '金融'
-}, {
-  photo: '/static/default/logo.png',
-  name: '王五',
-  gender: 'male',
-  age: 30,
-  location: '广州',
-  height: 180,
-  weight: 75,
-  education: '本科',
-  industry: '教育'
-}];
-exports.sampleUsers = sampleUsers;
-
-/***/ }),
+/* 55 */,
 /* 56 */,
 /* 57 */,
 /* 58 */,
 /* 59 */,
 /* 60 */,
 /* 61 */,
-/* 62 */,
-/* 63 */
+/* 62 */
 /*!*********************************************************************!*\
   !*** /Users/jiaozi030/Desktop/app/QiuQiu/data/sampleUsersNearby.js ***!
   \*********************************************************************/
@@ -18906,6 +18830,7 @@ var sampleUsersNearby = [{
 exports.sampleUsersNearby = sampleUsersNearby;
 
 /***/ }),
+/* 63 */,
 /* 64 */,
 /* 65 */,
 /* 66 */,
@@ -18931,9 +18856,7 @@ exports.sampleUsersNearby = sampleUsersNearby;
 /* 86 */,
 /* 87 */,
 /* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */
+/* 89 */
 /*!******************************************************************!*\
   !*** /Users/jiaozi030/Desktop/app/QiuQiu/data/sampleMessages.js ***!
   \******************************************************************/
@@ -18985,6 +18908,8 @@ var sampleMessages = Array.from({
 exports.sampleMessages = sampleMessages;
 
 /***/ }),
+/* 90 */,
+/* 91 */,
 /* 92 */,
 /* 93 */,
 /* 94 */,
@@ -19017,7 +18942,84 @@ exports.sampleMessages = sampleMessages;
 /* 121 */,
 /* 122 */,
 /* 123 */,
-/* 124 */,
+/* 124 */
+/*!***************************************************************!*\
+  !*** /Users/jiaozi030/Desktop/app/QiuQiu/data/sampleUsers.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sampleUsers = void 0;
+var sampleUsers = [{
+  photo: '/static/default/logo.png',
+  name: '张三',
+  gender: 'male',
+  age: 28,
+  location: '北京',
+  height: 178,
+  weight: 70,
+  education: '本科',
+  industry: '互联网'
+}, {
+  photo: '/static/default/logo.png',
+  name: '李四',
+  gender: 'male',
+  age: 25,
+  location: '上海',
+  height: 165,
+  weight: 50,
+  education: '硕士',
+  industry: '金融'
+}, {
+  photo: '/static/default/logo.png',
+  name: '王五',
+  gender: 'male',
+  age: 30,
+  location: '广州',
+  height: 180,
+  weight: 75,
+  education: '本科',
+  industry: '教育'
+}, {
+  photo: '/static/default/logo.png',
+  name: '张三',
+  gender: 'male',
+  age: 28,
+  location: '北京',
+  height: 178,
+  weight: 70,
+  education: '本科',
+  industry: '互联网'
+}, {
+  photo: '/static/default/logo.png',
+  name: '李四',
+  gender: 'male',
+  age: 25,
+  location: '上海',
+  height: 165,
+  weight: 50,
+  education: '硕士',
+  industry: '金融'
+}, {
+  photo: '/static/default/logo.png',
+  name: '王五',
+  gender: 'male',
+  age: 30,
+  location: '广州',
+  height: 180,
+  weight: 75,
+  education: '本科',
+  industry: '教育'
+}];
+exports.sampleUsers = sampleUsers;
+
+/***/ }),
 /* 125 */,
 /* 126 */,
 /* 127 */,
@@ -19042,8 +19044,7 @@ exports.sampleMessages = sampleMessages;
 /* 146 */,
 /* 147 */,
 /* 148 */,
-/* 149 */,
-/* 150 */
+/* 149 */
 /*!**************************************************************!*\
   !*** /Users/jiaozi030/Desktop/app/QiuQiu/data/sampleTags.js ***!
   \**************************************************************/
