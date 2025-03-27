@@ -1,0 +1,21 @@
+{
+    "bsonType": "object",
+    "required": ["_id", "userIds", "createdAt"],
+    "properties": {
+        "_id": {
+            "bsonType": "string",
+            "description": "聊天的唯一标识"
+        },
+        "userIds": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "string"
+            },
+            "description": "参与聊天的用户 ID 列表"
+        },
+        "createdAt": {
+            "bsonType": "date",
+            "description": "聊天创建时间"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "bsonType": "object",
+    "required": ["_id", "chatId", "senderId", "content", "createdAt"],
+    "properties": {
+        "_id": {
+            "bsonType": "string",
+            "description": "消息的唯一标识"
+        },
+        "chatId": {
+            "bsonType": "string",
+            "description": "所属聊天的 ID"
+        },
+        "senderId": {
+            "bsonType": "string",
+            "description": "发送消息的用户 ID"
+        },
+        "content": {
+            "bsonType": "string",
+            "description": "消息内容"
+        },
+        "createdAt": {
+            "bsonType": "date",
+            "description": "消息发送时间"
+        }
+    }
+}

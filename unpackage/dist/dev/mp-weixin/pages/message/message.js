@@ -136,12 +136,15 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
+/* WEBPACK VAR INJECTION */(function(uniCloud, uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 28));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 31));
 var _sampleMessages = __webpack_require__(/*! @/data/sampleMessages.js */ 120);
 //
 //
@@ -179,41 +182,66 @@ var _sampleMessages = __webpack_require__(/*! @/data/sampleMessages.js */ 120);
 var _default = {
   data: function data() {
     return {
-      messages: _sampleMessages.sampleMessages
+      messages: []
     };
   },
+  created: function created() {
+    var _this = this;
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var res;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return uniCloud.callFunction({
+                name: 'chat',
+                data: {
+                  userId: '当前用户ID' // 替换为实际用户 ID
+                }
+              });
+            case 3:
+              res = _context.sent;
+              if (res.result.code === 200) {
+                _this.messages = res.result.data.map(function (chat) {
+                  return {
+                    avatar: '/static/default/logo.png',
+                    // 默认头像
+                    username: "\u7528\u6237 ".concat(chat.userIds.join(', ')),
+                    // 示例用户名
+                    latestMessage: '最新消息内容',
+                    // 可通过额外查询获取
+                    time: chat.createdAt
+                  };
+                });
+              } else {
+                console.error(res.result.message);
+              }
+              _context.next = 10;
+              break;
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              console.error('获取聊天列表失败:', _context.t0);
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 7]]);
+    }))();
+  },
   methods: {
-    // 跳转到"谁关注我"页面
-    navigateToFollowers: function navigateToFollowers() {
-      uni.navigateTo({
-        url: '/pages/message/followers' // 跳转路径
-      });
-    },
-    // 跳转到"谁看过我"页面
-    navigateToViewers: function navigateToViewers() {
-      uni.navigateTo({
-        url: '/pages/message/viewers' // 跳转路径
-      });
-    },
-    // 跳转到聊天界面
     navigateToChat: function navigateToChat(message) {
       uni.navigateTo({
-        url: "/pages/message/chat?userId=".concat(message.userId, "&username=").concat(encodeURIComponent(message.username), "&avatar=").concat(encodeURIComponent(message.avatar))
+        url: "/pages/chat/chat?chatId=".concat(message.chatId)
       });
-    } //   async fetchMessages() {
-    //     const res = await uni.request({
-    //       url: '/api/messages', // 替换为实际接口
-    //       method: 'GET',
-    //     });
-    //     this.messages = res.data;
-    //   },
+    }
   }
-  // mounted() {
-  //   this.fetchMessages();
-  // }
 };
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 27)["uniCloud"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

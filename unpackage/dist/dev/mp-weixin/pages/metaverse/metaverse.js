@@ -239,6 +239,12 @@ var _default = {
     // this.webViewStyle.height = `${windowHeight - tabBarHeight}px`;
     this.webViewStyle.height = "".concat(systemInfo.screenHeight, "px");
   },
+  beforeDestroy: function beforeDestroy() {
+    this.socket.off('userJoined');
+    this.socket.off('userLeft');
+    this.socket.off('positionUpdate');
+    this.socket.disconnect();
+  },
   methods: {
     handleMessage: function handleMessage(event) {
       var message = event.detail.data[0];

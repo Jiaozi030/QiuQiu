@@ -36,40 +36,40 @@ import { sampleMessages } from '@/data/sampleMessages.js';
 
 export default {
   data() {
-		return {
-			messages: sampleMessages
-		};
-	},
+    return {
+      messages: []
+    };
+  },
+  async created() {
+    try {
+      const res = await uniCloud.callFunction({
+        name: 'chat',
+        data: {
+          userId: '当前用户ID' // 替换为实际用户 ID
+        }
+      });
+
+      if (res.result.code === 200) {
+        this.messages = res.result.data.map(chat => ({
+          avatar: '/static/default/logo.png', // 默认头像
+          username: `用户 ${chat.userIds.join(', ')}`, // 示例用户名
+          latestMessage: '最新消息内容', // 可通过额外查询获取
+          time: chat.createdAt
+        }));
+      } else {
+        console.error(res.result.message);
+      }
+    } catch (error) {
+      console.error('获取聊天列表失败:', error);
+    }
+  },
   methods: {
-    // 跳转到"谁关注我"页面
-    navigateToFollowers() {
-      uni.navigateTo({
-        url: '/pages/message/followers', // 跳转路径
-      });
-    },
-    // 跳转到"谁看过我"页面
-    navigateToViewers() {
-      uni.navigateTo({
-        url: '/pages/message/viewers', // 跳转路径
-      });
-    },
-    // 跳转到聊天界面
     navigateToChat(message) {
       uni.navigateTo({
-        url: `/pages/message/chat?userId=${message.userId}&username=${encodeURIComponent(message.username)}&avatar=${encodeURIComponent(message.avatar)}`,
+        url: `/pages/chat/chat?chatId=${message.chatId}`
       });
-    },
-  //   async fetchMessages() {
-  //     const res = await uni.request({
-  //       url: '/api/messages', // 替换为实际接口
-  //       method: 'GET',
-  //     });
-  //     this.messages = res.data;
-  //   },
-  },
-  // mounted() {
-  //   this.fetchMessages();
-  // }
+    }
+  }
 };
 </script>
 
