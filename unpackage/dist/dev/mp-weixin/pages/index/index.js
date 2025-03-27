@@ -141,12 +141,12 @@ var _recommendation = _interopRequireDefault(__webpack_require__(/*! @/pages/ind
 var _nearby = _interopRequireDefault(__webpack_require__(/*! @/pages/index/nearby.vue */ 57));
 var uniSegmentedControl = function uniSegmentedControl() {
   __webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control */ "node-modules/@dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control").then((function () {
-    return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue */ 160));
+    return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-segmented-control/uni-segmented-control.vue */ 191));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var follow = function follow() {
   __webpack_require__.e(/*! require.ensure | pages/index/follow */ "pages/index/follow").then((function () {
-    return resolve(__webpack_require__(/*! @/pages/index/follow.vue */ 167));
+    return resolve(__webpack_require__(/*! @/pages/index/follow.vue */ 198));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -314,7 +314,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 31));
 var UserCard = function UserCard() {
   __webpack_require__.e(/*! require.ensure | components/UserCard */ "components/UserCard").then((function () {
-    return resolve(__webpack_require__(/*! @/components/UserCard.vue */ 174));
+    return resolve(__webpack_require__(/*! @/components/UserCard.vue */ 205));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -628,7 +628,7 @@ exports.default = void 0;
 var _sampleUsersNearby = __webpack_require__(/*! @/data/sampleUsersNearby.js */ 62);
 var UserCardNearby = function UserCardNearby() {
   __webpack_require__.e(/*! require.ensure | components/UserCardNearby */ "components/UserCardNearby").then((function () {
-    return resolve(__webpack_require__(/*! @/components/UserCardNearby.vue */ 181));
+    return resolve(__webpack_require__(/*! @/components/UserCardNearby.vue */ 212));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {

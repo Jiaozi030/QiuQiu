@@ -17,7 +17,10 @@
 			"style": {
 				"navigationBarTitleText": "元宇宙", 
 				"navigationStyle": "custom",
-        		"disableScroll": true
+        		"disableScroll": false,
+        		"app-plus": {
+        			"titleNView": false
+        		}
 			}
 		},
 		{

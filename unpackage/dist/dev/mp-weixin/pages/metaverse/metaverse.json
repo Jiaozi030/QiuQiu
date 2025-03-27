@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "元宇宙",
   "navigationStyle": "custom",
-  "disableScroll": true,
-  "usingComponents": {}
+  "disableScroll": false,
+  "usingComponents": {
+    "avatar-viewer": "/components/AvatarViewer"
+  }
 }
