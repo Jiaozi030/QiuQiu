@@ -198,42 +198,58 @@ var _default = {
               return uniCloud.callFunction({
                 name: 'chat',
                 data: {
-                  userId: '当前用户ID' // 替换为实际用户 ID
+                  userId: '67d16f8ae0ec19c842704b02' // 替换为实际用户 ID
                 }
               });
             case 3:
               res = _context.sent;
+              console.log('云函数返回的数据:', res); // 检查云函数返回的数据
+
               if (res.result.code === 200) {
                 _this.messages = res.result.data.map(function (chat) {
+                  // 防御性检查
+                  if (!chat || !chat.avatar || !chat.username || !chat.latestMessage || !chat.time) {
+                    console.error('无效的聊天记录:', chat);
+                    return null;
+                  }
                   return {
-                    avatar: '/static/default/logo.png',
-                    // 默认头像
-                    username: "\u7528\u6237 ".concat(chat.userIds.join(', ')),
-                    // 示例用户名
-                    latestMessage: '最新消息内容',
-                    // 可通过额外查询获取
-                    time: chat.createdAt
+                    avatar: chat.avatar,
+                    // 从云函数返回的数据中获取头像
+                    username: chat.username,
+                    // 从云函数返回的数据中获取昵称
+                    latestMessage: chat.latestMessage,
+                    // 从云函数返回的数据中获取最新消息
+                    time: new Date(chat.time).toLocaleString() // 格式化时间
                   };
-                });
+                }).filter(function (item) {
+                  return item !== null;
+                }); // 过滤掉无效的聊天记录
+
+                console.log('处理后的消息列表:', _this.messages); // 检查处理后的数据
               } else {
-                console.error(res.result.message);
+                console.error('云函数返回错误:', res.result.message);
               }
-              _context.next = 10;
+              _context.next = 11;
               break;
-            case 7:
-              _context.prev = 7;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](0);
               console.error('获取聊天列表失败:', _context.t0);
-            case 10:
+            case 11:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 7]]);
+      }, _callee, null, [[0, 8]]);
     }))();
   },
   methods: {
     navigateToChat: function navigateToChat(message) {
+      if (!message.chatId) {
+        console.error('chatId 未定义:', message);
+        return; // 防止跳转到不存在的页面
+      }
+
       uni.navigateTo({
         url: "/pages/chat/chat?chatId=".concat(message.chatId)
       });

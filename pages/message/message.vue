@@ -20,12 +20,12 @@
         class="message-item"
         @click="navigateToChat(message)"
       >
-        <image :src="message.avatar" class="avatar" />
+        <image :src="message.avatar || '/static/default/logo.png'" class="avatar" />
         <view class="message-content">
-          <text class="username">{{ message.username }}</text>
-          <text class="latest-message">{{ message.latestMessage }}</text>
+          <text class="username">{{ message.username || '未知用户' }}</text>
+          <text class="latest-message">{{ message.latestMessage || '暂无消息' }}</text>
         </view>
-        <text class="message-time">{{ message.time }}</text>
+        <text class="message-time">{{ message.time || '' }}</text>
       </view>
     </view>
   </view>
@@ -45,19 +45,31 @@ export default {
       const res = await uniCloud.callFunction({
         name: 'chat',
         data: {
-          userId: '当前用户ID' // 替换为实际用户 ID
+          userId: '67d16f8ae0ec19c842704b02' // 替换为实际用户 ID
         }
       });
 
+      console.log('云函数返回的数据:', res); // 检查云函数返回的数据
+
       if (res.result.code === 200) {
-        this.messages = res.result.data.map(chat => ({
-          avatar: '/static/default/logo.png', // 默认头像
-          username: `用户 ${chat.userIds.join(', ')}`, // 示例用户名
-          latestMessage: '最新消息内容', // 可通过额外查询获取
-          time: chat.createdAt
-        }));
+        this.messages = res.result.data.map(chat => {
+          // 防御性检查
+          if (!chat || !chat.avatar || !chat.username || !chat.latestMessage || !chat.time) {
+            console.error('无效的聊天记录:', chat);
+            return null;
+          }
+
+          return {
+            avatar: chat.avatar, // 从云函数返回的数据中获取头像
+            username: chat.username, // 从云函数返回的数据中获取昵称
+            latestMessage: chat.latestMessage, // 从云函数返回的数据中获取最新消息
+            time: new Date(chat.time).toLocaleString() // 格式化时间
+          };
+        }).filter(item => item !== null); // 过滤掉无效的聊天记录
+
+        console.log('处理后的消息列表:', this.messages); // 检查处理后的数据
       } else {
-        console.error(res.result.message);
+        console.error('云函数返回错误:', res.result.message);
       }
     } catch (error) {
       console.error('获取聊天列表失败:', error);
@@ -65,6 +77,11 @@ export default {
   },
   methods: {
     navigateToChat(message) {
+      if (!message.chatId) {
+        console.error('chatId 未定义:', message);
+        return; // 防止跳转到不存在的页面
+      }
+
       uni.navigateTo({
         url: `/pages/chat/chat?chatId=${message.chatId}`
       });
@@ -123,7 +140,7 @@ export default {
 .message-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px; /* 消息框之间的间距 */
 }
 
 .message-item {
@@ -134,11 +151,14 @@ export default {
   border: 1px solid #eee;
   border-radius: 8px;
   background-color: #fff;
+  position: relative; /* 为了定位时间 */
+  min-height: 110px; /* 设置消息框的最小高度，确保统一 */
+  box-sizing: border-box; /* 包括内边距在内计算高度 */
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
 
@@ -147,20 +167,32 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  overflow: hidden; /* 防止内容超出 */
 }
 
 .username {
   font-size: 16px;
   font-weight: bold;
+  color: #333;
+  white-space: nowrap; /* 防止用户名换行 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 超出部分显示省略号 */
 }
 
 .latest-message {
   font-size: 14px;
   color: #666;
+  white-space: nowrap; /* 防止消息内容换行 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 超出部分显示省略号 */
 }
 
 .message-time {
-  font-size: 12px;
-  color: #999;
+  position: absolute; /* 绝对定位时间 */
+  bottom: 10px; /* 距离底部 */
+  right: 15px; /* 距离右侧 */
+  font-size: 12px; /* 时间字体较小 */
+  color: #999; /* 时间颜色较浅 */
+  white-space: nowrap; /* 防止时间换行 */
 }
 </style>

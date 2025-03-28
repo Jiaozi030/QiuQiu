@@ -43,7 +43,7 @@
 .message-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px; /* 消息框之间的间距 */
 }
 .message-item {
   display: flex;
@@ -53,10 +53,13 @@
   border: 1px solid #eee;
   border-radius: 8px;
   background-color: #fff;
+  position: relative; /* 为了定位时间 */
+  min-height: 110px; /* 设置消息框的最小高度，确保统一 */
+  box-sizing: border-box; /* 包括内边距在内计算高度 */
 }
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
 .message-content {
@@ -64,17 +67,29 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  overflow: hidden; /* 防止内容超出 */
 }
 .username {
   font-size: 16px;
   font-weight: bold;
+  color: #333;
+  white-space: nowrap; /* 防止用户名换行 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 超出部分显示省略号 */
 }
 .latest-message {
   font-size: 14px;
   color: #666;
+  white-space: nowrap; /* 防止消息内容换行 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 超出部分显示省略号 */
 }
 .message-time {
-  font-size: 12px;
-  color: #999;
+  position: absolute; /* 绝对定位时间 */
+  bottom: 10px; /* 距离底部 */
+  right: 15px; /* 距离右侧 */
+  font-size: 12px; /* 时间字体较小 */
+  color: #999; /* 时间颜色较浅 */
+  white-space: nowrap; /* 防止时间换行 */
 }
 
