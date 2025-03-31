@@ -7,14 +7,17 @@
         </view>
 
         <!-- 聊天内容 -->
-        <view class="chat-content">
+        <view class="message-list">
             <view
-                v-for="(message, index) in chatMessages"
+                v-for="(message, index) in messages"
                 :key="index"
-                :class="['chat-message', message.isMe ? 'me' : 'other']"
+                :class="['message-item', message.senderId === currentUserId ? 'message-right' : 'message-left']"
             >
-                <text class="message-text">{{ message.text }}</text>
-                <text class="message-time">{{ message.time }}</text>
+                <image :src="message.avatar" class="avatar" />
+                <view class="message-content">
+                    <text class="message-text">{{ message.content }}</text>
+                    <text class="message-time">{{ message.time }}</text>
+                </view>
             </view>
         </view>
 
@@ -32,66 +35,97 @@
 </template>
 
 <script>
-import { sampleMessages } from '@/data/sampleMessages.js';
-
 export default {
     data() {
         return {
+            currentUserId: '67d16f8ae0ec19c842704b02', // 当前用户 ID
             user: {
                 userId: '',
                 username: '',
-                avatar: '',
+                avatar: ''
             },
-            inputMessage: '', // 输入的消息
-            chatMessages: [], // 聊天记录
+            messages: [], // 聊天记录
+            inputMessage: '' // 输入框内容
         };
     },
     onLoad(options) {
-        // 接收传递的用户信息
-        this.user.userId = options.userId;
-        this.user.username = decodeURIComponent(options.username); // 解码用户名
-        this.user.avatar = decodeURIComponent(options.avatar); // 解码头像路径
-
-        // 加载聊天记录
-        const message = sampleMessages.find((msg) => msg.userId === options.userId);
-        if (message) {
-            this.chatMessages = message.messages; // 加载完整的聊天记录
-        }
+        const chatId = options.chatId; // 获取传递的 chatId 参数
+        this.fetchChatUser(chatId); // 查询聊天对象信息
+        this.fetchMessages(chatId); // 查询聊天记录
     },
     methods: {
-        // 发送消息
-        sendMessage() {
-            if (this.inputMessage.trim()) {
-                this.chatMessages.push({
-                    text: this.inputMessage,
-                    time: new Date().toLocaleTimeString(),
-                    isMe: true, // 标记为当前用户发送的消息
+        async fetchChatUser(chatId) {
+            try {
+                const res = await uniCloud.callFunction({
+                    name: 'chatUser', // 云函数名称
+                    data: { chatId }
                 });
-                this.inputMessage = ''; // 清空输入框
+
+                if (res.result.code === 200) {
+                    console.log('获取聊天对象信息成功:', res.result.data); // 添加日志检查返回数据
+                    this.user = {
+                        userId: res.result.data.userId,
+                        username: res.result.data.username || '未知用户',
+                        avatar: res.result.data.avatar || '/static/default/logo.png'
+                    };
+                } else {
+                    console.error('获取聊天对象信息失败:', res.result.message);
+                }
+            } catch (error) {
+                console.error('获取聊天对象信息失败:', error);
+            }
+        }, 
+        async fetchMessages(chatId) {
+            try {
+                const res = await uniCloud.callFunction({
+                    name: 'message', // 云函数名称
+                    data: { chatId }
+                });
+
+                if (res.result.code === 200) {
+                    this.messages = res.result.data.map(message => ({
+                        senderId: message.senderId,
+                        content: message.content,
+                        avatar: message.avatar || '/static/default/logo.png', // 设置默认头像
+                        time: new Date(message.createdAt).toLocaleString()
+                    }));
+                } else {
+                    console.error('云函数返回错误:', res.result.message);
+                }
+            } catch (error) {
+                console.error('获取消息失败:', error);
             }
         },
-    },
+        async sendMessage() {
+            // 发送消息逻辑
+        }
+    }
 };
 </script>
 
 <style>
 .chat-page {
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
     height: 100vh;
 }
 
 .chat-header {
     display: flex;
     align-items: center;
+    gap: 10px;
     padding: 10px;
     border-bottom: 1px solid #eee;
+    background-color: #fff;
 }
 
 .avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .username {
@@ -100,50 +134,63 @@ export default {
     margin-left: 10px;
 }
 
-.chat-content {
+.message-list {
     flex: 1;
-    padding: 10px;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
 }
 
-.chat-message {
-    margin-bottom: 10px;
-    max-width: 70%;
+.message-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 70%; /* 限制消息框的最大宽度 */
+}
+
+.message-left {
+    flex-direction: row; /* 左侧消息 */
+}
+
+.message-right {
+    flex-direction: row-reverse; /* 右侧消息 */
+    align-self: flex-end; /* 右对齐 */
+}
+
+.message-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #f5f5f5;
     padding: 10px;
     border-radius: 8px;
-    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.chat-message.me {
-    background-color: #2c73be;
-    color: #fff;
-    align-self: flex-end;
-}
-
-.chat-message.other {
-    background-color: #f0f0f0;
-    color: #333;
-    align-self: flex-start;
+.message-right .message-content {
+    background-color: #d1e7ff; /* 右侧消息的背景色 */
 }
 
 .message-text {
     font-size: 14px;
+    color: #333;
 }
 
 .message-time {
     font-size: 12px;
     color: #999;
-    margin-top: 5px;
 }
 
 .chat-input {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     padding: 10px;
     border-top: 1px solid #eee;
     background-color: #fff;
+    position: sticky; /* 确保输入框固定在底部 */
+    bottom: 0; /* 定位到页面底部 */
 }
 
 .input-box {

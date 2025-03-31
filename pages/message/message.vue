@@ -52,20 +52,17 @@ export default {
       console.log('云函数返回的数据:', res); // 检查云函数返回的数据
 
       if (res.result.code === 200) {
-        this.messages = res.result.data.map(chat => {
-          // 防御性检查
-          if (!chat || !chat.avatar || !chat.username || !chat.latestMessage || !chat.time) {
-            console.error('无效的聊天记录:', chat);
-            return null;
-          }
+        const filteredResult = res.result.data.map(chat => ({
+          chatId: chat.chatId, // 确保 chatId 被正确设置
+          avatar: chat.avatar || '/static/default/logo.png', // 设置默认头像
+          username: chat.username || '未知用户', // 设置默认昵称
+          latestMessage: chat.latestMessage || '暂无消息', // 设置默认消息内容
+          time: new Date(chat.time).toLocaleString() // 格式化时间
+        }));
 
-          return {
-            avatar: chat.avatar, // 从云函数返回的数据中获取头像
-            username: chat.username, // 从云函数返回的数据中获取昵称
-            latestMessage: chat.latestMessage, // 从云函数返回的数据中获取最新消息
-            time: new Date(chat.time).toLocaleString() // 格式化时间
-          };
-        }).filter(item => item !== null); // 过滤掉无效的聊天记录
+        console.log('返回的聊天数据:', filteredResult);
+
+        this.messages = filteredResult;
 
         console.log('处理后的消息列表:', this.messages); // 检查处理后的数据
       } else {
@@ -83,8 +80,29 @@ export default {
       }
 
       uni.navigateTo({
-        url: `/pages/chat/chat?chatId=${message.chatId}`
+        url: `/pages/message/chat?chatId=${message.chatId}`
       });
+    },
+    async fetchMessages(chatId) {
+      try {
+        const res = await uniCloud.callFunction({
+          name: 'message', // 云函数名称
+          data: { chatId } // 传入 chatId
+        });
+
+        if (res.result.code === 200) {
+          this.messages = res.result.data.map(message => ({
+            senderId: message.senderId,
+            content: message.content,
+            avatar: message.avatar || '/static/default/logo.png', // 设置默认头像
+            time: new Date(message.createdAt).toLocaleString()
+          }));
+        } else {
+          console.error('云函数返回错误:', res.result.message);
+        }
+      } catch (error) {
+        console.error('获取消息失败:', error);
+      }
     }
   }
 };

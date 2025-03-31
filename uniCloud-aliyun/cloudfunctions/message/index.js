@@ -14,14 +14,32 @@ exports.main = async (event, context) => {
 
     try {
         const messages = await db.collection('message')
-        .where({ chatId })
-        .orderBy('createdAt', 'asc')
-        .get();
+            .where({ chatId })
+            .orderBy('createdAt', 'asc')
+            .get();
+
+        // 查询发送者的头像
+        const userIds = [...new Set(messages.data.map(msg => msg.senderId))];
+        const users = await db.collection('profile')
+            .where({
+                _id: db.command.in(userIds)
+            })
+            .get();
+
+        const userMap = users.data.reduce((map, user) => {
+            map[user._id] = user.avatar || '/static/default/logo.png';
+            return map;
+        }, {});
+
+        const enrichedMessages = messages.data.map(msg => ({
+            ...msg,
+            avatar: userMap[msg.senderId] || '/static/default/logo.png'
+        }));
 
         return {
             code: 200,
             message: '获取消息成功',
-            data: messages.data
+            data: enrichedMessages
         };
     } catch (error) {
         return {

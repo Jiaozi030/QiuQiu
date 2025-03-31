@@ -188,7 +188,7 @@ var _default = {
   created: function created() {
     var _this = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var res;
+      var res, filteredResult;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -206,25 +206,22 @@ var _default = {
               console.log('云函数返回的数据:', res); // 检查云函数返回的数据
 
               if (res.result.code === 200) {
-                _this.messages = res.result.data.map(function (chat) {
-                  // 防御性检查
-                  if (!chat || !chat.avatar || !chat.username || !chat.latestMessage || !chat.time) {
-                    console.error('无效的聊天记录:', chat);
-                    return null;
-                  }
+                filteredResult = res.result.data.map(function (chat) {
                   return {
-                    avatar: chat.avatar,
-                    // 从云函数返回的数据中获取头像
-                    username: chat.username,
-                    // 从云函数返回的数据中获取昵称
-                    latestMessage: chat.latestMessage,
-                    // 从云函数返回的数据中获取最新消息
+                    chatId: chat.chatId,
+                    // 确保 chatId 被正确设置
+                    avatar: chat.avatar || '/static/default/logo.png',
+                    // 设置默认头像
+                    username: chat.username || '未知用户',
+                    // 设置默认昵称
+                    latestMessage: chat.latestMessage || '暂无消息',
+                    // 设置默认消息内容
                     time: new Date(chat.time).toLocaleString() // 格式化时间
                   };
-                }).filter(function (item) {
-                  return item !== null;
-                }); // 过滤掉无效的聊天记录
+                });
 
+                console.log('返回的聊天数据:', filteredResult);
+                _this.messages = filteredResult;
                 console.log('处理后的消息列表:', _this.messages); // 检查处理后的数据
               } else {
                 console.error('云函数返回错误:', res.result.message);
@@ -251,8 +248,54 @@ var _default = {
       }
 
       uni.navigateTo({
-        url: "/pages/chat/chat?chatId=".concat(message.chatId)
+        url: "/pages/message/chat?chatId=".concat(message.chatId)
       });
+    },
+    fetchMessages: function fetchMessages(chatId) {
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return uniCloud.callFunction({
+                  name: 'message',
+                  // 云函数名称
+                  data: {
+                    chatId: chatId
+                  } // 传入 chatId
+                });
+              case 3:
+                res = _context2.sent;
+                if (res.result.code === 200) {
+                  _this2.messages = res.result.data.map(function (message) {
+                    return {
+                      senderId: message.senderId,
+                      content: message.content,
+                      avatar: message.avatar || '/static/default/logo.png',
+                      // 设置默认头像
+                      time: new Date(message.createdAt).toLocaleString()
+                    };
+                  });
+                } else {
+                  console.error('云函数返回错误:', res.result.message);
+                }
+                _context2.next = 10;
+                break;
+              case 7:
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
+                console.error('获取消息失败:', _context2.t0);
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 7]]);
+      }))();
     }
   }
 };

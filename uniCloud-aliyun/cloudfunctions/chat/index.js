@@ -37,6 +37,10 @@ exports.main = async (event, context) => {
             // 获取聊天对象的 ID
             const otherUserId = chat.userIds.find(id => id !== userId);
 
+            console.log(`聊天记录 userIds:`, chat.userIds);
+            console.log(`当前用户 ID: ${userId}`);
+            console.log(`聊天对象 ID: ${otherUserId}`);
+
             if (!otherUserId) {
                 return null; // 如果没有找到聊天对象，跳过该聊天
             }
@@ -48,7 +52,10 @@ exports.main = async (event, context) => {
                 })
                 .get();
 
-            const userInfo = otherUser.data[0] || {};
+            const userInfo = otherUser.data[0] || {}; // 如果查询不到，返回空对象
+
+            console.log(`查询聊天对象的结果:`, otherUser.data);
+            console.log(`聊天对象信息:`, userInfo);
 
             // 查询该聊天的最新消息
             const latestMessage = await db.collection('message')
@@ -64,9 +71,9 @@ exports.main = async (event, context) => {
             // 返回聊天信息
             return {
                 chatId: chat._id,
-                avatar: userInfo.avatar || '/static/default/logo.png', // 默认头像
-                username: userInfo.nickname || '未知用户', // 默认昵称
-                latestMessage: messageInfo.content || '暂无消息', // 最新消息内容
+                avatar: userInfo.avatar || '/static/default/logo.png', // 设置默认头像
+                username: userInfo.nickname || '未知用户', // 设置默认昵称
+                latestMessage: messageInfo.content || '暂无消息', // 设置默认消息内容
                 time: messageInfo.createdAt || chat.createdAt // 消息时间或聊天创建时间
             };
         }));
