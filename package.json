@@ -3,7 +3,8 @@
   "dependencies": {
     "@dcloudio/uni-ui": "^1.5.7",
     "socket.io-client": "^4.8.1",
-    "three": "^0.150.1"
+    "three": "^0.150.1",
+    "threejs-miniprogram": "^0.0.8"
   },
   "devDependencies": {
     "@vue/eslint-config-prettier": "^10.2.0",

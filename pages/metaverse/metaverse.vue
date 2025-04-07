@@ -1,20 +1,25 @@
 <template>
-  <view class="metaverse-page">
-    <web-view 
-      v-if="!avatarUrl" 
-      :src="webViewUrl" 
-      @message="handleMessage" 
-      :style="webViewStyle"
-      @load="handleWebViewLoad"
-    ></web-view>
-    <avatar-viewer v-else :avatar-url="avatarUrl" />
-    <view v-if="isLoading" class="loading-overlay">加载中...</view>
+  <view class="container">
+    <canvas
+      type="webgl"
+      id="webgl"
+      canvas-id="webgl"
+      style="width: 100vw; height: 100vh;"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+    ></canvas>
   </view>
 </template>
 
 <script>
-import AvatarViewer from '@/components/AvatarViewer.vue';
-import io from 'socket.io-client';
+
+import AvatarViewer from '@/components/AvatarViewer.vue'; // 确保路径正确
+
+import { createScopedThreejs } from 'threejs-miniprogram'
+import { registerGLTFLoader } from 'common/loaders/GLTFLoader'
+import { registerOrbitControls } from 'common/loaders/OrbitControls'
+import { registerDRACOLoader } from 'common/loaders/DRACOLoader'
 
 export default {
   components: {
@@ -22,94 +27,105 @@ export default {
   },
   data() {
     return {
-      webViewUrl: 'https://readyplayer.me/avatar?frameApi', // Ready Player Me 嵌入页面 URL
-      webViewStyle: {
-        width: '100vw',
-        height: '100vh', // 默认高度
-      },
-      avatarUrl: null,
-      users: {}, // 存储其他用户的信息
-      isLoading: true,
-    };
-  },
-  created() {
-    // 将 socket 存储为实例属性，而不是响应式数据
-    this.socket = io('https://your-socket-server-url');
-
-    // 监听其他用户加入
-    this.socket.on('userJoined', (userId, avatarUrl) => {
-      this.$set(this.users, userId, { avatarUrl, position: { x: 0, y: 0, z: 0 } });
-    });
-
-    // 监听其他用户离开
-    this.socket.on('userLeft', (userId) => {
-      this.$delete(this.users, userId);
-    });
-
-    // 监听其他用户的位置更新
-    this.socket.on('positionUpdate', (userId, position) => {
-      if (this.users[userId]) {
-        this.users[userId].position = position;
-      }
-    });
-
-    const savedAvatarUrl = uni.getStorageSync('avatarUrl');
-    if (savedAvatarUrl) {
-      this.avatarUrl = savedAvatarUrl;
+      controls: null
     }
   },
-  onLoad() {
-    // 获取系统信息，计算可用高度
-    const systemInfo = uni.getSystemInfoSync();
-    const windowHeight = systemInfo.windowHeight;
-    const tabBarHeight = 50; // 适当调整
+  onReady() {
+    const query = uni.createSelectorQuery().in(this)
+    query.select('#webgl')
+      .node()
+      .exec((res) => {
+        const canvas = res[0].node
+        const THREE = createScopedThreejs(canvas)
 
-    // this.webViewStyle.height = `${windowHeight - tabBarHeight}px`;
-    this.webViewStyle.height = `${systemInfo.screenHeight}px`;
+        // 注册组件
+        registerGLTFLoader(THREE)
+        registerDRACOLoader(THREE)
+        registerOrbitControls(THREE)
 
-  },
-  beforeDestroy() {
-    this.socket.off('userJoined');
-    this.socket.off('userLeft');
-    this.socket.off('positionUpdate');
-    this.socket.disconnect();
+        let camera, scene, light, renderer
+
+        // 初始化场景
+        const init = () => {
+          camera = new THREE.PerspectiveCamera(70, canvas.width / canvas.height, 0.001, 1000)
+          camera.position.set(1, 1, 1)
+
+          scene = new THREE.Scene()
+          scene.background = new THREE.Color(0xffffff)
+
+          light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1)
+          scene.add(light)
+
+          renderer = new THREE.WebGLRenderer({ canvas })
+          renderer.setPixelRatio(wx.getSystemInfoSync().pixelRatio)
+          renderer.setSize(canvas.width, canvas.height)
+
+          this.controls = new THREE.OrbitControls(camera, renderer.domElement)
+
+          const gltfLoader = new THREE.GLTFLoader()
+          const dracoLoader = new THREE.DRACOLoader()
+          // dracoLoader.setDecoderPath('http://127.0.0.1:8080/draco/')
+          gltfLoader.setDRACOLoader(dracoLoader)
+          
+          
+          gltfLoader.load(
+            'http://127.0.0.1:8080/static/models/sniffer_with_excalibur/scene.gltf',
+            (model) => {
+              const gltf = model.scene
+              scene.add(gltf)
+
+              this.controls.rotateSpeed = 2
+              const box3 = new THREE.Box3().setFromObject(gltf)
+              const length = box3.max.distanceTo(box3.min)
+              this.controls.target = box3.getCenter(new THREE.Vector3())
+              this.controls.minDistance = length
+              this.controls.maxDistance = length * 2
+              this.controls.maxPolarAngle = Math.PI / 2
+              this.controls.update()
+            },
+            (err) => {
+              console.error('GLTF 加载失败:', err)
+            }
+          )
+
+          render()
+        }
+
+        const render = () => {
+          this.controls.update()
+          renderer.render(scene, camera)
+          canvas.requestAnimationFrame(render)
+        }
+
+        init()
+      })
   },
   methods: {
-    handleMessage(event) {
-      const message = event.detail.data[0];
-      if (message.type === 'avatarUrl') {
-        this.avatarUrl = message.url;
-        console.log('Received Avatar URL:', this.avatarUrl);
-        uni.setStorageSync('avatarUrl', this.avatarUrl); // 保存到本地存储
-        // 可以将 avatarUrl 保存到用户信息中
-      }
-    },
-    // 在用户移动时发送位置更新
-    updatePosition(position) {
-      this.socket.emit('positionUpdate', position);
-    },
-    handleWebViewLoad() {
-      this.isLoading = false;
-    },
+  handleTouchStart(e) {
+    if (this.controls && this.controls.onTouchStart) {
+      this.controls.onTouchStart(e)
+    }
   },
-};
+  handleTouchMove(e) {
+    if (this.controls && this.controls.onTouchMove) {
+      this.controls.onTouchMove(e)
+    }
+  },
+  handleTouchEnd(e) {
+    if (this.controls && this.controls.onTouchEnd) {
+      this.controls.onTouchEnd(e)
+    }
+  }
+}
+}
 </script>
 
 <style>
-.metaverse-page {
-  width: 100%;
+.container {
+  width: 100vw;
   height: 100vh;
-}
-.loading-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 </style>
