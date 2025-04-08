@@ -1,14 +1,7 @@
 <template>
   <view class="container">
-    <canvas
-      type="webgl"
-      id="webgl"
-      canvas-id="webgl"
-      style="width: 100vw; height: 100vh;"
-      @touchstart="handleTouchStart"
-      @touchmove="handleTouchMove"
-      @touchend="handleTouchEnd"
-    ></canvas>
+    <canvas type="webgl" id="webgl" canvas-id="webgl" style="width: 100vw; height: 100vh;"
+      @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd"></canvas>
   </view>
 </template>
 
@@ -66,10 +59,10 @@ export default {
           const dracoLoader = new THREE.DRACOLoader()
           // dracoLoader.setDecoderPath('http://127.0.0.1:8080/draco/')
           gltfLoader.setDRACOLoader(dracoLoader)
-          
-          
+
+
           gltfLoader.load(
-            'http://127.0.0.1:8080/static/models/sniffer_with_excalibur/scene.gltf',
+            'http://127.0.0.1:8080/static/001/scene.gltf',
             (model) => {
               const gltf = model.scene
               scene.add(gltf)
@@ -101,22 +94,22 @@ export default {
       })
   },
   methods: {
-  handleTouchStart(e) {
-    if (this.controls && this.controls.onTouchStart) {
-      this.controls.onTouchStart(e)
-    }
-  },
-  handleTouchMove(e) {
-    if (this.controls && this.controls.onTouchMove) {
-      this.controls.onTouchMove(e)
-    }
-  },
-  handleTouchEnd(e) {
-    if (this.controls && this.controls.onTouchEnd) {
-      this.controls.onTouchEnd(e)
+    handleTouchStart(e) {
+      if (this.controls && this.controls.onTouchStart) {
+        this.controls.onTouchStart(e)
+      }
+    },
+    handleTouchMove(e) {
+      if (this.controls && this.controls.onTouchMove) {
+        this.controls.onTouchMove(e)
+      }
+    },
+    handleTouchEnd(e) {
+      if (this.controls && this.controls.onTouchEnd) {
+        this.controls.onTouchEnd(e)
+      }
     }
   }
-}
 }
 </script>
 
