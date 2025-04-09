@@ -7,7 +7,8 @@
           <image :src="post.profile.avatar" class="avatar" />
           <view class="user-info">
             <text class="username">{{ post.profile.nickname }}</text>
-            <text class="user-details">{{ post.profile.gender }}｜{{ post.profile.age }}岁｜{{ post.profile.currentCity }}</text>
+            <text class="user-details">{{ post.profile.gender }}｜{{ post.profile.age }}岁｜{{ post.profile.currentCity
+              }}</text>
           </view>
         </view>
         <view class="post-content">
@@ -18,7 +19,6 @@
         </view>
         <view class="post-footer">
           <text>{{ formatTime(post.createTime) }}</text>
-          <text>{{ post.createTime }}</text>
         </view>
       </view>
     </view>
@@ -127,7 +127,8 @@ export default {
 
 .post-header {
   display: flex;
-  align-items: flex-start; /* 头像和用户信息顶部对齐 */
+  align-items: flex-start;
+  /* 头像和用户信息顶部对齐 */
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -150,8 +151,10 @@ export default {
 
 .user-details {
   font-size: 12px;
-  color: #999; /* 灰色字体 */
-  margin-top: 2px; /* 与用户名保持一定间距 */
+  color: #999;
+  /* 灰色字体 */
+  margin-top: 2px;
+  /* 与用户名保持一定间距 */
 }
 
 .post-content {
@@ -195,9 +198,10 @@ export default {
 }
 
 .post-button .icon {
-  font-size: 24px; 
-  color: #fff; 
-  line-height: 1; /* 确保图标垂直居中 */
+  font-size: 24px;
+  color: #fff;
+  line-height: 1;
+  /* 确保图标垂直居中 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -207,4 +211,4 @@ export default {
   font-size: 24px;
   color: #fff;
 }
-</style> 
+</style>
