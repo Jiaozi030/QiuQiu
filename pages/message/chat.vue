@@ -97,7 +97,69 @@ export default {
             }
         },
         async sendMessage() {
-            // 发送消息逻辑
+            if (!this.inputMessage.trim()) {
+                uni.showToast({
+                    title: '消息不能为空',
+                    icon: 'none'
+                });
+                return;
+            }
+
+            const newMessage = {
+                chatId: this.user.userId, // 聊天对象的 ID
+                senderId: this.currentUserId, // 当前用户 ID
+                content: this.inputMessage.trim(), // 消息内容
+                createdAt: new Date() // 当前时间
+            };
+
+            try {
+                // 调用云函数保存消息到数据库
+                const res = await uniCloud.callFunction({
+                    name: 'sendMessage', // 云函数名称
+                    data: {
+                        chatId: newMessage.chatId,
+                        senderId: newMessage.senderId,
+                        content: newMessage.content
+                    }
+                });
+
+                if (res.result.code === 200) {
+                    // 将新消息插入到消息列表中
+                    this.messages.push({
+                        ...newMessage,
+                        time: newMessage.createdAt.toLocaleString() // 格式化时间
+                    });
+
+                    // 清空输入框内容
+                    this.inputMessage = '';
+
+                    // 滚动到最新消息
+                    this.$nextTick(() => {
+                        const query = uni.createSelectorQuery().in(this);
+                        query.select('.message-list').boundingClientRect();
+                        query.select('.message-list').scrollOffset();
+                        query.exec((res) => {
+                            if (res[0]) {
+                                uni.pageScrollTo({
+                                    scrollTop: res[0].scrollHeight,
+                                    duration: 300
+                                });
+                            }
+                        });
+                    });
+                } else {
+                    uni.showToast({
+                        title: '发送消息失败',
+                        icon: 'none'
+                    });
+                }
+            } catch (error) {
+                console.error('发送消息失败:', error);
+                uni.showToast({
+                    title: '发送消息失败',
+                    icon: 'none'
+                });
+            }
         }
     }
 };

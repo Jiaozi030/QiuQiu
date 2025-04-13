@@ -133,12 +133,12 @@ export default {
       )
     },
     nextModel() {
-    const modelCount = 13
+    const modelCount = 8
     this.currentModelIndex = this.currentModelIndex % modelCount + 1
     this.loadModel()
   },
     prevModel() {
-      const modelCount = 13
+      const modelCount = 8
       this.currentModelIndex = (this.currentModelIndex + modelCount - 2) % modelCount + 1
       this.loadModel()
     },
@@ -212,9 +212,9 @@ export default {
 
 .confirm-button {
   font-size: 28rpx;
-  padding: 20rpx 80rpx;
-  background-color: #007aff;
-  color: #fff;
+  padding: 10rpx 50rpx;
+  background-color: #36ffeb;
+  color: #000;
   border: none;
   border-radius: 10rpx;
 }
