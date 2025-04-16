@@ -8,11 +8,8 @@
 
         <!-- 聊天内容 -->
         <view class="message-list">
-            <view
-                v-for="(message, index) in messages"
-                :key="index"
-                :class="['message-item', message.senderId === currentUserId ? 'message-right' : 'message-left']"
-            >
+            <view v-for="(message, index) in messages" :key="index"
+                :class="['message-item', message.senderId === currentUserId ? 'message-right' : 'message-left']">
                 <image :src="message.avatar" class="avatar" />
                 <view class="message-content">
                     <text class="message-text">{{ message.content }}</text>
@@ -23,12 +20,7 @@
 
         <!-- 输入框 -->
         <view class="chat-input">
-            <textarea
-                v-model="inputMessage"
-                placeholder="输入消息..."
-                class="input-box"
-                @confirm="sendMessage"
-            />
+            <textarea v-model="inputMessage" placeholder="输入消息..." class="input-box" @confirm="sendMessage" />
             <button @click="sendMessage" class="send-button">发送</button>
         </view>
     </view>
@@ -44,14 +36,21 @@ export default {
                 username: '',
                 avatar: ''
             },
+            chatId: '', // 当前聊天会话的 ID
             messages: [], // 聊天记录
             inputMessage: '' // 输入框内容
         };
     },
     onLoad(options) {
-        const chatId = options.chatId; // 获取传递的 chatId 参数
-        this.fetchChatUser(chatId); // 查询聊天对象信息
-        this.fetchMessages(chatId); // 查询聊天记录
+        console.log('路由参数:', options); // 打印路由参数
+        if (options.chatId) {
+            this.chatId = options.chatId;
+            console.log('当前 chatId:', this.chatId);
+            this.fetchMessages(this.chatId); // 加载聊天记录
+        } else {
+            console.error('未传递 chatId 参数');
+        }
+        this.fetchChatUser(this.chatId); // 查询聊天对象信息
     },
     methods: {
         async fetchChatUser(chatId) {
@@ -74,12 +73,12 @@ export default {
             } catch (error) {
                 console.error('获取聊天对象信息失败:', error);
             }
-        }, 
+        },
         async fetchMessages(chatId) {
             try {
                 const res = await uniCloud.callFunction({
                     name: 'message', // 云函数名称
-                    data: { chatId }
+                    data: { chatId } // 传入 chatId
                 });
 
                 if (res.result.code === 200) {
@@ -97,56 +96,19 @@ export default {
             }
         },
         async sendMessage() {
-            if (!this.inputMessage.trim()) {
-                uni.showToast({
-                    title: '消息不能为空',
-                    icon: 'none'
-                });
-                return;
-            }
-
-            const newMessage = {
-                chatId: this.user.userId, // 聊天对象的 ID
-                senderId: this.currentUserId, // 当前用户 ID
-                content: this.inputMessage.trim(), // 消息内容
-                createdAt: new Date() // 当前时间
-            };
-
             try {
-                // 调用云函数保存消息到数据库
                 const res = await uniCloud.callFunction({
-                    name: 'sendMessage', // 云函数名称
+                    name: 'sendMessage',
                     data: {
-                        chatId: newMessage.chatId,
-                        senderId: newMessage.senderId,
-                        content: newMessage.content
+                        chatId: this.chatId,
+                        senderId: this.currentUserId,
+                        content: this.inputMessage
                     }
                 });
 
                 if (res.result.code === 200) {
-                    // 将新消息插入到消息列表中
-                    this.messages.push({
-                        ...newMessage,
-                        time: newMessage.createdAt.toLocaleString() // 格式化时间
-                    });
-
-                    // 清空输入框内容
-                    this.inputMessage = '';
-
-                    // 滚动到最新消息
-                    this.$nextTick(() => {
-                        const query = uni.createSelectorQuery().in(this);
-                        query.select('.message-list').boundingClientRect();
-                        query.select('.message-list').scrollOffset();
-                        query.exec((res) => {
-                            if (res[0]) {
-                                uni.pageScrollTo({
-                                    scrollTop: res[0].scrollHeight,
-                                    duration: 300
-                                });
-                            }
-                        });
-                    });
+                    uni.$emit('updateMessages'); // 触发更新消息列表的事件
+                    this.inputMessage = ''; // 清空输入框
                 } else {
                     uni.showToast({
                         title: '发送消息失败',
@@ -208,16 +170,20 @@ export default {
     display: flex;
     align-items: center;
     gap: 10px;
-    max-width: 70%; /* 限制消息框的最大宽度 */
+    max-width: 70%;
+    /* 限制消息框的最大宽度 */
 }
 
 .message-left {
-    flex-direction: row; /* 左侧消息 */
+    flex-direction: row;
+    /* 左侧消息 */
 }
 
 .message-right {
-    flex-direction: row-reverse; /* 右侧消息 */
-    align-self: flex-end; /* 右对齐 */
+    flex-direction: row-reverse;
+    /* 右侧消息 */
+    align-self: flex-end;
+    /* 右对齐 */
 }
 
 .message-content {
@@ -232,7 +198,8 @@ export default {
 }
 
 .message-right .message-content {
-    background-color: #d1e7ff; /* 右侧消息的背景色 */
+    background-color: #d1e7ff;
+    /* 右侧消息的背景色 */
 }
 
 .message-text {
@@ -251,8 +218,10 @@ export default {
     padding: 10px;
     border-top: 1px solid #eee;
     background-color: #fff;
-    position: sticky; /* 确保输入框固定在底部 */
-    bottom: 0; /* 定位到页面底部 */
+    position: sticky;
+    /* 确保输入框固定在底部 */
+    bottom: 0;
+    /* 定位到页面底部 */
 }
 
 .input-box {

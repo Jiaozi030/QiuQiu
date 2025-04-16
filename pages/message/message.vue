@@ -40,39 +40,51 @@ export default {
       messages: []
     };
   },
-  async created() {
-    try {
-      const res = await uniCloud.callFunction({
-        name: 'chat',
-        data: {
-          userId: '67d16f8ae0ec19c842704b02' // 替换为实际用户 ID
-        }
-      });
+  async onShow() {
+    this.fetchMessages(); // 页面显示时加载消息列表
 
-      console.log('云函数返回的数据:', res); // 检查云函数返回的数据
-
-      if (res.result.code === 200) {
-        const filteredResult = res.result.data.map(chat => ({
-          chatId: chat.chatId, // 确保 chatId 被正确设置
-          avatar: chat.avatar || '/static/default/logo.png', // 设置默认头像
-          username: chat.username || '未知用户', // 设置默认昵称
-          latestMessage: chat.latestMessage || '暂无消息', // 设置默认消息内容
-          time: new Date(chat.time).toLocaleString() // 格式化时间
-        }));
-
-        console.log('返回的聊天数据:', filteredResult);
-
-        this.messages = filteredResult;
-
-        console.log('处理后的消息列表:', this.messages); // 检查处理后的数据
-      } else {
-        console.error('云函数返回错误:', res.result.message);
-      }
-    } catch (error) {
-      console.error('获取聊天列表失败:', error);
-    }
+    // 监听聊天页面触发的更新事件
+    uni.$on('updateMessages', () => {
+      console.log('收到更新消息列表的事件');
+      this.fetchMessages(); // 重新加载消息列表
+    });
   },
   methods: {
+    async fetchMessages() {
+      try {
+        const res = await uniCloud.callFunction({
+          name: 'chat',
+          data: {
+            userId: '67d16f8ae0ec19c842704b02' // 替换为实际用户 ID
+          }
+        });
+
+        console.log('云函数返回的数据:', res); // 检查云函数返回的数据
+
+        if (res.result.code === 200) {
+          const filteredResult = res.result.data.map(chat => ({
+            chatId: chat.chatId, // 确保 chatId 被正确设置
+            avatar: chat.avatar || '/static/default/logo.png', // 设置默认头像
+            username: chat.username || '未知用户', // 设置默认昵称
+            latestMessage: chat.latestMessage || '暂无消息', // 设置默认消息内容
+            time: new Date(chat.time).toLocaleString() // 格式化时间
+          }));
+
+          // 按时间降序排序
+          filteredResult.sort((a, b) => b.rawTime - a.rawTime);
+          
+          console.log('返回的聊天数据:', filteredResult);
+
+          this.messages = filteredResult;
+
+          console.log('处理后的消息列表:', this.messages); // 检查处理后的数据
+        } else {
+          console.error('云函数返回错误:', res.result.message);
+        }
+      } catch (error) {
+        console.error('获取聊天列表失败:', error);
+      }
+    },
     navigateToChat(message) {
       if (!message.chatId) {
         console.error('chatId 未定义:', message);
@@ -82,27 +94,6 @@ export default {
       uni.navigateTo({
         url: `/pages/message/chat?chatId=${message.chatId}`
       });
-    },
-    async fetchMessages(chatId) {
-      try {
-        const res = await uniCloud.callFunction({
-          name: 'message', // 云函数名称
-          data: { chatId } // 传入 chatId
-        });
-
-        if (res.result.code === 200) {
-          this.messages = res.result.data.map(message => ({
-            senderId: message.senderId,
-            content: message.content,
-            avatar: message.avatar || '/static/default/logo.png', // 设置默认头像
-            time: new Date(message.createdAt).toLocaleString()
-          }));
-        } else {
-          console.error('云函数返回错误:', res.result.message);
-        }
-      } catch (error) {
-        console.error('获取消息失败:', error);
-      }
     }
   }
 };

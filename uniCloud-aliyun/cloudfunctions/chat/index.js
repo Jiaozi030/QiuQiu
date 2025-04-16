@@ -37,10 +37,6 @@ exports.main = async (event, context) => {
             // 获取聊天对象的 ID
             const otherUserId = chat.userIds.find(id => id !== userId);
 
-            console.log(`聊天记录 userIds:`, chat.userIds);
-            console.log(`当前用户 ID: ${userId}`);
-            console.log(`聊天对象 ID: ${otherUserId}`);
-
             if (!otherUserId) {
                 return null; // 如果没有找到聊天对象，跳过该聊天
             }
@@ -53,9 +49,6 @@ exports.main = async (event, context) => {
                 .get();
 
             const userInfo = otherUser.data[0] || {}; // 如果查询不到，返回空对象
-
-            console.log(`查询聊天对象的结果:`, otherUser.data);
-            console.log(`聊天对象信息:`, userInfo);
 
             // 查询该聊天的最新消息
             const latestMessage = await db.collection('message')
@@ -80,6 +73,9 @@ exports.main = async (event, context) => {
 
         // 过滤掉无效的聊天记录
         const filteredResult = result.filter(item => item !== null);
+
+        // 按时间降序排序（如果需要额外排序）
+        filteredResult.sort((a, b) => new Date(b.time) - new Date(a.time));
 
         return {
             code: 200,
