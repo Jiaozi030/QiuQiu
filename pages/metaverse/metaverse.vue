@@ -1,18 +1,11 @@
 <template>
   <view class="container">
     <view class="header" :style="{ paddingTop: (statusBarHeight + 10) + 'px' }">
-    请选择你的形象
+      请选择你的形象
     </view>
 
-    <canvas
-      type="webgl"
-      id="webgl"
-      canvas-id="webgl"
-      style="width: 100vw; height: 70vh;"
-      @touchstart="handleTouchStart"
-      @touchmove="handleTouchMove"
-      @touchend="handleTouchEnd"
-    ></canvas>
+    <canvas type="webgl" id="webgl" canvas-id="webgl" style="width: 100vw; height: 70vh;" @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove" @touchend="handleTouchEnd"></canvas>
 
     <view class="navigation">
       <button class="nav-button" @click="prevModel">←</button>
@@ -20,10 +13,9 @@
     </view>
 
     <view class="footer">
-      <button class="confirm-button" @click="confirmSelection">确认选择</button>
+      <button class="confirm-button" plain="true" @click="confirmSelection">确认选择</button>
+      <button class="next-button" :style="{ backgroundColor: '#36ffeb' }" @click="selected">Next</button>
     </view>
-
-    <!-- <text>当前模型编号：{{ currentModelIndex }}</text> -->
   </view>
 </template>
 
@@ -149,11 +141,41 @@ export default {
         title: `选择模型 ${indexStr}`,
         icon: 'success',
       })
-      // uni.showModal({
-      //   title: '提示',
-      //   content: `你选择了模型 ${this.currentModelIndex}`,
-      //   showCancel: false
-      // })
+      const avatarUrl = `http://127.0.0.1:8080/static/${indexStr}/scene.gltf`;
+
+      // 调用 saveAvatar 云函数
+      uniCloud.callFunction({
+        name: 'saveAvatar',
+        data: {
+          userId: '67d16f8ae0ec19c842704b02', // 替换为实际用户 ID
+          avatarUrl: avatarUrl, // 当前模型的 URL
+        },
+      })
+        .then((res) => {
+          if (res.result.code === 200) {
+            uni.showToast({
+              title: '保存成功',
+              icon: 'success',
+            });
+          } else {
+            uni.showToast({
+              title: res.result.message || '保存失败',
+              icon: 'none',
+            });
+          }
+        })
+        .catch((error) => {
+          console.error('云函数调用失败:', error);
+          uni.showToast({
+            title: '保存失败',
+            icon: 'none',
+          });
+        });
+    },
+    selected() {
+      uni.navigateTo({
+        url: '/pages/metaverse/meet', // 跳转到 meet 页面
+      });
     },
     handleTouchStart(e) {
       if (this.controls && this.controls.onTouchStart) {
@@ -180,7 +202,8 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   background: #ffffff;
 }
 
@@ -208,14 +231,21 @@ export default {
   margin: 20rpx;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 40rpx;
+  flex-wrap: nowrap;
 }
 
-.confirm-button {
+.confirm-button 
+.next-button {
   font-size: 28rpx;
   padding: 10rpx 50rpx;
-  background-color: #36ffeb;
+  background-color: #36ffeb !important;
   color: #000;
   border: none;
   border-radius: 10rpx;
+  text-align: center;
+  display: inline-block;
+  white-space: nowrap;
 }
 </style>

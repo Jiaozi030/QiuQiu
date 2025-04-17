@@ -24,6 +24,12 @@
 			}
 		},
 		{
+			"path": "pages/metaverse/meet",
+			"style": {
+				"navigationBarTitleText": "Meet"
+			}
+		}, 
+		{
 			"path": "pages/message/message",
 			"style": {
 				"navigationBarTitleText": "消息"
