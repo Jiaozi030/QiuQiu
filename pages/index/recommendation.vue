@@ -3,10 +3,8 @@
 		<view v-if="users.length === 0" class="loading">
 			<text>加载中...</text>
 		</view>
-		<view v-else>
-			<view v-for="(user, index) in users" :key="index" class="user-card-container">
-				<UserCard :user="user" />
-			</view>
+		<view v-else class="user-list">
+			<UserCard v-for="user in users" :key="user._id" :user="user" />
 		</view>
 	</view>
 </template>
@@ -22,19 +20,22 @@ export default {
 		};
 	},
 	async mounted() {
-		console.log('mounted 执行'); // 打印日志，检查 mounted 是否执行
-		// 获取当前用户的性别
-		const currentUserGender = await this.getCurrentUserGender();
-		if (!currentUserGender) {
-			uni.showToast({
-				title: '获取用户性别失败',
-				icon: 'none',
-			});
-			return;
-		}
+		try {
+			// 获取当前用户的性别
+			const currentUserGender = await this.getCurrentUserGender();
+			if (!currentUserGender) {
+				uni.showToast({
+					title: '获取用户性别失败',
+					icon: 'none',
+				});
+				return;
+			}
 
-		// 获取异性用户数据
-		await this.loadOppositeGenderUsers(currentUserGender);
+			// 获取异性用户数据
+			await this.loadOppositeGenderUsers(currentUserGender);
+		} catch (error) {
+			console.error('初始化失败:', error);
+		}
 	},
 	methods: {
 		// 获取当前用户的性别
@@ -48,15 +49,14 @@ export default {
 					},
 				});
 
-				// console.log('当前用户数据:', res.result.data); // 打印当前用户数据
 				if (res.result.code === 200) {
 					return res.result.data.gender; // 返回当前用户的性别
 				} else {
-					return null;
+					throw new Error('获取用户性别失败');
 				}
 			} catch (err) {
 				console.error('获取用户性别失败:', err);
-				return null;
+				throw err;
 			}
 		},
 		// 获取异性用户数据
@@ -72,7 +72,6 @@ export default {
 					timeout: 10000, // 设置超时时间
 				});
 
-				// console.log('异性用户数据:', res.result.data); // 打印异性用户数据
 				if (res.result.code === 200) {
 					this.users = res.result.data.map(user => ({
 						_id: user._id, // 确保包含 _id 字段
@@ -87,17 +86,11 @@ export default {
 						occupation: user.occupation,
 					}));
 				} else {
-					uni.showToast({
-						title: '获取用户数据失败',
-						icon: 'none',
-					});
+					throw new Error('获取用户数据失败');
 				}
 			} catch (err) {
 				console.error('获取用户数据失败:', err);
-				uni.showToast({
-					title: '获取用户数据失败',
-					icon: 'none',
-				});
+				throw err;
 			}
 		},
 	}
@@ -110,8 +103,10 @@ export default {
 	background-color: #f8f9fa;
 }
 
-.user-card-container {
-	margin-bottom: 20px;
+.user-list {
+	display: flex;
+	flex-direction: column; /* 垂直排列用户卡片 */
+	gap: 20rpx; /* 卡片之间的间距 */
 }
 
 .loading {

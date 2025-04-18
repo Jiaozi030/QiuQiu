@@ -3,8 +3,11 @@
 		<image :src="user.avatar || user.photo" class="avatar" />
 		<view class="info">
 			<text class="name">{{ user.nickname || user.name }}</text>
-			<text class="details">{{ user.gender }} | {{ user.age }}岁 | {{ user.currentCity || user.location }}</text>
-			<text class="details">职业: {{ user.occupation || user.industry }}</text>
+			<text class="details">
+				<text :class="user.gender === '男' ? 'male-symbol' : 'female-symbol'">
+					{{ user.gender === '男' ? '♂' : '♀' }}
+				</text> | {{ user.age }}岁 | {{ user.currentCity }}</text>
+			<text class="details">职业: {{ user.occupation }}</text>
 		</view>
 	</view>
 </template>
@@ -30,6 +33,7 @@ export default {
 <style>
 .user-card {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	background-color: #fff;
 	padding: 15px;
@@ -39,10 +43,10 @@ export default {
 }
 
 .avatar {
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	margin-right: 15px;
+	width: 500rpx;
+	height: 500rpx;
+	border-radius: 10rpx;
+	margin-bottom: 10rpx;
 }
 
 .info {
@@ -50,16 +54,32 @@ export default {
 }
 
 .name {
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: bold;
 	color: #333;
 	margin-bottom: 4px;
 }
 
 .details {
-	font-size: 14px;
+	font-size: 18px;
 	color: #666;
 	margin-bottom: 4px;
 	display: block;
+}
+
+.male-symbol {
+	color: #5bb8eb;
+	/* 蓝色 */
+	font-weight: bold;
+	margin-right: 5rpx;
+	/* 符号和文字之间的间距 */
+}
+
+.female-symbol {
+	color: #f19ec2;
+	/* 粉色 */
+	font-weight: bold;
+	margin-right: 5rpx;
+	/* 符号和文字之间的间距 */
 }
 </style>

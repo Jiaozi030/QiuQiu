@@ -14,7 +14,7 @@
 
     <view class="footer">
       <button class="confirm-button" plain="true" @click="confirmSelection">确认选择</button>
-      <button class="next-button" :style="{ backgroundColor: '#36ffeb' }" @click="selected">Next</button>
+      <button class="next-button" plain="true" @click="selected">下一步</button>
     </view>
   </view>
 </template>

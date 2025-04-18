@@ -1,0 +1,11 @@
+Model Information:
+* title:	red heart balloon
+* source:	https://sketchfab.com/3d-models/red-heart-balloon-0be6c5c48a034cc5a572cc551576d5d5
+* author:	meowdiy (https://sketchfab.com/meowdiy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "red heart balloon" (https://sketchfab.com/3d-models/red-heart-balloon-0be6c5c48a034cc5a572cc551576d5d5) by meowdiy (https://sketchfab.com/meowdiy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
