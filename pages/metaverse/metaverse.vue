@@ -14,7 +14,7 @@
 
     <view class="footer">
       <button class="confirm-button" plain="true" @click="confirmSelection">确认选择</button>
-      <button class="next-button" plain="true" @click="selected">下一步</button>
+      <!-- <button class="next-button" plain="true" @click="selected">下一步</button> -->
     </view>
   </view>
 </template>
@@ -157,6 +157,9 @@ export default {
             uni.showToast({
               title: '保存成功',
               icon: 'success',
+            });
+            uni.redirectTo({
+              url: '/pages/metaverse/background'
             });
           } else {
             uni.showToast({
