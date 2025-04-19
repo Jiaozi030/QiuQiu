@@ -106,6 +106,39 @@ exports.main = async (event, context) => {
         }
     }
 
+    if (action === 'getAvatarById') {
+        try {
+            const { id } = event;
+            const res = await collection.doc(id).get();
+    
+            if (!res.data || res.data.length === 0) {
+                return {
+                    code: 404,
+                    message: '未找到对应的用户记录'
+                };
+            }
+    
+            const user = res.data[0];
+            const avatar = user.avatarUrl || undefined; // 使用用户的头像URL或undefined
+    
+            return {
+                code: 200,
+                message: '头像获取成功',
+                data: {
+                    avatarUrl: avatar
+                }
+            };
+        } catch (err) {
+            console.error('获取头像失败:', err);
+            return {
+                code: 500,
+                message: '获取头像失败',
+                error: err.message
+            };
+        }
+    }
+    
+
     // 其他操作保持不变...
     const { profile } = event;
 

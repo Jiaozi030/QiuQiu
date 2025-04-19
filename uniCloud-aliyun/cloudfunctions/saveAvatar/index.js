@@ -18,7 +18,7 @@ exports.main = async (event, context) => {
         const res = await db.collection('profile')
             .doc(userId) // 根据用户 ID 定位文档
             .update({
-                avatarUrl // 更新 avatarUrl 字段
+                avatarUrl: avatarUrl // 更新 avatarUrl 字段
             });
 
         // 检查更新结果

@@ -13,6 +13,17 @@
 			}
 		},
 		{
+			"path": "pages/metaverse/metaverse-main",
+			"style": {
+				"navigationBarTitleText": "元宇宙", 
+				"navigationStyle": "custom",
+        		"disableScroll": false,
+        		"app-plus": {
+        			"titleNView": false
+        		}
+			}
+		},
+		{
 			"path": "pages/metaverse/metaverse",
 			"style": {
 				"navigationBarTitleText": "元宇宙", 
@@ -121,7 +132,7 @@
 				"selectedIconPath": "/static/default/tab-discover-active.png"
 			},
 			{
-				"pagePath": "pages/metaverse/metaverse",
+				"pagePath": "pages/metaverse/metaverse-main",
 				"text": "元宇宙",
 				"iconPath": "/static/default/tab-metaverse.png",
 				"selectedIconPath": "/static/default/tab-metaverse-active.png"

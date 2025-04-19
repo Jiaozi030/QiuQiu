@@ -147,12 +147,13 @@ export default {
       uniCloud.callFunction({
         name: 'saveAvatar',
         data: {
-          userId: '67d16f8ae0ec19c842704b02', // 替换为实际用户 ID
+          userId: uni.getStorageSync('userId'), //'67d16f8ae0ec19c842704b02', // 替换为实际用户 ID
           avatarUrl: avatarUrl, // 当前模型的 URL
         },
       })
         .then((res) => {
           if (res.result.code === 200) {
+            uni.setStorageSync('avatarUrl', avatarUrl); // 缓存头像 URL
             uni.showToast({
               title: '保存成功',
               icon: 'success',
@@ -173,8 +174,8 @@ export default {
         });
     },
     selected() {
-      uni.navigateTo({
-        url: '/pages/metaverse/background', 
+      uni.redirectTo({
+        url: '/pages/metaverse/background'
       });
     },
     handleTouchStart(e) {
