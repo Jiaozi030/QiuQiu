@@ -174,7 +174,7 @@ export default {
     },
     selected() {
       uni.navigateTo({
-        url: '/pages/metaverse/meet', // 跳转到 meet 页面
+        url: '/pages/metaverse/background', 
       });
     },
     handleTouchStart(e) {

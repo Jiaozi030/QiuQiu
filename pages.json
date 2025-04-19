@@ -24,9 +24,9 @@
 			}
 		},
 		{
-			"path": "pages/metaverse/meet",
+			"path": "pages/metaverse/background",
 			"style": {
-				"navigationBarTitleText": "Meet"
+				"navigationBarTitleText": "background"
 			}
 		}, 
 		{
